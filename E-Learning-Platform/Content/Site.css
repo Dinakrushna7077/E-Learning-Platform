@@ -1,20 +1,9 @@
-﻿/* Set padding to keep content from hitting the edges */
-.body-content {
-    margin-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+﻿.sticky-top {
+    top: 0;
+    z-index: 1020;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.navbar.scrolled-up {
+    background-color: #0d6efd !important; /* Bootstrap primary blue */
+    transition: background-color 0.3s;
 }

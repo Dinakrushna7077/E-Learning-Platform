@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace E_Learning_Platform.Controllers
 {
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
-        // GET: Home
-        public ActionResult Index()
+        // GET: Admin
+        public ActionResult Login()
         {
             return View();
         }
