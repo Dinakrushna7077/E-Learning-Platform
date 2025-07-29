@@ -1,13 +1,13 @@
 ﻿let lastScroll = 0;
-const navbar = document.getElementById('mainNavbar');
-window.addEventListener('scroll', function () {
-    const currentScroll = window.pageYOffset;
+const navbar = document.getElementById("mainNavbar");
+
+window.addEventListener("scroll", function () {
+    const currentScroll = window.scrollY;
+
     if (currentScroll < lastScroll) {
-        // Scrolling up
-        navbar.classList.add('scrolled-up');
+        navbar.classList.add("scrolled-up");
     } else {
-        // Scrolling down
-        navbar.classList.remove('scrolled-up');
+        navbar.classList.remove("scrolled-up");
     }
     lastScroll = currentScroll;
 });

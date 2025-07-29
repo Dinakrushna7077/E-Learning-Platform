@@ -4,6 +4,69 @@
 }
 
 .navbar.scrolled-up {
-    background-color: #0d6efd !important; /* Bootstrap primary blue */
+    background-color: #2d3e50 !important;
     transition: background-color 0.3s;
 }
+
+.navbar-light .navbar-nav .nav-link .navbar-brand {
+    color: #333;
+    transition: color 0.3s;
+}
+
+.navbar.scrolled-up .nav-link, .navbar.scrolled-up .navbar-brand {
+    color: #f8f9fa !important;
+}
+
+.navbar.scrolled-up .nav-link.active {
+        color: #ffd54f !important;
+        font-weight: 600;
+    }
+
+.navbar.scrolled-up .btn-primary:hover {
+    background-color: #e6c244;
+    border-color: #e6c244;
+    color: #1f2b3a;
+}
+/*Design For Home Page (Dinakrushna Mohanta)*/
+.scroll-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.scroll-content {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll-left 20s linear infinite;
+}
+
+.scroll-container:hover .scroll-content {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.course-item {
+    display: inline-block;
+    min-width: 200px;
+    margin: 0 16px;
+    padding: 16px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+    font-weight: 500;
+}
+
+/*Ending Design for Home Page*/
