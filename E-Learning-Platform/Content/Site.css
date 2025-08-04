@@ -68,5 +68,289 @@
     text-align: center;
     font-weight: 500;
 }
+/*Home page by somesh*/
 
+/*Basic tutorial css*/
+.page-header h1 {
+    font-size: 32px;
+    color: #222;
+    border-bottom: 3px solid #ff2cb1;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.language-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+    .language-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+    }
+
+.lang-code {
+    display: inline-block;
+    border: 2px solid #ff2cb1;
+    color: #ff2cb1;
+    padding: 6px 12px;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.show-all-btn {
+    background: #ff2cb1;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 25px;
+    font-size: 16px;
+    margin-top: 30px;
+}
+
+    .show-all-btn:hover {
+        background: #e01ca0;
+    }
+/*basic tutorial css end*/
+.rounded-img {
+    border-radius: 20px;
+    position: relative;
+}
+
+.step-badge {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: white;
+    color: #ff2cb1;
+    border: 3px solid #ff2cb1;
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.step1 {
+    top: 15%;
+    right: -25px;
+}
+
+.step2 {
+    top: 45%;
+    right: -25px;
+}
+
+.step3 {
+    bottom: 15%;
+    right: -25px;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.section-line {
+    width: 60px;
+    height: 3px;
+    background: #000;
+    margin-top: 10px;
+}
+
+/*imagae css*/
+.step-number {
+    width: 50px;
+    height: 50px;
+    background-color: #ff2cb1;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    left: -25px;
+    top: 10px;
+}
+
+.image-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.step-text {
+    margin-left: 50px;
+}
+
+.step {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.how-it-works-section {
+    padding: 60px 0;
+}
+
+    .how-it-works-section h2 {
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .how-it-works-section p.lead {
+        font-size: 1.1rem;
+        color: #666;
+    }
+
+.rounded-image {
+    border-radius: 25px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+/*end imagae css*/
+/*about page css */
+.about-section {
+    padding: 60px 0;
+    background-color: #fff;
+}
+
+.about-title {
+    color: #00bcd4;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.about-heading {
+    font-weight: 700;
+    font-size: 36px;
+    color: #0b0c2a;
+}
+
+.feature-icon {
+    color: #00bcd4;
+    margin-right: 8px;
+}
+
+.btn-custom {
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+}
+
+    .btn-custom:hover {
+        background-color: #0097a7;
+    }
+/*end about page css */
+
+/*Instuctor page css*/
+.instructor-card {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.instructor-image {
+    overflow: hidden;
+}
+
+    .instructor-image img {
+        width: 100%;
+        height: 250px; /* Set fixed height */
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    
+        transition: transform 0.4s ease-in-out;
+    }
+
+.instructor-card:hover img {
+    transform: scale(1.1);
+}
+
+.instructor-info {
+    text-align: center;
+    background-color: #f5fafd;
+    padding: 15px;
+}
+
+    .instructor-info h5 {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+.social-icons {
+    margin-top: 10px;
+}
+
+    .social-icons a {
+        color: white;
+        background-color: #00bcd4;
+        margin: 0 5px;
+        padding: 8px 10px;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.3s;
+    }
+
+        .social-icons a:hover {
+            background-color: #0097a7;
+        }
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+    .section-title h6 {
+        color: #00bcd4;
+        font-weight: bold;
+    }
+
+    .section-title h2 {
+        font-weight: bold;
+        color: #0b0c2a;
+    }/*End Instuctor page css*/
+.carousel-item {
+    height: 100vh;
+}
+
+    .carousel-item img {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+    }
+
+.carousel-caption {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5); /* dark overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0px 0px 0px 0px;
+}
+
+    .carousel-caption h1 {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    .carousel-caption p {
+        font-size: 1.1rem;
+    }
 /*Ending Design for Home Page*/

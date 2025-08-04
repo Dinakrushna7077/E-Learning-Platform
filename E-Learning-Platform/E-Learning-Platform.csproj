@@ -214,6 +214,13 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="photo\coder.jpg" />
+    <Content Include="photo\image1.jpg" />
+    <Content Include="photo\image2.jpg" />
+    <Content Include="photo\image3.jpg" />
+    <Content Include="photo\instructor 4.jpeg" />
+    <Content Include="photo\instuctor 3.jpeg" />
+    <Content Include="photo\instuctor 5.jpeg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -231,6 +238,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="photo\mark.jpg" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
