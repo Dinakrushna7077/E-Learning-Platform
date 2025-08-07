@@ -28,6 +28,9 @@
     color: #1f2b3a;
 }
 /*Design For Home Page (Dinakrushna Mohanta)*/
+.e-learning-bg{
+    background-color:azure;
+}
 .scroll-container {
     overflow: hidden;
     position: relative;
