@@ -20,25 +20,27 @@
                 <!-- Left side navs -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("Index","Home")">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Courses</a>
+                        <a class="nav-link" href="@Url.Action("Index","Home")#course">Courses</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="@Url.Action("Index","Home")#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="@Url.Action("Index","Home")#contact">Contact</a>
                     </li>
                 </ul>
                 <!-- Right side navs -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        @*@Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link" })*@
+                        <a class="nav-link" href="@Url.Action("Login","Login")">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sign Up</a>
+                        @*@Html.ActionLink("SignUp", "Login", "Login", new { @class = "nav-link" })*@
+                        <a class="nav-link" href="@Url.Action("SignUp","Login")">Sign Up</a>
                     </li>
                 </ul>
             </div>
@@ -47,9 +49,80 @@
     <div class="mx-5 body-content e-learning-bg">
         @RenderBody()
         <hr />
-        <footer>
-            <p class="text-center">&copy; @DateTime.Now.Year - E-Learning</p>
+        <footer class="bg-dark text-light pt-5 pb-4 rounded-1" id="contact">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Quick Links -->
+                    <div class="col-md-3">
+                        <h5 class="text-white mb-4">Quick Link</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-light text-decoration-none">About Us</a></li>
+                            <li><a href="#" class="text-light text-decoration-none">Contact Us</a></li>
+                            <li><a href="#" class="text-light text-decoration-none">Privacy Policy</a></li>
+                            <li><a href="#" class="text-light text-decoration-none">Terms & Condition</a></li>
+                            <li><a href="#" class="text-light text-decoration-none">FAQs & Help</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="col-md-3">
+                        <h5 class="text-white mb-4">Contact</h5>
+                        <p><i class="bi bi-geo-alt-fill me-2"></i>123 Street, New York, USA</p>
+                        <p><i class="bi bi-telephone-fill me-2"></i>+012 345 67890</p>
+                        <p><i class="bi bi-envelope-fill me-2"></i>info@example.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social me-2" href="#"><i class="bi bi-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social me-2" href="#"><i class="bi bi-facebook"></i></a>
+                            <a class="btn btn-outline-light btn-social me-2" href="#"><i class="bi bi-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="#"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Gallery -->
+                    <div class="col-md-3">
+                        <h5 class="text-white mb-4">Gallery</h5>
+                        <div class="row g-2">
+                            <div class="col-4"><img src="https://via.placeholder.com/80" class="img-fluid" alt=""></div>
+                            <div class="col-4"><img src="https://via.placeholder.com/80" class="img-fluid" alt=""></div>
+                            <div class="col-4"><img src="https://via.placeholder.com/80" class="img-fluid" alt=""></div>
+                            <div class="col-4"><img src="https://via.placeholder.com/80" class="img-fluid" alt=""></div>
+                            <div class="col-4"><img src="https://via.placeholder.com/80" class="img-fluid" alt=""></div>
+                            <div class="col-4"><img src="https://via.placeholder.com/80" class="img-fluid" alt=""></div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="col-md-3">
+                        <h5 class="text-white mb-4">Newsletter</h5>
+                        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                        <form class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email">
+                            <button class="btn btn-primary">SignUp</button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <hr class="bg-light">
+
+                <div class="d-md-flex justify-content-between text-center text-md-start pt-2">
+                    <div class="text-light small">
+                        © Your Site Name, All Right Reserved. Designed By <a href="#" class="text-decoration-none text-info">HTML Codex</a>
+                        <br>Distributed by <a href="#" class="text-decoration-none text-info">ThemeWagon</a>
+                    </div>
+                    <div class="mt-2 mt-md-0">
+                        <a href="#" class="text-light me-3">Home</a>
+                        <a href="#" class="text-light me-3">Cookies</a>
+                        <a href="#" class="text-light me-3">Help</a>
+                        <a href="#" class="text-light">FAQs</a>
+                    </div>
+                </div>
+            </div>
         </footer>
+        @*<footer>
+            <p class="text-center">&copy; @DateTime.Now.Year - E-Learning</p>
+        </footer>*@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
