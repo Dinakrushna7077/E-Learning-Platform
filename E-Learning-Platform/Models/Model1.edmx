@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="e_learning_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="e_learning_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="admin_id" />
@@ -86,7 +86,7 @@
           <Property Name="created_at" Type="datetime" />
           <Property Name="updated_at" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Admin__user_id__4AB81AF0">
+        <Association Name="FK__Admin__user_id__412EB0B6">
           <End Role="users" Type="Self.users" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -100,7 +100,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__course__teacher___534D60F1">
+        <Association Name="FK__course__teacher___49C3F6B7">
           <End Role="Role" Type="Self.Role" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -114,7 +114,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Logs__UserId__5AEE82B9">
+        <Association Name="FK__Logs__UserId__5165187F">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="Logs" Type="Self.Logs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -126,7 +126,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__student__course___571DF1D5">
+        <Association Name="FK__student__course___4D94879B">
           <End Role="course" Type="Self.course" Multiplicity="0..1" />
           <End Role="student" Type="Self.student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -138,7 +138,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__student__user_id__5812160E">
+        <Association Name="FK__student__user_id__4E88ABD4">
           <End Role="users" Type="Self.users" Multiplicity="0..1" />
           <End Role="student" Type="Self.student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -150,7 +150,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Teacher__departm__4F7CD00D">
+        <Association Name="FK__Teacher__departm__45F365D3">
           <End Role="Department" Type="Self.Department" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -164,7 +164,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Teacher__user_id__4E88ABD4">
+        <Association Name="FK__Teacher__user_id__44FF419A">
           <End Role="users" Type="Self.users" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -178,7 +178,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__users__role__440B1D61">
+        <Association Name="FK__users__role__3A81B327">
           <End Role="Role" Type="Self.Role" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -201,41 +201,40 @@
           <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Admin__user_id__4AB81AF0" Association="Self.FK__Admin__user_id__4AB81AF0">
+          <AssociationSet Name="FK__Admin__user_id__412EB0B6" Association="Self.FK__Admin__user_id__412EB0B6">
             <End Role="users" EntitySet="users" />
             <End Role="Admin" EntitySet="Admin" />
           </AssociationSet>
-          <AssociationSet Name="FK__course__teacher___534D60F1" Association="Self.FK__course__teacher___534D60F1">
+          <AssociationSet Name="FK__course__teacher___49C3F6B7" Association="Self.FK__course__teacher___49C3F6B7">
             <End Role="Role" EntitySet="Role" />
             <End Role="course" EntitySet="course" />
           </AssociationSet>
-          <AssociationSet Name="FK__Logs__UserId__5AEE82B9" Association="Self.FK__Logs__UserId__5AEE82B9">
+          <AssociationSet Name="FK__Logs__UserId__5165187F" Association="Self.FK__Logs__UserId__5165187F">
             <End Role="users" EntitySet="users" />
             <End Role="Logs" EntitySet="Logs" />
           </AssociationSet>
-          <AssociationSet Name="FK__student__course___571DF1D5" Association="Self.FK__student__course___571DF1D5">
+          <AssociationSet Name="FK__student__course___4D94879B" Association="Self.FK__student__course___4D94879B">
             <End Role="course" EntitySet="course" />
             <End Role="student" EntitySet="student" />
           </AssociationSet>
-          <AssociationSet Name="FK__student__user_id__5812160E" Association="Self.FK__student__user_id__5812160E">
+          <AssociationSet Name="FK__student__user_id__4E88ABD4" Association="Self.FK__student__user_id__4E88ABD4">
             <End Role="users" EntitySet="users" />
             <End Role="student" EntitySet="student" />
           </AssociationSet>
-          <AssociationSet Name="FK__Teacher__departm__4F7CD00D" Association="Self.FK__Teacher__departm__4F7CD00D">
+          <AssociationSet Name="FK__Teacher__departm__45F365D3" Association="Self.FK__Teacher__departm__45F365D3">
             <End Role="Department" EntitySet="Department" />
             <End Role="Teacher" EntitySet="Teacher" />
           </AssociationSet>
-          <AssociationSet Name="FK__Teacher__user_id__4E88ABD4" Association="Self.FK__Teacher__user_id__4E88ABD4">
+          <AssociationSet Name="FK__Teacher__user_id__44FF419A" Association="Self.FK__Teacher__user_id__44FF419A">
             <End Role="users" EntitySet="users" />
             <End Role="Teacher" EntitySet="Teacher" />
           </AssociationSet>
-          <AssociationSet Name="FK__users__role__440B1D61" Association="Self.FK__users__role__440B1D61">
+          <AssociationSet Name="FK__users__role__3A81B327" Association="Self.FK__users__role__3A81B327">
             <End Role="Role" EntitySet="Role" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="e_learning_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
