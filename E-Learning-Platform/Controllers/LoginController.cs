@@ -1,4 +1,5 @@
 ﻿using E_Learning_Platform.Models;
+using E_Learning_Platform.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,8 +89,11 @@ namespace E_Learning_Platform.Controllers
 
         public ActionResult Regiseter()
         {
-
-            return View();
+            UserModel model = new UserModel();
+            List<Role> roles=db.Roles.ToList();
+            roles.Remove(roles.Where(a=>a.role_id==1012).FirstOrDefault());
+            ViewBag.roles = new SelectList(roles,"role_id","role_name");
+            return View(model);
         }
     }
 }

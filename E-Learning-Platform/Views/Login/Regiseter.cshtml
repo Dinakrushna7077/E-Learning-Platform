@@ -1,12 +1,12 @@
 ﻿
 
-@model E_Learning_Platform.Models.user
+@model E_Learning_Platform.Models.ViewModel.UserModel
 @{
     ViewBag.Title = "Registration";
 }
 
 <div>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Register","Login","Post"))
     {
         @Html.AntiForgeryToken()
         <div class=" gap-3 d-flex flex-column align-items-center pb-2 pt-2 border-2 rounded-2 border-dark reg">
@@ -16,7 +16,7 @@
                 <div class="w-100 d-sm-block d-lg-flex">
                     <label for="role" class="w-50">Register As</label>
                     <div class="w-100">
-                       @* @Html.DropDownListFor(m => m.role, ViewBag.role_name as SelectList, "--Select Role--", new { @class = "form-control" })*@
+                        @Html.DropDownListFor(m => m.Role, ViewBag.roles as SelectList, "--Select Role--", new { @class = "form-control" })
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="w-100 d-sm-block d-lg-flex">
                     <label for="role" class="w-50">Name</label>
                     <div class="w-100">
-                        @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <div class="w-100 d-sm-block d-lg-flex">
                     <label for="role" class="w-50">Gmail</label>
                     <div class="w-100">
-                        @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 <div class="w-100 d-sm-block d-lg-flex">
                     <label for="role" class="w-50">Mobile Number</label>
                     <div class="w-100">
-                        @Html.TextBoxFor(m => m.phone, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
                     </div>
                 </div>
             </div>
@@ -52,19 +52,19 @@
                 <div class="w-100 d-sm-block d-lg-flex">
                     <label for="role" class="w-50">Password</label>
                     <div class="w-100">
-                        @Html.PasswordFor(m => m.password, new { @class = "form-control" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                     </div>
                 </div>
             </div>
-           @* <div class="container w-75">
+            <div class="container w-75">
                 <label class="d-block text-danger">@TempData["warning"]</label>
                 <div class="w-100 d-sm-block d-lg-flex">
                     <label for="role" class="w-50">Repeat Password</label>
                     <div class="w-100">
-                        @Html.PasswordFor(m=>m.Confirmpassword)
+                        @Html.PasswordFor(m=>m.ConfirmPassword)
                     </div>
                 </div>
-            </div>*@
+            </div>
             <div>
                 <button class="btn btn-primary">Register</button>
             </div>
