@@ -1,6 +1,8 @@
 ﻿@{
-    var page = ViewContext.RouteData.Values["Action"].ToString();
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +23,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarContent">
                 <!-- Left side navs -->
-                @if (page != "Login")
+                @if (!(controller == "Login" && action == "Login"))
+
                 {
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
