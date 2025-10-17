@@ -217,6 +217,11 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="photo\1000876219[1].jpg" />
+    <Content Include="photo\1748687419369[1].jpg" />
+    <Content Include="photo\coder.jpg" />
+    <Content Include="photo\DSC_0334.JPG" />
+    <Content Include="photo\DSC_0500.JPG" />
     <Content Include="photo\background1.jpg" />
     <Content Include="photo\background2.jpg" />
     <Content Include="photo\background3.jpg" />
@@ -230,6 +235,10 @@
     <Content Include="photo\instructor 4.jpeg" />
     <Content Include="photo\instuctor 3.jpeg" />
     <Content Include="photo\instuctor 5.jpeg" />
+    <Content Include="photo\passport.png" />
+    <Content Include="photo\WhatsApp Image 2025-10-18 at 01.02.27_f6bafc9c.jpg" />
+    <Content Include="photo\WhatsApp Image 2025-10-18 at 01.22.52_0c1f6021.jpg" />
+    <Content Include="photo\WhatsApp Image 2025-10-18 at 01.27.05_da76d7b4.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
