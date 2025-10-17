@@ -7,92 +7,64 @@
 <html>
 <head>
     <style>
-        body {
-            background: #333;
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #main {
+            height: 100vh;
+            width: 99vw;
+            margin: 0px;
+            display: flex;
+            /*justify-content: center;
+            align-items: center;
+            background-image: url("/photo/e learning_pic.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            backdrop-filter: blur(10px);*/
         }
 
         #login {
-            -webkit-perspective: 1000px;
-            -moz-perspective: 1000px;
-            perspective: 1000px;
-            margin-top: 50px;
-            margin-left: 30%;
+            height: 300px;
+            width: 550px;
+            color: black;
+            font-family: Algerian;
+            font-size: larger;
+            display: flex;
+            /*            justify-content: center;
+            align-items: center;*/
+            text-align: center;
+            position: absolute;
+            top: 32%;
+            left: 12%;
+            background-color: transparent;
+            backdrop-filter: blur(12px);
+            box-shadow: 3px 3px 10px black;
+            border: 2px solid white;
+            flex-direction: column;
+            justify-content: space-evenly;
+            border-radius: 10px;
+            /*    background-image: url("/image/background1.jpg");*/
         }
 
-        .login {
-            font-family: 'Josefin Sans', sans-serif;
-            -webkit-transition: .3s;
-            -moz-transition: .3s;
-            transition: .3s;
-            -webkit-transform: rotateY(40deg);
-            -moz-transform: rotateY(40deg);
-            transform: rotateY(40deg);
+        #welcome {
+            color: rgb(115 39 139);
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            font-size: 60px;
+            font-family: Elephant;
         }
 
-            .login:hover {
-                -webkit-transform: rotate(0);
-                -moz-transform: rotate(0);
-                transform: rotate(0);
-            }
-
-            .login article {
-            }
-
-            .login .form-group {
-                margin-bottom: 17px;
-            }
-
-            .login .form-control,
-            .login .btn {
-                border-radius: 0;
-            }
-
-            .login .btn {
-                text-transform: uppercase;
-                letter-spacing: 3px;
-            }
-
-        .input-group-addon {
-            border-radius: 0;
-            color: #fff;
-            background: #f3aa0c;
-            border: #f3aa0c;
-        }
-
-        .forgot {
+        #resg {
             font-size: 16px;
+            font-family: Arial;
+            color: ghostwhite;
         }
 
-            .forgot a {
-                color: #333;
-            }
-
-                .forgot a:hover {
-                    color: #5cb85c;
-                }
-
-        #inner-wrapper, #contact-us .contact-form, #contact-us .our-address {
-            color: #1d1d1d;
-            font-size: 19px;
-            line-height: 1.7em;
-            font-weight: 300;
-            padding: 50px;
-            background: #fff;
-            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-            margin-bottom: 100px;
-        }
-
-        .input-group-addon {
-            border-radius: 0;
-            border-top-right-radius: 0px;
-            border-bottom-right-radius: 0px;
-            color: #fff;
-            background: #f3aa0c;
-            border: #f3aa0c;
-            border-right-color: rgb(243, 170, 12);
-            border-right-style: none;
-            border-right-width: medium;
-        }
+        #new {
+            color: dodgerblue;
         }
     </style>
 </head>
@@ -100,32 +72,34 @@
 
     @using (Html.BeginForm("Login", "Login", "post"))
     {
-        <div class="col-md-4 col-md-offset-4" id="login">
-            <section id="inner-wrapper" class="login">
-                <article>
-                    <form>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
-                                @Html.TextBoxFor(x => x.Identifier, new { @id = "username", placeholder = "Mail ID or Mob" })
+        <div id="main">
+            <img src="~/photo/e learning_pic.png" class="h-100 w-100 " alt="..." />
+            <div id="welcome">
+                Welcome To E-Learning Platform
+            </div>
 
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-key"> </i></span>
-                                @Html.TextBoxFor(x => x.Password, new { @id = "password", placeholder = "Password", type = "password" })
+            <div id="login">
 
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-success btn-block">Login</button>
-                        <div class="forgot">
-                            <a href="forgot-password.html">Forget Password?</a> | <a href="register.html">New User?</a>
-                        </div>
-                    </form>
-                </article>
-            </section>
+                @Html.AntiForgeryToken()
+                @Html.Raw(ViewBag.msg)
+
+                <div id="user_id">
+                    <label> Enter your mail  : </label>
+                    @Html.TextBoxFor(m => m.Identifier, new { placeholder = "Mail or Phone" })
+                </div>
+                <div id="password">
+                    <label> Enter  password  :</label>
+                    @Html.PasswordFor(prop => prop.Password, new { placeholder = "Password" })
+                </div>
+                <div>
+                    <button style="background-color:rebeccapurple; color:aliceblue;" class="w-50">LOG IN</button>
+                    <br /> <span id="resg">Don't have a account? <a href="#" id="new">Create New </a> </span>
+                </div>
+
+
+            </div>
         </div>
+
 
 
     }
