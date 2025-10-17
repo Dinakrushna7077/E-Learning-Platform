@@ -86,6 +86,10 @@ namespace E_Learning_Platform.Controllers
             return Regex.IsMatch(input, emailPattern, RegexOptions.IgnoreCase);
         }
 
+        public ActionResult Regiseter()
+        {
 
+            return View();
+        }
     }
 }
