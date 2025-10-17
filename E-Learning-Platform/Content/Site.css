@@ -77,7 +77,7 @@
 .page-header h1 {
     font-size: 32px;
     color: #222;
-    border-bottom: 3px solid #ff2cb1;
+    border-bottom: 3px solid #2c65ff;
     display: inline-block;
     padding-bottom: 5px;
 }
@@ -98,8 +98,8 @@
 
 .lang-code {
     display: inline-block;
-    border: 2px solid #ff2cb1;
-    color: #ff2cb1;
+    border: 2px solid #344fdc;
+    color: #344fdc;
     padding: 6px 12px;
     border-radius: 50%;
     font-weight: bold;
@@ -107,8 +107,8 @@
 }
 
 .show-all-btn {
-    background: #ff2cb1;
-    color: #fff;
+    background: #2c65ff;
+    color: white;
     border: none;
     border-radius: 30px;
     padding: 12px 25px;
@@ -117,7 +117,7 @@
 }
 
     .show-all-btn:hover {
-        background: #e01ca0;
+        background: #2c65ff;
     }
 /*basic tutorial css end*/
 .rounded-img {
@@ -171,7 +171,7 @@
 .step-number {
     width: 50px;
     height: 50px;
-    background-color: #ff2cb1;
+    background-color: #2c65ff;
     color: #fff;
     border-radius: 50%;
     display: flex;
@@ -180,7 +180,7 @@
     font-weight: bold;
     font-size: 20px;
     position: absolute;
-    left: -25px;
+    left: -5px;
     top: 10px;
 }
 
@@ -298,7 +298,7 @@
 
     .social-icons a {
         color: white;
-        background-color: #00bcd4;
+        background-color: #2c65ff;
         margin: 0 5px;
         padding: 8px 10px;
         border-radius: 50%;
@@ -307,7 +307,7 @@
     }
 
         .social-icons a:hover {
-            background-color: #0097a7;
+            background-color: #1100d4;
         }
 
 .section-title {
@@ -355,5 +355,9 @@
 
     .carousel-caption p {
         font-size: 1.1rem;
+    }
+    .e-learning
+    {
+        color:#2d3e50;
     }
 /*Ending Design for Home Page*/
