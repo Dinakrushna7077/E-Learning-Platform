@@ -87,13 +87,93 @@ namespace E_Learning_Platform.Controllers
             return Regex.IsMatch(input, emailPattern, RegexOptions.IgnoreCase);
         }
 
-        public ActionResult Regiseter()
+        public ActionResult Register()
         {
             UserModel model = new UserModel();
-            List<Role> roles=db.Roles.ToList();
-            roles.Remove(roles.Where(a=>a.role_id==1012).FirstOrDefault());
-            ViewBag.roles = new SelectList(roles,"role_id","role_name");
+            List<Role> roles = db.Roles.ToList();
+            roles.Remove(roles.Where(a => a.role_id == 1012).FirstOrDefault());
+            ViewBag.roles = new SelectList(roles, "role_id", "role_name");
             return View(model);
+        }
+        [HttpPost]
+        public ActionResult Register(UserModel u)
+        {
+            List<Role> roles = db.Roles.ToList();
+            roles.Remove(roles.Where(a => a.role_id == 1012).FirstOrDefault());
+            ViewBag.roles = new SelectList(roles, "role_id", "role_name");
+            if (ModelState.IsValid)
+            {
+                if(u.Password==u.ConfirmPassword)
+                {
+                    user user = new user();
+                    user.name = u.Name;
+                    user.email = u.Email;
+                    user.phone = u.Phone;
+                    user.password = u.Password;
+                    user.role = u.Role;
+                    db.users.Add(user);
+                    db.SaveChanges();
+                    TempData["UserId"] = user.user_id;
+                    TempData["role"] = user.role;
+                    TempData["msg"] = "<script>alert('Registration Successful')</script>";
+                    return RedirectToAction("Details");
+                }
+                else
+                {
+                    TempData["msg"] = "<script>alert('Password and Confirm Password do not match')</script>";
+                }
+            }
+            return View(u);
+        }
+        public ActionResult Details()
+        {
+            List<course> courses=db.courses.ToList();
+            ViewBag.courses = new SelectList(courses,"course_id","title");
+
+            //define qualifications list
+            List<string> qualifications = new List<string>
+            {
+                "Bachelor's Degree",
+                "Master's Degree",
+                "Doctorate (Ph.D.)",
+                "Professional Certification"
+            };
+            ViewBag.qualifications = new SelectList(qualifications);
+            var dept=db.Departments.ToList();
+            ViewBag.department = new SelectList(dept, "dept_id", "dept_name");
+            DetailsModel t = new DetailsModel();
+            t.UserId = Convert.ToInt32(TempData["UserId"]);
+            return View(t);
+        }
+        [HttpPost]
+        public ActionResult TeacherDetails(DetailsModel t)
+        {
+            Teacher nteacher= new Teacher();
+            nteacher.isActive = false;
+            nteacher.qualification = t.Qualification;
+            nteacher.subject = t.SubjectExpertise;
+            nteacher.gender = t.Gender;
+            nteacher.user_id = t.UserId;
+            nteacher.department = t.DepartmentId;
+            nteacher.Status = "New";
+            db.Teachers.Add(nteacher);
+            db.SaveChanges();
+
+            return RedirectToAction("Login");
+        }
+        [HttpPost]
+        public ActionResult StudentDetails(DetailsModel s)
+        {
+            student std=new student();
+            std.father_name=s.FatherName;
+            std.mother_name=s.MotherName;
+            std.gender = s.Gender;
+            std.address=s.Address;
+            std.course_id=s.CourseId;
+            std.user_id=s.UserId;
+            db.students.Add(std);
+            db.SaveChanges();
+            return RedirectToAction("Login");
         }
     }
 }

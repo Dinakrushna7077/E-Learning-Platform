@@ -26,12 +26,13 @@ namespace E_Learning_Platform.Models
         }
     
         public virtual DbSet<Admin> Admins { get; set; }
-        public virtual DbSet<course> courses { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<student> students { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<course> courses { get; set; }
+        public virtual DbSet<Role1> Roles1 { get; set; }
     }
 }

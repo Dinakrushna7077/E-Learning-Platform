@@ -22,7 +22,7 @@ namespace E_Learning_Platform.Models
         public Nullable<int> course_id { get; set; }
         public Nullable<int> user_id { get; set; }
     
-        public virtual course course { get; set; }
         public virtual user user { get; set; }
+        public virtual course course { get; set; }
     }
 }
