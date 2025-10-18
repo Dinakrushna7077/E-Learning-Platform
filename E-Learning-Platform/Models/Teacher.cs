@@ -22,6 +22,7 @@ namespace E_Learning_Platform.Models
         public int user_id { get; set; }
         public int department { get; set; }
         public Nullable<System.DateTime> hire_date { get; set; }
+        public string Status { get; set; }
     
         public virtual Department Department1 { get; set; }
         public virtual user user { get; set; }

@@ -72,6 +72,7 @@
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="department" Type="int" Nullable="false" />
           <Property Name="hire_date" Type="date" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -316,6 +317,7 @@
           <Property Name="hire_date" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Department1" Relationship="Self.FK__Teacher__departm__4F7CD00D" FromRole="Teacher" ToRole="Department" />
           <NavigationProperty Name="user" Relationship="Self.FK__Teacher__user_id__4E88ABD4" FromRole="Teacher" ToRole="users" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -553,6 +555,7 @@
           <EntitySetMapping Name="Teachers">
             <EntityTypeMapping TypeName="e_learning_dbModel.Teacher">
               <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="tacher_id" ColumnName="tacher_id" />
                 <ScalarProperty Name="qualification" ColumnName="qualification" />
                 <ScalarProperty Name="subject" ColumnName="subject" />

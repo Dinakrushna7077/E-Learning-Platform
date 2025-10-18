@@ -35,6 +35,7 @@ namespace E_Learning_Platform.Controllers
                         Session["Userid"] = user.user_id;
                         Session["Username"] = user.name;
                         Session["Role"] = user.role;
+                        Session["profile"] = Profile(user.name);
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -59,6 +60,7 @@ namespace E_Learning_Platform.Controllers
                         Session["Userid"] = user.user_id;
                         Session["Username"] = user.name;
                         Session["Role"] = user.role;
+                        Session["profile"]= Profile(user.name);
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -85,6 +87,17 @@ namespace E_Learning_Platform.Controllers
             string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
 
             return Regex.IsMatch(input, emailPattern, RegexOptions.IgnoreCase);
+        }
+        
+        private string Profile(string name)
+        {
+          var namepart=name.Split(' ');
+            string profile=namepart[0].Substring(0,1).ToUpper();
+            if(namepart.Length>=2)
+            {
+                profile=profile+namepart[namepart.Length-1].Substring(0,1).ToUpper();
+            }
+            return profile;
         }
 
         public ActionResult Regiseter()
