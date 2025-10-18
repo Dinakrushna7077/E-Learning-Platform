@@ -27,6 +27,18 @@
     border-color: #e6c244;
     color: #1f2b3a;
 }
+#profile {
+    height: 2.8rem !important;
+    width: 2.8rem !important;
+    border: 2px solid gray !important;
+    background-color: #2d3e50;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+}
 /*Design For Home Page (Dinakrushna Mohanta)*/
 .e-learning-bg{
     background-color:azure;
