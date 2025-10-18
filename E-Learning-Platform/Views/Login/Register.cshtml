@@ -4,9 +4,11 @@
 @{
     ViewBag.Title = "Registration";
 }
-
+<head>
+    <link href="~/Content/Register.css" rel="stylesheet" />
+</head>
 <div>
-    @using (Html.BeginForm("Regiseter", "Login","Post"))
+    @using (Html.BeginForm("Register", "Login", "Post"))
     {
         @Html.AntiForgeryToken()
         <div class=" gap-3 d-flex flex-column align-items-center pb-2 pt-2 border-2 rounded-2 border-dark reg">
@@ -61,7 +63,7 @@
                 <div class="w-100 d-sm-block d-lg-flex">
                     <label for="role" class="w-50">Repeat Password</label>
                     <div class="w-100">
-                        @Html.PasswordFor(m=>m.ConfirmPassword)
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
                     </div>
                 </div>
             </div>
