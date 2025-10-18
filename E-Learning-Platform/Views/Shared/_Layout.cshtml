@@ -1,6 +1,7 @@
 ﻿@{
     var controller = ViewContext.RouteData.Values["controller"]?.ToString();
     var action = ViewContext.RouteData.Values["action"]?.ToString();
+  
 }
 
 <!DOCTYPE html>
@@ -39,19 +40,30 @@
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Index", "Home")#contact">Contact</a>
                         </li>
-                    </ul>
-                    <!-- Right side navs -->
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            @*@Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link" })*@
-                            <a class="nav-link" href="@Url.Action("Login", "Login")">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            @*@Html.ActionLink("SignUp", "Login", "Login", new { @class = "nav-link" })*@
-                            <a class="nav-link" href="@Url.Action("SignUp", "Login")">Sign Up</a>
-                        </li>
-                    </ul>
+                    </ul><!-- Right side navs -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+    @if (Session["Userid"] == null)
+    {
+        <li class="nav-item">
+            @*@Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link" })*@
+            <a class="nav-link" href="@Url.Action("Login", "Login")">Login</a>
+        </li>
+        <li class="nav-item">
+            @*@Html.ActionLink("SignUp", "Login", "Login", new { @class = "nav-link" })*@
+            <a class="nav-link" href="@Url.Action("SignUp", "Login")">Sign Up</a>
+        </li>
+    }
+    else
+    {
+       
+        <li class="nav-item  rounded-circle" id="profile">
+            @*@Html.ActionLink("SignUp", "Login", "Login", new { @class = "nav-link" })*@
+     <span class=" " >@Session["profile"]</span>
+        </li>
+    }
+</ul>
                 }
+
                
             </div>
         </div>
