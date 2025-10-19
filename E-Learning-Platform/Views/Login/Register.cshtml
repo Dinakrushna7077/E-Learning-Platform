@@ -11,7 +11,8 @@
     @using (Html.BeginForm("Register", "Login", "Post"))
     {
         @Html.AntiForgeryToken()
-        <div class=" gap-3 d-flex flex-column align-items-center pb-2 pt-2 border-2 rounded-2 border-dark reg">
+        <img src="~/photo/e learning_pic.png" id="gb-img" class=" w-100 " />
+        <div class=" gap-2 d-flex flex-column align-items-center pb-2 pt-2 border-2 rounded-2 border-white reg">
             <h4>Registration</h4>
             <div class="container w-75 ">
                 <label class="d-block text-danger">@TempData["warning"]</label>
@@ -67,8 +68,8 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <button class="btn btn-primary">Register</button>
+            <div class="w-100 text-center">
+                <button class="btn w-25 e-btn">Register</button>
             </div>
 
         </div>
@@ -78,7 +79,7 @@
 <style>
     .reg {
         backdrop-filter: blur(200px);
-        background-color: rgba(128, 128, 128,0.2);
+        /*background-color: rgba(128, 128, 128,0.2);*/
         border: 1px solid black;
         width: 50%;
     }
