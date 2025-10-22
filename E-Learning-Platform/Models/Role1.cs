@@ -12,18 +12,9 @@ namespace E_Learning_Platform.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class Role1
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
-        {
-            this.users = new HashSet<user>();
-        }
-    
-        public int role_id { get; set; }
-        public string role_name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
+        public int RoleId { get; set; }
+        public string RoleName { get; set; }
     }
 }

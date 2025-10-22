@@ -1,0 +1,15 @@
+﻿.reg {
+    backdrop-filter: blur(200px);
+    background-color: rgba(128, 128, 128,0.2);
+    border: 1px solid black;
+    width: 50%;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
