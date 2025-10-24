@@ -16,7 +16,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg- sticky-top" id="mainNavbar">
+    <nav class="navbar navbar-expand-lg navbar-light  sticky-top shadow-sm" id="mainNavbar">
         <div class="container-fluid">
             <a class="navbar-brand e-learning fw-bolder" href="#">E-Learn</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,33 +41,55 @@
                             <a class="nav-link" href="@Url.Action("Index", "Home")#contact">Contact</a>
                         </li>
                     </ul><!-- Right side navs -->
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-    @if (Session["Userid"] == null)
-    {
-        <li class="nav-item">
-            @*@Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link" })*@
-            <a class="nav-link" href="@Url.Action("Login", "Login")">Login</a>
-        </li>
-        <li class="nav-item">
-            @*@Html.ActionLink("SignUp", "Login", "Login", new { @class = "nav-link" })*@
-            <a class="nav-link" href="@Url.Action("Register", "Login")">Sign Up</a>
-        </li>
-    }
-    else
-    {
-       
-        <li class="nav-item  rounded-circle" id="profile">
-            @*@Html.ActionLink("SignUp", "Login", "Login", new { @class = "nav-link" })*@
-     <span class=" " >@Session["profile"]</span>
-        </li>
-    }
-</ul>
-                }
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        @if (Session["Userid"] == null)
+                        {
+                            <li class="nav-item">
+                                @*@Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link" })*@
+                                <a class="nav-link" href="@Url.Action("Login", "Login")">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                @*@Html.ActionLink("SignUp", "Login", "Login", new { @class = "nav-link" })*@
+                                <a class="nav-link" href="@Url.Action("Register", "Login")">Sign Up</a>
+                            </li>
+                        }
+                        else
+                        {
 
-               
-            </div>
-        </div>
-    </nav>
+                            <div class="dropdown">
+                                <button onclick="toggleDropdown()" class="nav-item rounded-circle" id="profile">@Session["profile"]</button>
+                                <div class="dropdown-content" id="myDropdown">
+                                    <a href="#">Profile</a>
+
+                            <li> <a class="nav-link" href="@Url.Action("Logout","Home")">Logout</a></li>
+                    </div>
+                </div>
+                <script>
+                    // Show/hide dropdown on button click
+                    function toggleDropdown() {
+                        var dropdown = document.getElementById("myDropdown");
+                        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+                    }
+
+                    // Close dropdown if user clicks outside
+                    window.onclick = function (event) {
+                        if (!event.target.matches('.dropdown button')) {
+                            var dropdown = document.getElementById("myDropdown");
+                            if (dropdown.style.display === "block") {
+                                dropdown.style.display = "none";
+                            }
+                        }
+                    }
+
+
+                </script>
+
+            }
+                        </ul>
+                    }
+
+
+            </nav>
     <div class=" body-content e-learning-bg">
         @RenderBody()
         <hr />
