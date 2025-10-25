@@ -14,6 +14,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Scripts/MyScript.js" />
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/app.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light  sticky-top shadow-sm" id="mainNavbar">
@@ -41,10 +42,10 @@
                             <a class="nav-link" href="@Url.Action("Index", "Home")#contact">Contact</a>
                         </li>
                     </ul><!-- Right side navs -->
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        @if (Session["Userid"] == null)
+                        if (Session["Userid"] == null)
                         {
-                            <li class="nav-item">
+                           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                             <li class="nav-item">
                                 @*@Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link" })*@
                                 <a class="nav-link" href="@Url.Action("Login", "Login")">Login</a>
                             </li>
@@ -52,6 +53,7 @@
                                 @*@Html.ActionLink("SignUp", "Login", "Login", new { @class = "nav-link" })*@
                                 <a class="nav-link" href="@Url.Action("Register", "Login")">Sign Up</a>
                             </li>
+                               </ul>
                         }
                         else
                         {
@@ -59,34 +61,18 @@
                             <div class="dropdown">
                                 <button onclick="toggleDropdown()" class="nav-item rounded-circle" id="profile">@Session["profile"]</button>
                                 <div class="dropdown-content" id="myDropdown">
-                                    <a href="#">Profile</a>
+                                    <a class="nav-item d-block" href="#">Profile</a>
 
-                            <li> <a class="nav-link" href="@Url.Action("Logout","Home")">Logout</a></li>
+                             <a class="nav-item d-block" href="@Url.Action("Logout","Home")">Logout</a>
                     </div>
                 </div>
-                <script>
-                    // Show/hide dropdown on button click
-                    function toggleDropdown() {
-                        var dropdown = document.getElementById("myDropdown");
-                        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-                    }
 
-                    // Close dropdown if user clicks outside
-                    window.onclick = function (event) {
-                        if (!event.target.matches('.dropdown button')) {
-                            var dropdown = document.getElementById("myDropdown");
-                            if (dropdown.style.display === "block") {
-                                dropdown.style.display = "none";
-                            }
-                        }
-                    }
-
-
-                </script>
 
             }
-                        </ul>
+                        
                     }
+                </div>
+        </div>
 
 
             </nav>

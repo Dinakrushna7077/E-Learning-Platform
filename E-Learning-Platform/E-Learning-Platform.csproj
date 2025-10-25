@@ -245,6 +245,7 @@
     <Content Include="photo\WhatsApp Image 2025-10-18 at 01.02.27_f6bafc9c.jpg" />
     <Content Include="photo\WhatsApp Image 2025-10-18 at 01.22.52_0c1f6021.jpg" />
     <Content Include="photo\WhatsApp Image 2025-10-18 at 01.27.05_da76d7b4.jpg" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
