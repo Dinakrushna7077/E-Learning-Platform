@@ -40,6 +40,11 @@
    
     display: inline-block;
 }
+.nav-footer-color {
+    background-color: #2d3e50;
+    color: white;
+}
+}
 /*Design For Home Page (Dinakrushna Mohanta)*/
 .e-learning-bg{
     background-color:azure;
