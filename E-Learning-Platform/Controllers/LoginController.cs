@@ -78,6 +78,7 @@ namespace E_Learning_Platform.Controllers
             return View(u);
 
         }
+
         public static bool IsValidEmail(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
