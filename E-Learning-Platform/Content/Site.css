@@ -30,7 +30,6 @@
 #profile {
     height: 2.8rem !important;
     width: 2.8rem !important;
-    border: 2px solid gray !important;
     background-color: #2d3e50;
     text-decoration: none;
     color: white;
@@ -38,6 +37,13 @@
     align-items: center;
     justify-content: center;
     font-size: large;
+   
+    display: inline-block;
+}
+.nav-footer-color {
+    background-color: #2d3e50;
+    color: white;
+}
 }
 /*Design For Home Page (Dinakrushna Mohanta)*/
 .e-learning-bg{
@@ -373,3 +379,30 @@
         color:#2d3e50;
     }
 /*Ending Design for Home Page*/
+
+/*.dropdown {
+    position: relative;
+    display: inline-block;
+}*/
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 3.3rem;
+    right: 0rem;
+}
+
+    .dropdown-content a {
+        color: black;
+        padding: 10px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }

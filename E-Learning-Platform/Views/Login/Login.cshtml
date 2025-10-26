@@ -6,6 +6,7 @@
 
 <html>
 <head>
+    <link href="~/Content/LoginSignUp.css" rel="stylesheet" />
     <style>
         * {
             margin: 0px;
@@ -92,11 +93,9 @@
                     @Html.PasswordFor(prop => prop.Password, new { placeholder = "Password" })
                 </div>
                 <div>
-                    <button style="background-color:rebeccapurple; color:aliceblue;" class="w-50">LOG IN</button>
-                    <br /> <span id="resg">Don't have a account? <a href="#" id="new">Create New </a> </span>
+                    <button  color:aliceblue;" class="w-50 e-btn">LOG IN</button>
+                    <br /> <span id="resg">Don't have a account? <a href="@Url.Action("Register","Login")" id="new">Create New </a> </span>
                 </div>
-
-
             </div>
         </div>
 
