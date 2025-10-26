@@ -1,8 +1,54 @@
-﻿
+﻿@model IEnumerable<E_Learning_Platform.Models.ViewModel.AppliedTeacher>
 @{
     ViewBag.Title = "AppliedTeacher";
 }
 
-<div>
+<div class="container vh-100 pt-4">
+    @if (Model.Count()>0)
+    {
+        <div class="row bg-secondary rounded-2 bg-opacity-50 p-1">
+            <div class="col-3">
+                Name
+            </div>
+            <div class="col-3">
+                Qualification
+            </div>
+            <div class="col-2">
+                Subject
+            </div>
+            <div class="col-2">
+                Date Applied
+            </div>
+            <div class="col-2">
+                Action
+            </div>
+        </div>
 
+        foreach (var item in Model)
+        {
+            <div class="row bg-secondary rounded-2 bg-opacity-25 mt-1 p-1">
+                <div class="col-3">
+                    @item.Name
+                </div>
+                <div class="col-3">
+                    @item.Qualification
+                </div>
+                <div class="col-2">
+                    @item.Subject
+                </div>
+                <div class="col-2">
+                    @item.AppliedDate.ToString("MM/dd/yyyy")
+                </div>
+                <div class="col-2">
+                    Action
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-info text-center" role="alert">
+            No teachers have applied for the job yet.
+        </div>
+    }
 </div>

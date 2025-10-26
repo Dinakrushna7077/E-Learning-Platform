@@ -3,15 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using E_Learning_Platform.Models;
+using E_Learning_Platform.Models.ViewModel;
 
 namespace E_Learning_Platform.Controllers
 {
     public class AdminController : Controller
     {
         // GET: Admin
+        e_learning_dbEntities db = new e_learning_dbEntities();
         public ActionResult AppliedTeacher()
         {
-            return View();
+            var teachers = db.Teachers.Where(t=> t.Status=="New").ToList();
+            List<AppliedTeacher> atList = new List<AppliedTeacher>();
+            foreach (var teacher in teachers)
+            {
+                AppliedTeacher at = new AppliedTeacher()
+                {
+                    AppliedDate = (DateTime)teacher.hire_date,
+                    Name = GetTeachertsName(teacher.user.user_id),
+                    Gmail = GetTeachertsGmail(teacher.user.user_id),
+                    Qualification = teacher.qualification,
+                    Subject = teacher.subject
+                };
+                atList.Add(at);
+            }
+            return View(atList);
+        }
+        private string GetTeachertsName(int userId)
+        {
+            var user = db.users.Where(x => x.user_id == userId).FirstOrDefault();
+            return user.name;
+        }
+        private string GetTeachertsGmail(int userId)
+        {
+            var user = db.users.Where(x => x.user_id == userId).FirstOrDefault();
+            return user.email;
         }
     }
+    
 }
