@@ -160,6 +160,7 @@
     <Compile Include="Models\Role1.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\AppliedTeacher.cs" />
     <Compile Include="Models\ViewModel\DetailsModel.cs" />
     <Compile Include="Models\ViewModel\LoginModel.cs" />
     <Compile Include="Models\Model1.Context.cs">
@@ -233,6 +234,7 @@
     <Content Include="photo\background3.jpg" />
     <Content Include="photo\coder.jpg" />
     <Content Include="photo\e learning_pic.png" />
+    <Content Include="photo\fav-icon.png" />
     <Content Include="photo\image1.jpg" />
     <Content Include="photo\image2.jpg" />
     <Content Include="photo\image3.jpg" />
@@ -241,7 +243,12 @@
     <Content Include="photo\instructor 4.jpeg" />
     <Content Include="photo\instuctor 3.jpeg" />
     <Content Include="photo\instuctor 5.jpeg" />
+    <Content Include="photo\learning.jpeg" />
     <Content Include="photo\passport.png" />
+    <Content Include="photo\sb fav icon.png" />
+    <Content Include="photo\sb-logo.png" />
+    <Content Include="photo\skill-bridge logo.png" />
+    <Content Include="photo\skillbridge.png" />
     <Content Include="photo\WhatsApp Image 2025-10-18 at 01.02.27_f6bafc9c.jpg" />
     <Content Include="photo\WhatsApp Image 2025-10-18 at 01.22.52_0c1f6021.jpg" />
     <Content Include="photo\WhatsApp Image 2025-10-18 at 01.27.05_da76d7b4.jpg" />

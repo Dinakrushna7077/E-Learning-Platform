@@ -10,6 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/photo/fav-icon.png" type="image/x-icon" rel="icon" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Scripts/MyScript.js" />
@@ -19,7 +20,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light  sticky-top shadow-sm" id="mainNavbar">
         <div class="container-fluid">
-            <a class="navbar-brand e-learning fw-bolder" href="#">E-Learn</a>
+            <a class="navbar-brand e-learning fw-bolder" href="#"><img src="~/photo/skill-bridge logo.png" height="30" alt="Skill Bridge" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -75,7 +76,7 @@
     <div class=" body-content e-learning-bg">
         @RenderBody()
         <hr />
-        <footer class="nav-footer-color text-light pt-4 pb-4 rounded-1" id="contact">
+        <footer class="nav-footer-color text-light pt-4 pb-4 rounded-1 position-relative bottom-0 w-100" id="contact">
             <div class="container">
                 <hr class="bg-light">
                 <div class="d-md-flex justify-content-between text-center text-md-start">
