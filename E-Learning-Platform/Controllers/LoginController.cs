@@ -128,6 +128,7 @@ namespace E_Learning_Platform.Controllers
                     user.phone = u.Phone;
                     user.password = u.Password;
                     user.role = u.Role;
+                    user.created_at = DateTime.Now;
                     db.users.Add(user);
                     db.SaveChanges();
                     TempData["UserId"] = user.user_id;
