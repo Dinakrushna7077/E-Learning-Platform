@@ -10,7 +10,7 @@
 @if (Convert.ToInt32(TempData["role"]) == 1016)
 {
     <div class="form-container">
-        <img src="~/photo/e learning_pic.png" class=""/>
+        <img src="~/photo/e learning_pic.png" class="w-100"/>
         @using (Html.BeginForm("TeacherDetails", "Login", "Post"))
         {
             @Html.AntiForgeryToken()
@@ -71,7 +71,7 @@ else if (Convert.ToInt32(TempData["role"]) == 1014)
 {
     //-- Student Details Registration Form --
     <div class="form-container">
-        <img src="~/photo/e learning_pic.png" class=""/>
+        <img src="~/photo/e learning_pic.png" class="w-100"/>
         @using (Html.BeginForm("StudentDetails", "Login", "Post"))
         {
             @Html.AntiForgeryToken()
