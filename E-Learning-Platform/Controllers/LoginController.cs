@@ -36,6 +36,8 @@ namespace E_Learning_Platform.Controllers
                         Session["Username"] = user.name;
                         Session["Role"] = user.role;
                         Session["profile"] = Profile(user.name);
+                        TrackLogins(user.user_id);
+
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -61,6 +63,7 @@ namespace E_Learning_Platform.Controllers
                         Session["Username"] = user.name;
                         Session["Role"] = user.role;
                         Session["profile"]= Profile(user.name);
+                        TrackLogins(user.user_id);
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -189,5 +192,15 @@ namespace E_Learning_Platform.Controllers
             db.SaveChanges();
             return RedirectToAction("Login");
         }
+        private void TrackLogins(int id)
+        {
+            Log log = new Log();
+            log.UserId = id;
+            log.Timestamp = DateTime.Now;
+            db.Logs.Add(log);
+            db.SaveChanges();
+
+        }
     }
+
 }
