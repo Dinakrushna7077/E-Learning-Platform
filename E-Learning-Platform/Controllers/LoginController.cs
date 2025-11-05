@@ -37,7 +37,10 @@ namespace E_Learning_Platform.Controllers
                         Session["Role"] = user.role;
                         Session["profile"] = Profile(user.name);
                         TrackLogins(user.user_id);
+                        if (user.role == 1012) {
+                            return RedirectToAction("AdminDashBoard", "Admin");
 
+                        }
                         return RedirectToAction("Index", "Home");
                     }
                     else

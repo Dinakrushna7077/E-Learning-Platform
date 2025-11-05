@@ -2,6 +2,9 @@
     top: 0;
     z-index: 1020;
 }
+.ebg {
+    background-color: #2d3e50 !important;
+}
 
 .navbar.scrolled-up {
     background-color: #2d3e50 !important;
