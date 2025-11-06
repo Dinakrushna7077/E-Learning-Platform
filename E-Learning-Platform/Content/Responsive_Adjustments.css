@@ -1,0 +1,22 @@
+﻿@media (max-width: 992px) {
+    .app {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: fixed;
+        z-index: 1035;
+        left: -100%;
+        top: 0;
+        width: 260px;
+        transition: left .18s ease;
+    }
+
+        .sidebar.show {
+            left: 0;
+        }
+
+    .app.collapsed {
+        grid-template-columns: 1fr;
+    }
+}

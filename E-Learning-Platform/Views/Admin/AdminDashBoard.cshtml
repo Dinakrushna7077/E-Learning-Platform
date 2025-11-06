@@ -1,0 +1,235 @@
+﻿
+@{
+    ViewBag.Title = "AdminDashBoard";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>E-Learning Admin Dashboard</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Simple custom styles -->
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --sidebar-collapsed: 78px;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        .app {
+            display: grid;
+            grid-template-columns: var(--sidebar-width) 1fr;
+            transition: grid-template-columns .2s ease;
+        }
+
+        .sidebar {
+            background: #0d6efd;
+            color: #fff;
+            min-height: 100vh;
+            height:60%;
+            padding: 1rem 0.6rem;
+            position: sticky;
+            top: 7%;
+            border:solid 0.07rem white;
+            border-radius:0.5rem;
+        }
+
+            .sidebar .nav-link {
+                color: rgba(255,255,255,0.9);
+                border-radius: .5rem;
+                padding: .6rem .75rem;
+                margin-bottom: .25rem;
+            }
+
+                .sidebar .nav-link.active {
+                    background: rgba(255,255,255,0.12);
+                }
+
+            .sidebar .brand {
+                display: flex;
+                align-items: center;
+                gap: .6rem;
+                padding: .6rem .75rem;
+                margin-bottom: 1rem;
+            }
+
+                .sidebar .brand .logo {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 6px;
+                    background: rgba(255,255,255,0.15);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 700;
+                }
+
+        /* Collapsed sidebar state */
+        .app.collapsed {
+            grid-template-columns: var(--sidebar-collapsed) 1fr;
+        }
+
+            .app.collapsed .sidebar .nav-text,
+            .app.collapsed .sidebar .brand-name {
+                display: none;
+            }
+
+            .app.collapsed .sidebar .brand {
+                justify-content: center;
+            }
+
+            .app.collapsed .sidebar .nav-link {
+                text-align: center;
+                padding: .6rem .3rem;
+            }
+
+        /* Topbar */
+        .topbar {
+            background: white;
+            padding: .5rem 1rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .content {
+            padding: 1.25rem;
+        }
+
+        .card-stats .card-body {
+            padding: .9rem;
+        }
+
+
+        .table-responsive {
+            max-height: 390px;
+            overflow: auto;
+        }
+        #margin_top{
+            margin-top:15rem;
+        }
+    </style>
+    <!-- responsive adjustments -->
+    <link href="~/Content/Responsive_Adjustments.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="app" id="app">
+        <!-- Sidebar -->
+        <aside class="sidebar ebg position-sticky " id="sidebar">
+            <div class="text-end">
+                <button class="btn-outline-primary d-lg-none border-0 bg-transparent" id="openSidebarBtn" title="Open sidebar"><i class="bi bi-chevron-double-left text-white"></i></button>
+                <button class=" btn-outline-primary d-none d-lg-inline border-0 bg-transparent text-white" id="collapseBtn" title="Collapse sidebar"><i class="bi bi-chevron-double-right"></i></button>
+
+            </div>
+            <div class="brand px-2">
+                <div class="logo text-white">EL</div>
+                <div class="brand-name">
+                    <div class="fw-bold">E-Learn Admin</div>
+                    <small class="text-white-50">Manage platform</small>
+                </div>
+
+                <button class="btn btn-sm btn-link text-white ms-auto d-lg-none" id="closeSidebarBtn" title="Close sidebar">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+
+            <nav class="nav flex-column px-1">
+                <a href="#" class="nav-link " data-bs-toggle="tooltip" title="Dashboard">
+                    <i class="bi bi-speedometer2 me-2"></i> <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="#coursesSection" class="nav-link" data-bs-toggle="tooltip" title="Courses">
+                    <i class="bi bi-journal-bookmark me-2"></i> <span class="nav-text">Courses</span>
+                </a>
+                <a href="#usersSection" class="nav-link" data-bs-toggle="tooltip" title="Users">
+                    <i class="bi bi-people me-2"></i> <span class="nav-text">Users</span>
+                </a>
+                <a href="#reportsSection" class="nav-link" data-bs-toggle="tooltip" title="Reports">
+                    <i class="bi bi-graph-up me-2"></i> <span class="nav-text">Reports</span>
+                </a>
+                <a href="#settingsSection" class="nav-link" data-bs-toggle="tooltip" title="Settings">
+                    <i class="bi bi-gear me-2"></i> <span class="nav-text">Settings</span>
+                </a>
+
+                <div class=" px-1" id="margin_top">
+                    <hr class="text-white-25">
+                    <a href="#" class="nav-link" data-bs-toggle="tooltip" title="Help">
+                        <i class="bi bi-question-circle me-2"></i> <span class="nav-text">Help</span>
+                    </a>
+                    <a href="#" class="nav-link text-danger" data-bs-toggle="tooltip" title="Log out">
+                        <i class="bi bi-box-arrow-right me-2"></i> <span class="nav-text">Log out</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Area -->
+        <main>
+            <header class="topbar">
+                <div class="d-flex align-items-center gap-2">
+
+                    <form class="d-flex ms-2" role="search" id="searchForm" onsubmit="return false;">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                            <input class="form-control" id="globalSearch" placeholder="Search courses, users, reports..." aria-label="Search">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-outline-secondary position-relative" id="notifBtn" title="Notifications">
+                        <i class="bi bi-bell"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notifCount">3</span>
+                    </button>
+                </div>
+            </header>
+            <div style="color:black">
+                <h2> <pre>
+
+
+        W  E  L  C  O  M  E     T O     A   D   M   I   N     P  A  G  E</pre> </h2>
+            </div>
+        </main>
+       
+    </div>
+    <script>
+        const usersTableBody = document.getElementById('usersTableBody');
+        const coursesList = document.getElementById('coursesList');
+
+        // Sidebar controls
+        const appEl = document.getElementById('app');
+        const sidebar = document.getElementById('sidebar');
+        const openSidebarBtn = document.getElementById('openSidebarBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+        const collapseBtn = document.getElementById('collapseBtn');
+
+        openSidebarBtn?.addEventListener('click', () => {
+            if (window.innerWidth < 992) {
+                sidebar.classList.add('show');
+            } else {
+                appEl.classList.toggle('collapsed');
+            }
+        });
+        closeSidebarBtn?.addEventListener('click', () => sidebar.classList.remove('show'));
+        collapseBtn?.addEventListener('click', () => appEl.classList.toggle('collapsed'));
+    </script>
+   
+</body>
+</html>
+
+
+
