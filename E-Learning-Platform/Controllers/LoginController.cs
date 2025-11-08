@@ -116,17 +116,9 @@ namespace E_Learning_Platform.Controllers
             {
                 if(u.Password==u.ConfirmPassword)
                 {
-                    user user = new user();
-                    user.name = u.Name;
-                    user.email = u.Email;
-                    user.phone = u.Phone;
-                    user.password = u.Password;
-                    user.role = u.Role;
-                    user.created_at = DateTime.Now;
-                    db.users.Add(user);
-                    db.SaveChanges();
-                    TempData["UserId"] = user.user_id;
-                    TempData["role"] = user.role;
+                    var new_user=db.NewUser(u.Name, u.Email, u.Password,u.Phone, u.Role).FirstOrDefault();
+                    TempData["UserId"] = new_user.UserId;
+                    TempData["role"] = new_user.RoleId;
                     TempData["msg"] = "<script>alert('Registration Successful')</script>";
                     return RedirectToAction("Details");
                 }
@@ -160,31 +152,13 @@ namespace E_Learning_Platform.Controllers
         [HttpPost]
         public ActionResult TeacherDetails(DetailsModel t)
         {
-            Teacher nteacher= new Teacher();
-            nteacher.isActive = false;
-            nteacher.qualification = t.Qualification;
-            nteacher.subject = t.SubjectExpertise;
-            nteacher.gender = t.Gender;
-            nteacher.user_id = t.UserId;
-            nteacher.department = t.DepartmentId;
-            nteacher.Status = "New";
-            db.Teachers.Add(nteacher);
-            db.SaveChanges();
-
+            db.NewTeacher(t.Qualification, t.SubjectExpertise,t.Gender,false,t.DepartmentId,t.UserId);
             return RedirectToAction("Login");
         }
         [HttpPost]
         public ActionResult StudentDetails(DetailsModel s)
         {
-            student std=new student();
-            std.father_name=s.FatherName;
-            std.mother_name=s.MotherName;
-            std.gender = s.Gender;
-            std.address=s.Address;
-            std.course_id=s.CourseId;
-            std.user_id=s.UserId;
-            db.students.Add(std);
-            db.SaveChanges();
+            db.NewStudent(s.FatherName,s.MotherName,s.Gender,s.Address,null,s.UserId);
             return RedirectToAction("Login");
         }
         private void TrackLogins(int id)

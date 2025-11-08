@@ -178,7 +178,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dinakrushna">
+        <Function Name="Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="gmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="mobile" Type="bigint" Mode="In" />
+          <Parameter Name="pass" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="UserId" Type="int" Nullable="false" />
+                <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+                <Property Name="RoleId" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="NewAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_designation" Type="varchar" Mode="In" />
+          <Parameter Name="p_userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="NewStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_father_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_mother_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_gender" Type="varchar" Mode="In" />
+          <Parameter Name="p_address" Type="varchar(max)" Mode="In" />
+          <Parameter Name="p_cours" Type="int" Mode="In" />
+          <Parameter Name="p_userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="NewTeacher" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_qualicication" Type="varchar" Mode="In" />
+          <Parameter Name="p_subject" Type="varchar" Mode="In" />
+          <Parameter Name="p_gender" Type="varchar" Mode="In" />
+          <Parameter Name="p_isActive" Type="bit" Mode="In" />
+          <Parameter Name="p_department" Type="int" Mode="In" />
+          <Parameter Name="p_userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="NewUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_email" Type="varchar" Mode="In" />
+          <Parameter Name="p_password" Type="varchar" Mode="In" />
+          <Parameter Name="p_mobile" Type="bigint" Mode="In" />
+          <Parameter Name="p_roleId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Login1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dinakrushna" StoreFunctionName="Login">
           <Parameter Name="gmail" Type="nvarchar" Mode="In" />
           <Parameter Name="mobile" Type="bigint" Mode="In" />
           <Parameter Name="pass" Type="nvarchar" Mode="In" />
@@ -439,6 +480,38 @@
             <Parameter Name="mobile" Mode="In" Type="Int64" />
             <Parameter Name="pass" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Login1" IsComposable="true" ReturnType="Collection(e_learning_dbModel.Login1_Result)">
+            <Parameter Name="gmail" Mode="In" Type="String" />
+            <Parameter Name="mobile" Mode="In" Type="Int64" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="NewAdmin" ReturnType="Collection(e_learning_dbModel.NewAdmin_Result)">
+            <Parameter Name="p_designation" Mode="In" Type="String" />
+            <Parameter Name="p_userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NewStudent" ReturnType="Collection(e_learning_dbModel.NewStudent_Result)">
+            <Parameter Name="p_father_name" Mode="In" Type="String" />
+            <Parameter Name="p_mother_name" Mode="In" Type="String" />
+            <Parameter Name="p_gender" Mode="In" Type="String" />
+            <Parameter Name="p_address" Mode="In" Type="String" />
+            <Parameter Name="p_cours" Mode="In" Type="Int32" />
+            <Parameter Name="p_userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NewTeacher" ReturnType="Collection(e_learning_dbModel.NewTeacher_Result)">
+            <Parameter Name="p_qualicication" Mode="In" Type="String" />
+            <Parameter Name="p_subject" Mode="In" Type="String" />
+            <Parameter Name="p_gender" Mode="In" Type="String" />
+            <Parameter Name="p_isActive" Mode="In" Type="Boolean" />
+            <Parameter Name="p_department" Mode="In" Type="Int32" />
+            <Parameter Name="p_userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NewUser" ReturnType="Collection(e_learning_dbModel.NewUser_Result)">
+            <Parameter Name="p_name" Mode="In" Type="String" />
+            <Parameter Name="p_email" Mode="In" Type="String" />
+            <Parameter Name="p_password" Mode="In" Type="String" />
+            <Parameter Name="p_mobile" Mode="In" Type="Int64" />
+            <Parameter Name="p_roleId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="course">
           <Key>
@@ -467,6 +540,28 @@
         <ComplexType Name="Login_Result">
           <Property Type="Int32" Name="UserId" Nullable="false" />
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Login1_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="NewAdmin_Result">
+          <Property Type="String" Name="MESSAGE" Nullable="false" MaxLength="43" />
+          <Property Type="Int32" Name="AdminId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="NewStudent_Result">
+          <Property Type="String" Name="MESSAGE" Nullable="false" MaxLength="45" />
+          <Property Type="Int32" Name="StudentID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="NewTeacher_Result">
+          <Property Type="String" Name="MESSAGE" Nullable="false" MaxLength="45" />
+          <Property Type="Int32" Name="TeacherId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="NewUser_Result">
+          <Property Type="String" Name="MESSAGE" Nullable="false" MaxLength="19" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
           <Property Type="Int32" Name="RoleId" Nullable="false" />
         </ComplexType>
       </Schema>
@@ -564,11 +659,53 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Login" FunctionName="e_learning_dbModel.Store.Login">
+          <FunctionImportMapping FunctionImportName="Login" FunctionName="e_learning_dbModel.Store.Login1">
             <ResultMapping>
               <ComplexTypeMapping TypeName="e_learning_dbModel.Login_Result">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Login1" FunctionName="e_learning_dbModel.Store.Login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="e_learning_dbModel.Login1_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NewAdmin" FunctionName="e_learning_dbModel.Store.NewAdmin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="e_learning_dbModel.NewAdmin_Result">
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NewStudent" FunctionName="e_learning_dbModel.Store.NewStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="e_learning_dbModel.NewStudent_Result">
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NewTeacher" FunctionName="e_learning_dbModel.Store.NewTeacher">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="e_learning_dbModel.NewTeacher_Result">
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NewUser" FunctionName="e_learning_dbModel.Store.NewUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="e_learning_dbModel.NewUser_Result">
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </ComplexTypeMapping>
             </ResultMapping>
