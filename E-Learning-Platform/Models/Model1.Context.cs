@@ -12,6 +12,8 @@ namespace E_Learning_Platform.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class e_learning_dbEntities : DbContext
     {
@@ -33,6 +35,137 @@ namespace E_Learning_Platform.Models
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<course> courses { get; set; }
-        public virtual DbSet<Role1> Roles1 { get; set; }
+    
+        [DbFunction("e_learning_dbEntities", "Login")]
+        public virtual IQueryable<Login_Result> Login(string gmail, Nullable<long> mobile, string pass)
+        {
+            var gmailParameter = gmail != null ?
+                new ObjectParameter("gmail", gmail) :
+                new ObjectParameter("gmail", typeof(string));
+    
+            var mobileParameter = mobile.HasValue ?
+                new ObjectParameter("mobile", mobile) :
+                new ObjectParameter("mobile", typeof(long));
+    
+            var passParameter = pass != null ?
+                new ObjectParameter("pass", pass) :
+                new ObjectParameter("pass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Login_Result>("[e_learning_dbEntities].[Login](@gmail, @mobile, @pass)", gmailParameter, mobileParameter, passParameter);
+        }
+    
+        [DbFunction("e_learning_dbEntities", "Login1")]
+        public virtual IQueryable<Login1_Result> Login1(string gmail, Nullable<long> mobile, string pass)
+        {
+            var gmailParameter = gmail != null ?
+                new ObjectParameter("gmail", gmail) :
+                new ObjectParameter("gmail", typeof(string));
+    
+            var mobileParameter = mobile.HasValue ?
+                new ObjectParameter("mobile", mobile) :
+                new ObjectParameter("mobile", typeof(long));
+    
+            var passParameter = pass != null ?
+                new ObjectParameter("pass", pass) :
+                new ObjectParameter("pass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Login1_Result>("[e_learning_dbEntities].[Login1](@gmail, @mobile, @pass)", gmailParameter, mobileParameter, passParameter);
+        }
+    
+        public virtual ObjectResult<NewAdmin_Result> NewAdmin(string p_designation, Nullable<int> p_userId)
+        {
+            var p_designationParameter = p_designation != null ?
+                new ObjectParameter("p_designation", p_designation) :
+                new ObjectParameter("p_designation", typeof(string));
+    
+            var p_userIdParameter = p_userId.HasValue ?
+                new ObjectParameter("p_userId", p_userId) :
+                new ObjectParameter("p_userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NewAdmin_Result>("NewAdmin", p_designationParameter, p_userIdParameter);
+        }
+    
+        public virtual ObjectResult<NewStudent_Result> NewStudent(string p_father_name, string p_mother_name, string p_gender, string p_address, Nullable<int> p_cours, Nullable<int> p_userId)
+        {
+            var p_father_nameParameter = p_father_name != null ?
+                new ObjectParameter("p_father_name", p_father_name) :
+                new ObjectParameter("p_father_name", typeof(string));
+    
+            var p_mother_nameParameter = p_mother_name != null ?
+                new ObjectParameter("p_mother_name", p_mother_name) :
+                new ObjectParameter("p_mother_name", typeof(string));
+    
+            var p_genderParameter = p_gender != null ?
+                new ObjectParameter("p_gender", p_gender) :
+                new ObjectParameter("p_gender", typeof(string));
+    
+            var p_addressParameter = p_address != null ?
+                new ObjectParameter("p_address", p_address) :
+                new ObjectParameter("p_address", typeof(string));
+    
+            var p_coursParameter = p_cours.HasValue ?
+                new ObjectParameter("p_cours", p_cours) :
+                new ObjectParameter("p_cours", typeof(int));
+    
+            var p_userIdParameter = p_userId.HasValue ?
+                new ObjectParameter("p_userId", p_userId) :
+                new ObjectParameter("p_userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NewStudent_Result>("NewStudent", p_father_nameParameter, p_mother_nameParameter, p_genderParameter, p_addressParameter, p_coursParameter, p_userIdParameter);
+        }
+    
+        public virtual ObjectResult<NewTeacher_Result> NewTeacher(string p_qualicication, string p_subject, string p_gender, Nullable<bool> p_isActive, Nullable<int> p_department, Nullable<int> p_userId)
+        {
+            var p_qualicicationParameter = p_qualicication != null ?
+                new ObjectParameter("p_qualicication", p_qualicication) :
+                new ObjectParameter("p_qualicication", typeof(string));
+    
+            var p_subjectParameter = p_subject != null ?
+                new ObjectParameter("p_subject", p_subject) :
+                new ObjectParameter("p_subject", typeof(string));
+    
+            var p_genderParameter = p_gender != null ?
+                new ObjectParameter("p_gender", p_gender) :
+                new ObjectParameter("p_gender", typeof(string));
+    
+            var p_isActiveParameter = p_isActive.HasValue ?
+                new ObjectParameter("p_isActive", p_isActive) :
+                new ObjectParameter("p_isActive", typeof(bool));
+    
+            var p_departmentParameter = p_department.HasValue ?
+                new ObjectParameter("p_department", p_department) :
+                new ObjectParameter("p_department", typeof(int));
+    
+            var p_userIdParameter = p_userId.HasValue ?
+                new ObjectParameter("p_userId", p_userId) :
+                new ObjectParameter("p_userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NewTeacher_Result>("NewTeacher", p_qualicicationParameter, p_subjectParameter, p_genderParameter, p_isActiveParameter, p_departmentParameter, p_userIdParameter);
+        }
+    
+        public virtual ObjectResult<NewUser_Result> NewUser(string p_name, string p_email, string p_password, Nullable<long> p_mobile, Nullable<int> p_roleId)
+        {
+            var p_nameParameter = p_name != null ?
+                new ObjectParameter("p_name", p_name) :
+                new ObjectParameter("p_name", typeof(string));
+    
+            var p_emailParameter = p_email != null ?
+                new ObjectParameter("p_email", p_email) :
+                new ObjectParameter("p_email", typeof(string));
+    
+            var p_passwordParameter = p_password != null ?
+                new ObjectParameter("p_password", p_password) :
+                new ObjectParameter("p_password", typeof(string));
+    
+            var p_mobileParameter = p_mobile.HasValue ?
+                new ObjectParameter("p_mobile", p_mobile) :
+                new ObjectParameter("p_mobile", typeof(long));
+    
+            var p_roleIdParameter = p_roleId.HasValue ?
+                new ObjectParameter("p_roleId", p_roleId) :
+                new ObjectParameter("p_roleId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NewUser_Result>("NewUser", p_nameParameter, p_emailParameter, p_passwordParameter, p_mobileParameter, p_roleIdParameter);
+        }
     }
 }
