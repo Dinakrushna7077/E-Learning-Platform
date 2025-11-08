@@ -27,56 +27,47 @@ namespace E_Learning_Platform.Controllers
         {
             if (IsValidEmail(u.Identifier))
             {
-                var user = db.users.Where(x => x.email == u.Identifier).FirstOrDefault();
+                var user = db.Login(u.Identifier,null,u.Password).FirstOrDefault();
                 if (user != null)
                 {
-                    if (user.password == u.Password)
+                    Session["Userid"] = user.UserId;
+                    Session["Username"] = user.UserName;
+                    Session["Role"] = user.RoleId;
+                    Session["profile"] = Profile(user.UserName);
+                    TrackLogins(user.UserId);
+                    if (user.RoleId == 1012)
                     {
-                        Session["Userid"] = user.user_id;
-                        Session["Username"] = user.name;
-                        Session["Role"] = user.role;
-                        Session["profile"] = Profile(user.name);
-                        TrackLogins(user.user_id);
-                        if (user.role == 1012) {
-                            return RedirectToAction("AdminDashBoard", "Admin");
+                        return RedirectToAction("AdminDashBoard", "Admin");
 
-                        }
-                        return RedirectToAction("Index", "Home");
                     }
-                    else
-                    {
-                        TempData["msg"] = "<script>alert('Invalid Password')</script>";
-                    }
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    TempData["msg"] = "<script>alert('Invalid Mail Id')</script>";
+                    TempData["msg"] = "<script>alert('Invalid Mail Id Or Password')</script>";
                 }
 
             }
             else
             {
                 long mob = Convert.ToInt64(u.Identifier);
-                var user = db.users.Where(x => x.phone == mob).FirstOrDefault();
-                if (user != null)
+                var user = db.Login(null,mob,u.Password).FirstOrDefault();
+                if(user!=null)
                 {
-                    if (user.password == u.Password)
+                    Session["Userid"] = user.UserId;
+                    Session["Username"] = user.UserName;
+                    Session["Role"] = user.RoleId;
+                    Session["profile"] = Profile(user.UserName);
+                    TrackLogins(user.UserId);
+                    if (user.RoleId == 1012)
                     {
-                        Session["Userid"] = user.user_id;
-                        Session["Username"] = user.name;
-                        Session["Role"] = user.role;
-                        Session["profile"]= Profile(user.name);
-                        TrackLogins(user.user_id);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("AdminDashBoard", "Admin");
                     }
-                    else
-                    {
-                        TempData["msg"] = "<script>alert('Invalid Password')</script>";
-                    }
-                }
+                    return RedirectToAction("Index", "Home");
+                }                
                 else
                 {
-                    TempData["msg"] = "<script>alert('Invalid Phone number')</script>";
+                    TempData["msg"] = "<script>alert('Invalid Phone number Or Password')</script>";
                 }
 
             }

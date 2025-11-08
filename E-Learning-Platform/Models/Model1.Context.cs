@@ -12,6 +12,8 @@ namespace E_Learning_Platform.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class e_learning_dbEntities : DbContext
     {
@@ -33,6 +35,23 @@ namespace E_Learning_Platform.Models
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<course> courses { get; set; }
-        public virtual DbSet<Role1> Roles1 { get; set; }
+    
+        [DbFunction("e_learning_dbEntities", "Login")]
+        public virtual IQueryable<Login_Result> Login(string gmail, Nullable<long> mobile, string pass)
+        {
+            var gmailParameter = gmail != null ?
+                new ObjectParameter("gmail", gmail) :
+                new ObjectParameter("gmail", typeof(string));
+    
+            var mobileParameter = mobile.HasValue ?
+                new ObjectParameter("mobile", mobile) :
+                new ObjectParameter("mobile", typeof(long));
+    
+            var passParameter = pass != null ?
+                new ObjectParameter("pass", pass) :
+                new ObjectParameter("pass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Login_Result>("[e_learning_dbEntities].[Login](@gmail, @mobile, @pass)", gmailParameter, mobileParameter, passParameter);
+        }
     }
 }

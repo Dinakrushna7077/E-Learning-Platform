@@ -157,7 +157,7 @@
     <Compile Include="Models\Log.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Role1.cs">
+    <Compile Include="Models\Login_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModel\AppliedTeacher.cs" />

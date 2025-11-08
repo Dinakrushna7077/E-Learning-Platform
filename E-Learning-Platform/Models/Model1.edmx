@@ -47,13 +47,6 @@
           <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="role_name" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="student">
           <Key>
             <PropertyRef Name="s_id" />
@@ -185,13 +178,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dinakrushna">
+          <Parameter Name="gmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="mobile" Type="bigint" Mode="In" />
+          <Parameter Name="pass" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="UserId" Type="int" Nullable="false" />
+                <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+                <Property Name="RoleId" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="e_learning_dbModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
@@ -424,11 +430,15 @@
             <End Role="Teacher" EntitySet="Teachers" />
           </AssociationSet>
           <EntitySet Name="courses" EntityType="e_learning_dbModel.course" />
-          <EntitySet Name="Roles1" EntityType="e_learning_dbModel.Role1" />
           <AssociationSet Name="FK__student__course___571DF1D5" Association="e_learning_dbModel.FK__student__course___571DF1D5">
             <End Role="course" EntitySet="courses" />
             <End Role="student" EntitySet="students" />
           </AssociationSet>
+          <FunctionImport Name="Login" IsComposable="true" ReturnType="Collection(e_learning_dbModel.Login_Result)">
+            <Parameter Name="gmail" Mode="In" Type="String" />
+            <Parameter Name="mobile" Mode="In" Type="Int64" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="course">
           <Key>
@@ -442,13 +452,6 @@
           <Property Name="course_fee" Type="Decimal" Precision="5" Scale="2" />
           <NavigationProperty Name="students" Relationship="e_learning_dbModel.FK__student__course___571DF1D5" FromRole="course" ToRole="student" />
         </EntityType>
-        <EntityType Name="Role1">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <Association Name="FK__student__course___571DF1D5">
           <End Type="e_learning_dbModel.course" Role="course" Multiplicity="0..1" />
           <End Type="e_learning_dbModel.student" Role="student" Multiplicity="*" />
@@ -461,6 +464,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="Login_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -556,14 +564,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Roles1">
-            <EntityTypeMapping TypeName="e_learning_dbModel.Role1">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <FunctionImportMapping FunctionImportName="Login" FunctionName="e_learning_dbModel.Store.Login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="e_learning_dbModel.Login_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
