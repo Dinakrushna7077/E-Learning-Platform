@@ -33,5 +33,6 @@ namespace E_Learning_Platform.Models
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<course> courses { get; set; }
+        public virtual DbSet<Role1> Roles1 { get; set; }
     }
 }
