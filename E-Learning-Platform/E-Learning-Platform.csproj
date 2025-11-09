@@ -139,8 +139,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PraticeController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -157,10 +159,8 @@
     <Compile Include="Models\Log.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Role1.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewModel\AppliedTeacher.cs" />
+    <Compile Include="Models\ViewModel\CourseDetails.cs" />
     <Compile Include="Models\ViewModel\DetailsModel.cs" />
     <Compile Include="Models\ViewModel\LoginModel.cs" />
     <Compile Include="Models\Model1.Context.cs">
@@ -227,6 +227,7 @@
     <Content Include="photo\1000876219[1].jpg" />
     <Content Include="photo\1748687419369[1].jpg" />
     <Content Include="photo\coder.jpg" />
+    <Content Include="photo\Course\c sharp.jpg" />
     <Content Include="photo\DSC_0334.JPG" />
     <Content Include="photo\DSC_0500.JPG" />
     <Content Include="photo\background1.jpg" />
@@ -300,6 +301,10 @@
     <Content Include="Views\Login\Details.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Admin\AppliedTeacher.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Course\Course.cshtml" />
+    <Content Include="Views\Pratice\Index.cshtml" />
+    <Content Include="Views\Pratice\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
