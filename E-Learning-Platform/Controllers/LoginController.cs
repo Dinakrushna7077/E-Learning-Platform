@@ -27,50 +27,47 @@ namespace E_Learning_Platform.Controllers
         {
             if (IsValidEmail(u.Identifier))
             {
-                var user = db.users.Where(x => x.email == u.Identifier).FirstOrDefault();
+                var user = db.Login1(u.Identifier,null,u.Password).FirstOrDefault();
                 if (user != null)
                 {
-                    if (user.password == u.Password)
+                    Session["Userid"] = user.UserId;
+                    Session["Username"] = user.UserName;
+                    Session["Role"] = user.RoleId;
+                    Session["profile"] = Profile(user.UserName);
+                    TrackLogins(user.UserId);
+                    if (user.RoleId == 1012)
                     {
-                        Session["Userid"] = user.user_id;
-                        Session["Username"] = user.name;
-                        Session["Role"] = user.role;
-                        Session["profile"] = Profile(user.name);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("AdminDashBoard", "Admin");
+
                     }
-                    else
-                    {
-                        TempData["msg"] = "<script>alert('Invalid Password')</script>";
-                    }
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    TempData["msg"] = "<script>alert('Invalid Mail Id')</script>";
+                    TempData["msg"] = "<script>alert('Invalid Mail Id Or Password')</script>";
                 }
 
             }
             else
             {
                 long mob = Convert.ToInt64(u.Identifier);
-                var user = db.users.Where(x => x.phone == mob).FirstOrDefault();
-                if (user != null)
+                var user = db.Login1(null,mob,u.Password).FirstOrDefault();
+                if(user!=null)
                 {
-                    if (user.password == u.Password)
+                    Session["Userid"] = user.UserId;
+                    Session["Username"] = user.UserName;
+                    Session["Role"] = user.RoleId;
+                    Session["profile"] = Profile(user.UserName);
+                    TrackLogins(user.UserId);
+                    if (user.RoleId == 1012)
                     {
-                        Session["Userid"] = user.user_id;
-                        Session["Username"] = user.name;
-                        Session["Role"] = user.role;
-                        Session["profile"]= Profile(user.name);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("AdminDashBoard", "Admin");
                     }
-                    else
-                    {
-                        TempData["msg"] = "<script>alert('Invalid Password')</script>";
-                    }
-                }
+                    return RedirectToAction("Index", "Home");
+                }                
                 else
                 {
-                    TempData["msg"] = "<script>alert('Invalid Phone number')</script>";
+                    TempData["msg"] = "<script>alert('Invalid Phone number Or Password')</script>";
                 }
 
             }
@@ -119,16 +116,9 @@ namespace E_Learning_Platform.Controllers
             {
                 if(u.Password==u.ConfirmPassword)
                 {
-                    user user = new user();
-                    user.name = u.Name;
-                    user.email = u.Email;
-                    user.phone = u.Phone;
-                    user.password = u.Password;
-                    user.role = u.Role;
-                    db.users.Add(user);
-                    db.SaveChanges();
-                    TempData["UserId"] = user.user_id;
-                    TempData["role"] = user.role;
+                    var new_user=db.NewUser(u.Name, u.Email, u.Password,u.Phone, u.Role).FirstOrDefault();
+                    TempData["UserId"] = new_user.UserId;
+                    TempData["role"] = new_user.RoleId;
                     TempData["msg"] = "<script>alert('Registration Successful')</script>";
                     return RedirectToAction("Details");
                 }
@@ -162,32 +152,24 @@ namespace E_Learning_Platform.Controllers
         [HttpPost]
         public ActionResult TeacherDetails(DetailsModel t)
         {
-            Teacher nteacher= new Teacher();
-            nteacher.isActive = false;
-            nteacher.qualification = t.Qualification;
-            nteacher.subject = t.SubjectExpertise;
-            nteacher.gender = t.Gender;
-            nteacher.user_id = t.UserId;
-            nteacher.department = t.DepartmentId;
-            nteacher.Status = "New";
-            db.Teachers.Add(nteacher);
-            db.SaveChanges();
-
+            db.NewTeacher(t.Qualification, t.SubjectExpertise,t.Gender,false,t.DepartmentId,t.UserId);
             return RedirectToAction("Login");
         }
         [HttpPost]
         public ActionResult StudentDetails(DetailsModel s)
         {
-            student std=new student();
-            std.father_name=s.FatherName;
-            std.mother_name=s.MotherName;
-            std.gender = s.Gender;
-            std.address=s.Address;
-            std.course_id=s.CourseId;
-            std.user_id=s.UserId;
-            db.students.Add(std);
-            db.SaveChanges();
+            db.NewStudent(s.FatherName,s.MotherName,s.Gender,s.Address,null,s.UserId);
             return RedirectToAction("Login");
         }
+        private void TrackLogins(int id)
+        {
+            Log log = new Log();
+            log.UserId = id;
+            log.Timestamp = DateTime.Now;
+            db.Logs.Add(log);
+            db.SaveChanges();
+
+        }
     }
+
 }

@@ -10,11 +10,10 @@
 namespace E_Learning_Platform.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Role1
+    public partial class NewAdmin_Result
     {
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
+        public string MESSAGE { get; set; }
+        public int AdminId { get; set; }
     }
 }
