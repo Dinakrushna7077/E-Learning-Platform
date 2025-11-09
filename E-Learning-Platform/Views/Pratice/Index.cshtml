@@ -1,0 +1,55 @@
+﻿@model IEnumerable<E_Learning_Platform.Models.course>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<div class="container mt-5">
+
+    <h2 class="fw-bold text-center mb-4 titleAnimation">🚀 Explore Our Courses</h2>
+
+    <div class="row justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="courseCard">
+
+                    <div class="courseImg">
+                        <img src="@item.image" />
+                        <span class="priceTag">₹ @item.course_fee</span>
+                    </div>
+
+                    <div class="p-3">
+
+                        <h5 class="courseTitle">@item.title</h5>
+
+                        <p class="courseDesc">
+                            @item.description.Substring(0, Math.Min(60, item.description.Length))...
+                        </p>
+
+                        <div class="badge bg-primary mb-2">
+                            <i class="fa fa-clock"></i> @item.duretion
+                        </div>
+
+                        <div class="stars mb-2">
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star-half text-warning"></i>
+                            <i class="fa fa-star text-secondary"></i>
+                        </div>
+
+                        <a href="@Url.Action("Details","Course", new { id = item.course_id })"
+                           class="btn enrollBtn w-100">
+                            <i class="fa fa-book-open"></i> View Course
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
