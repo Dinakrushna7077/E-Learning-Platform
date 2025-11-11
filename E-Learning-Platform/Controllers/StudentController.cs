@@ -1,5 +1,4 @@
-﻿using E_Learning_Platform.Models.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,9 +6,9 @@ using System.Web.Mvc;
 
 namespace E_Learning_Platform.Controllers
 {
-    public class TeacherController : Controller
+    public class StudentController : Controller
     {
-        // GET: Teacher
+        // GET: Student
         public ActionResult Dashboard()
         {
             return View();
