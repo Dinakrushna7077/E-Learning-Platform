@@ -20,6 +20,7 @@
         <AssociationConnector Association="e_learning_dbModel.FK__Teacher__user_id__4E88ABD4" ManuallyRouted="false" />
         <EntityTypeShape EntityType="e_learning_dbModel.course" Width="1.5" PointX="0.75" PointY="1" />
         <AssociationConnector Association="e_learning_dbModel.FK__student__course___571DF1D5" />
+        <AssociationConnector Association="e_learning_dbModel.FK__course__teacher___49C3F6B7" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

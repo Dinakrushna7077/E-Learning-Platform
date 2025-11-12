@@ -177,6 +177,7 @@
     <Compile Include="Models\NewUser_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\AdminRegister.cs" />
     <Compile Include="Models\ViewModel\AppliedTeacher.cs" />
     <Compile Include="Models\ViewModel\DetailsModel.cs" />
     <Compile Include="Models\ViewModel\LoginModel.cs" />
@@ -245,6 +246,7 @@
     </Content>
     <Content Include="photo\1000876219[1].jpg" />
     <Content Include="photo\1748687419369[1].jpg" />
+    <Content Include="photo\bg2.jpg" />
     <Content Include="photo\coder.jpg" />
     <Content Include="photo\DSC_0334.JPG" />
     <Content Include="photo\DSC_0500.JPG" />
@@ -330,6 +332,7 @@
     <Content Include="Views\Teacher\Dashboard.cshtml" />
     <Content Include="Views\Shared\DemoPartial.cshtml" />
     <Content Include="Views\Student\Dashboard.cshtml" />
+    <Content Include="Views\Admin\AdminRegistration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

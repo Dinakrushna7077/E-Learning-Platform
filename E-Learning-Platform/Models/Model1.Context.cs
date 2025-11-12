@@ -167,5 +167,34 @@ namespace E_Learning_Platform.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NewUser_Result>("NewUser", p_nameParameter, p_emailParameter, p_passwordParameter, p_mobileParameter, p_roleIdParameter);
         }
+    
+        public virtual int NewCourse(string p_title, string p_description, string p_duration, Nullable<System.DateTime> p_created_at, Nullable<decimal> p_course_fee, string p_image_server_path)
+        {
+            var p_titleParameter = p_title != null ?
+                new ObjectParameter("p_title", p_title) :
+                new ObjectParameter("p_title", typeof(string));
+    
+            var p_descriptionParameter = p_description != null ?
+                new ObjectParameter("p_description", p_description) :
+                new ObjectParameter("p_description", typeof(string));
+    
+            var p_durationParameter = p_duration != null ?
+                new ObjectParameter("p_duration", p_duration) :
+                new ObjectParameter("p_duration", typeof(string));
+    
+            var p_created_atParameter = p_created_at.HasValue ?
+                new ObjectParameter("p_created_at", p_created_at) :
+                new ObjectParameter("p_created_at", typeof(System.DateTime));
+    
+            var p_course_feeParameter = p_course_fee.HasValue ?
+                new ObjectParameter("p_course_fee", p_course_fee) :
+                new ObjectParameter("p_course_fee", typeof(decimal));
+    
+            var p_image_server_pathParameter = p_image_server_path != null ?
+                new ObjectParameter("p_image_server_path", p_image_server_path) :
+                new ObjectParameter("p_image_server_path", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NewCourse", p_titleParameter, p_descriptionParameter, p_durationParameter, p_created_atParameter, p_course_feeParameter, p_image_server_pathParameter);
+        }
     }
 }
