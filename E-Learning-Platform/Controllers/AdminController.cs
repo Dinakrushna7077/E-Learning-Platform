@@ -67,10 +67,43 @@ namespace E_Learning_Platform.Controllers
             return RedirectToAction("AppliedTeacher");
         }
 
-        public ActionResult AdminDashBoard()
+        public ActionResult Dashboard()
         {
                        return View();
         }
+        public ActionResult AdminRegistration()
+        {
+            List<string> designation = new List<string> { "Content Admin", "System Administrator", "Assessment Admin", "Finance Admin", "Analytics Admin", "Communication Admin", "Super Admin", "Instructor Coordinator", "Library Admin" };
+            ViewBag.designation = new SelectList(designation);
+            return View();
+
+       
+        }
+        [HttpPost]
+        public ActionResult AdminRegistration(AdminRegister ar)
+        {
+            List<string> designation = new List<string> { "Content Admin", "System Administrator", "Assessment Admin", "Finance Admin", "Analytics Admin", "Communication Admin", "Super Admin", "Instructor Coordinator", "Library Admin" };
+            ViewBag.designation = new SelectList(designation);
+            if (ModelState.IsValid)
+            {
+                if (ar.Password == ar.ConfirmPassword)
+                {
+                   
+                    var user=db.NewUser(ar.Name, ar.Email, ar.Password, ar.Mobile, 1014).FirstOrDefault();
+                    var data = db.NewAdmin(ar.Designation, user.UserId);
+                         TempData["msg"] = "<script>alert('Registration Successful')</script>";
+                    return RedirectToAction("Login", "Login");
+
+                    
+                }
+                else
+                {
+                    TempData["msg"] = "<script>alert('Password and Confirm Password do not match')</script>";
+                }
+            }
+            return View(ar);
+        }
+
     }
-                            
+
 }

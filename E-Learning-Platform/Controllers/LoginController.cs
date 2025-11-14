@@ -37,7 +37,7 @@ namespace E_Learning_Platform.Controllers
                     TrackLogins(user.UserId);
                     if (user.RoleId == 1012)
                     {
-                        return RedirectToAction("AdminDashBoard", "Admin");
+                        return RedirectToAction("Dashboard", "Admin");
 
                     }
                     return RedirectToAction("Index", "Home");
@@ -61,7 +61,7 @@ namespace E_Learning_Platform.Controllers
                     TrackLogins(user.UserId);
                     if (user.RoleId == 1012)
                     {
-                        return RedirectToAction("AdminDashBoard", "Admin");
+                        return RedirectToAction("Dashboard", "Admin");
                     }
                     return RedirectToAction("Index", "Home");
                 }                

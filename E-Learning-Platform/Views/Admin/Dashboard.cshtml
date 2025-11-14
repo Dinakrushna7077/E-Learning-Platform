@@ -1,6 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "AdminDashBoard";
+    ViewBag.Title = "Dashboard";
+}
+
+
+@{
+    ViewBag.Title = "Dashboard";
 }
 
 <!doctype html>
@@ -8,121 +13,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>E-Learning Admin Dashboard</title>
 
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/Content/dashboard.css" rel="stylesheet" />
 
-    <!-- Simple custom styles -->
-    <style>
-        :root {
-            --sidebar-width: 260px;
-            --sidebar-collapsed: 78px;
-        }
-
-        body {
-            min-height: 100vh;
-            background-color: #f8f9fa;
-        }
-
-        .app {
-            display: grid;
-            grid-template-columns: var(--sidebar-width) 1fr;
-            transition: grid-template-columns .2s ease;
-        }
-
-        .sidebar {
-            background: #0d6efd;
-            color: #fff;
-            min-height: 100vh;
-            height:60%;
-            padding: 1rem 0.6rem;
-            position: sticky;
-            top: 7%;
-            border:solid 0.07rem white;
-            border-radius:0.5rem;
-        }
-
-            .sidebar .nav-link {
-                color: rgba(255,255,255,0.9);
-                border-radius: .5rem;
-                padding: .6rem .75rem;
-                margin-bottom: .25rem;
-            }
-
-                .sidebar .nav-link.active {
-                    background: rgba(255,255,255,0.12);
-                }
-
-            .sidebar .brand {
-                display: flex;
-                align-items: center;
-                gap: .6rem;
-                padding: .6rem .75rem;
-                margin-bottom: 1rem;
-            }
-
-                .sidebar .brand .logo {
-                    width: 36px;
-                    height: 36px;
-                    border-radius: 6px;
-                    background: rgba(255,255,255,0.15);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: 700;
-                }
-
-        /* Collapsed sidebar state */
-        .app.collapsed {
-            grid-template-columns: var(--sidebar-collapsed) 1fr;
-        }
-
-            .app.collapsed .sidebar .nav-text,
-            .app.collapsed .sidebar .brand-name {
-                display: none;
-            }
-
-            .app.collapsed .sidebar .brand {
-                justify-content: center;
-            }
-
-            .app.collapsed .sidebar .nav-link {
-                text-align: center;
-                padding: .6rem .3rem;
-            }
-
-        /* Topbar */
-        .topbar {
-            background: white;
-            padding: .5rem 1rem;
-            border-bottom: 1px solid #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-
-        .content {
-            padding: 1.25rem;
-        }
-
-        .card-stats .card-body {
-            padding: .9rem;
-        }
-
-
-        .table-responsive {
-            max-height: 390px;
-            overflow: auto;
-        }
-        #margin_top{
-            margin-top:15rem;
-        }
-    </style>
     <!-- responsive adjustments -->
     <link href="~/Content/Responsive_Adjustments.css" rel="stylesheet" />
 
@@ -139,8 +35,8 @@
             <div class="brand px-2">
                 <div class="logo text-white">EL</div>
                 <div class="brand-name">
-                    <div class="fw-bold">E-Learn Admin</div>
-                    <small class="text-white-50">Manage platform</small>
+                    <div class="fw-bold">E-Learn Student</div>
+                    <small class="text-white-50">Skill Enhance Hub</small>
                 </div>
 
                 <button class="btn btn-sm btn-link text-white ms-auto d-lg-none" id="closeSidebarBtn" title="Close sidebar">
@@ -148,7 +44,7 @@
                 </button>
             </div>
 
-            <nav class="nav flex-column px-1">
+            <nav class="nav flex-column px-1 dashboard-link">
                 <a href="#" class="nav-link " data-bs-toggle="tooltip" title="Dashboard">
                     <i class="bi bi-speedometer2 me-2"></i> <span class="nav-text">Dashboard</span>
                 </a>
@@ -197,14 +93,11 @@
                     </button>
                 </div>
             </header>
-            <div style="color:black">
-                <h2> <pre>
-
-
-        W  E  L  C  O  M  E     T O     A   D   M   I   N     P  A  G  E</pre> </h2>
+            <div style="color:black" class="w-100">
+                <h2>Welcome to Admin Page</h2>
             </div>
         </main>
-       
+
     </div>
     <script>
         const usersTableBody = document.getElementById('usersTableBody');
@@ -227,7 +120,7 @@
         closeSidebarBtn?.addEventListener('click', () => sidebar.classList.remove('show'));
         collapseBtn?.addEventListener('click', () => appEl.classList.toggle('collapsed'));
     </script>
-   
+
 </body>
 </html>
 

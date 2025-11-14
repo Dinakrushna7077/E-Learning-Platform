@@ -18,6 +18,7 @@ namespace E_Learning_Platform.Models
         public Role()
         {
             this.users = new HashSet<user>();
+            this.courses = new HashSet<course>();
         }
     
         public int role_id { get; set; }
@@ -25,5 +26,7 @@ namespace E_Learning_Platform.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<user> users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<course> courses { get; set; }
     }
 }
