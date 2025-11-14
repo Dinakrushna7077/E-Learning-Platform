@@ -139,6 +139,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
@@ -176,6 +177,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModel\AppliedTeacher.cs" />
+    <Compile Include="Models\ViewModel\CourseDetails.cs" />
     <Compile Include="Models\ViewModel\DetailsModel.cs" />
     <Compile Include="Models\ViewModel\LoginModel.cs" />
     <Compile Include="Models\Model1.Context.cs">
@@ -268,7 +270,6 @@
     <Content Include="photo\sb fav icon.png" />
     <Content Include="photo\sb-logo.png" />
     <Content Include="photo\skill bridge logo2.1.png" />
-    <Content Include="photo\Silhouettes Of Students Celebration Education Graduation Student Success Learning Concept Background, Education, Graduation, Graduation Student Background Image And Wallpaper for Free Download.jpg" />
     <Content Include="photo\skill-bridge logo.png" />
     <Content Include="photo\skillbridge.png" />
     <Content Include="photo\WhatsApp Image 2025-10-18 at 01.02.27_f6bafc9c.jpg" />
@@ -323,9 +324,12 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Admin\AppliedTeacher.cshtml" />
     <Content Include="Views\Admin\AdminDashBoard.cshtml" />
+    <Content Include="Views\Course\Courses.cshtml" />
+    <Content Include="Views\Course\ViewCourses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Courses\" />
     <Folder Include="Views\Teacher\" />
   </ItemGroup>
   <ItemGroup>
