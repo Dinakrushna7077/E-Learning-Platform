@@ -1,0 +1,102 @@
+﻿@model E_Learning_Platform.Models.ViewModel.AdminRegister
+
+@{
+    ViewBag.Title = "AdminRegistration";
+}
+    @Html.Raw(TempData["msg"])
+    <head>
+        <link href="~/Content/Register.css" rel="stylesheet" />
+    </head>
+    <div>
+        @using (Html.BeginForm("AdminRegistration", "Admin", "Post"))
+        {
+            @Html.AntiForgeryToken()
+            <img src="~/photo/bg2.jpg" id="gb-img" class=" w-100 " />
+
+            <div class=" gap-2 d-flex flex-column align-items-center pb-2 pt-2 border-2 rounded-2 border-white reg">
+                <h4>Registration</h4>
+                <div class="container w-75 ">
+                    <label class="d-block text-danger">@TempData["warning"]</label>
+                    <div class="w-100 d-sm-block d-lg-flex">
+                        <label for="role" class="w-50">Name</label>
+                        <div class="w-100">
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="container w-75">
+                    <label class="d-block text-danger">@TempData["warning"]</label>
+                    <div class="w-100 d-sm-block d-lg-flex">
+                        <label for="role" class="w-50">Email</label>
+                        <div class="w-100">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="container w-75">
+                    <label class="d-block text-danger">@TempData["warning"]</label>
+                    <div class="w-100 d-sm-block d-lg-flex">
+                        <label for="role" class="w-50">Phone</label>
+                        <div class="w-100">
+                            @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="container w-75">
+                    <label class="d-block text-danger">@TempData["warning"]</label>
+                    <div class="w-100 d-sm-block d-lg-flex">
+                        <label for="role" class="w-50">Designation</label>
+                        <div class="w-100">
+                            @Html.DropDownListFor(m => m.Designation, ViewBag.Designation as SelectList, "--Select Designation--", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="container w-75">
+                    <label class="d-block text-danger">@TempData["warning"]</label>
+                    <div class="w-100 d-sm-block d-lg-flex">
+                        <label for="role" class="w-50">Password</label>
+                        <div class="w-100">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="container w-75">
+                    <label class="d-block text-danger">@TempData["warning"]</label>
+                    <div class="w-100 d-sm-block d-lg-flex">
+                        <label for="role" class="w-50">Repeat Password</label>
+                        <div class="w-100">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 text-center">
+                    <button class="btn w-25 e-btn">Register</button>
+                </div>
+
+            </div>
+
+
+        }
+    </div>
+    <style>
+        .reg {
+            backdrop-filter: blur(200px);
+            /*background-color: rgba(128, 128, 128,0.2);*/
+            border: 1px solid black;
+            width: 50%;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+
+
+
+
+

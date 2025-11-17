@@ -71,6 +71,52 @@ namespace E_Learning_Platform.Controllers
         {
                        return View();
         }
+        public ActionResult AdminRegistration()
+        {
+            List<string> designation = new List<string> { "Content Admin", "System Administrator", "Assessment Admin", "Finance Admin", "Analytics Admin", "Communication Admin", "Super Admin", "Instructor Coordinator", "Library Admin" };
+            ViewBag.designation = new SelectList(designation);
+            return View();
+
+       
+        }
+        [HttpPost]
+        public ActionResult AdminRegistration(AdminRegister ar)
+        {
+            List<string> designation = new List<string> { "Content Admin", "System Administrator", "Assessment Admin", "Finance Admin", "Analytics Admin", "Communication Admin", "Super Admin", "Instructor Coordinator", "Library Admin" };
+            ViewBag.designation = new SelectList(designation);
+            if (ModelState.IsValid)
+            {
+                if (ar.Password == ar.ConfirmPassword)
+                {
+                    /*     //user u = new user();
+                         //u.name = ar.Name;
+                         //u.email = ar.Email;
+                         //u.phone = ar.Mobile;
+                         //u.role = 1014;
+                         //DateTime now = DateTime.Now;
+                         //db.users.Add(u);
+                         //db.SaveChanges();
+                         //Admin ad = new Admin();
+                         //ad.desig = ar.Designation;
+                         //db.Admins.Add(ad);
+                         //db.SaveChanges(); */
+
+                    var user=db.NewUser(ar.Name, ar.Email, ar.Password, ar.Mobile, 1014).FirstOrDefault();
+                    var data = db.NewAdmin(ar.Designation, user.UserId);
+                         TempData["msg"] = "<script>alert('Registration Successful')</script>";
+                    return RedirectToAction("Login", "Login");
+
+
+
+                }
+                else
+                {
+                    TempData["msg"] = "<script>alert('Password and Confirm Password do not match')</script>";
+                }
+            }
+            return View(ar);
+        }
+
     }
-                            
+
 }
