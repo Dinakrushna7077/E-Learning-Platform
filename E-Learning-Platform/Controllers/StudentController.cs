@@ -13,5 +13,42 @@ namespace E_Learning_Platform.Controllers
         {
             return View();
         }
+        public ActionResult StudentDashboard()
+        {
+            return View();
+        }
+        public ActionResult AvailableCourses()
+        {
+            return PartialView("_AvailableCourse");
+        }
+        public ActionResult MyCourse()
+        {
+            return PartialView("_MyCourse");
+        }
+        public ActionResult Assignment()
+        {
+            return PartialView("_Assignment");
+        }
+        public ActionResult Progress()
+        {
+            return PartialView("_Progress");
+        }
+        public ActionResult Resources()
+        {
+            return PartialView("_Resources");
+        }
+        public ActionResult LiveEvent()
+        {
+            return PartialView("_LiveEvent");
+        }
+        public ActionResult Badges()
+        {
+            return PartialView("_Badges");
+        }
+
+        public ActionResult Dashboard3()
+        {
+            return View();
+        }
     }
 }

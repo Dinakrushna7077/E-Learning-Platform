@@ -1,0 +1,161 @@
+﻿
+<link href="~/Content/dashDemo.css" rel="stylesheet" />
+<div class="layout-wrapper">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar bg-dark text-white" aria-hidden="false" aria-label="Main Sidebar">
+
+        <div class="sidebar-header d-flex align-items-center justify-content-between px-3 py-2">
+            <h5 class="mb-0 sidebar-title">E-Learning</h5>
+            <!-- Floating toggle is used instead of an inline menu button -->
+        </div>
+
+        <ul class="list-unstyled px-2 mt-2">
+            <li class="py-2">
+                <a href="#" class="d-flex align-items-center gap-2 text-white text-decoration-none">
+                    <i class="bi bi-speedometer2"></i> <span class="nav-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="py-2">
+                <a href="#" class="d-flex align-items-center gap-2 text-white text-decoration-none">
+                    <i class="bi bi-journal-bookmark"></i> <span class="nav-text">Courses</span>
+                </a>
+            </li>
+            <li class="py-2">
+                <a href="#" class="d-flex align-items-center gap-2 text-white text-decoration-none">
+                    <i class="bi bi-people"></i> <span class="nav-text">Users</span>
+                </a>
+            </li>
+            <li class="py-2">
+                <a href="#" class="d-flex align-items-center gap-2 text-white text-decoration-none">
+                    <i class="bi bi-graph-up"></i> <span class="nav-text">Reports</span>
+                </a>
+            </li>
+            <li class="py-2">
+                <a href="#" class="d-flex align-items-center gap-2 text-white text-decoration-none">
+                    <i class="bi bi-gear"></i> <span class="nav-text">Settings</span>
+                </a>
+            </li>
+        </ul>
+
+    </aside>
+
+    <!-- Floating Desktop/Mobile Toggle (visible on all screens) -->
+    <button id="sidebarFloatToggle" class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+        <i id="sidebarFloatIcon" class="bi bi-chevron-double-left"></i>
+    </button>
+
+    <!-- Backdrop -->
+    <div id="sidebarBackdrop" class="backdrop" hidden></div>
+
+    <!-- Main Content -->
+    <main class="content-area">
+        <div class="container-fluid">
+            <h3 class="mt-2">Main Content</h3>
+            <p>This area is responsive. The floating toggle will collapse to a mini strip on small screens.</p>
+        </div>
+    </main>
+
+</div>
+
+<script>
+    // Sidebar controls: desktop and mobile (menu button removed)
+    const sidebar = document.getElementById("sidebar");
+    const floatToggle = document.getElementById("sidebarFloatToggle");
+    const floatIcon = document.getElementById("sidebarFloatIcon");
+    const backdrop = document.getElementById("sidebarBackdrop");
+
+    function isMobileView() {
+        return window.innerWidth < 992;
+    }
+
+    // Position the floating toggle so it hugs the sidebar edge
+    function positionFloatToggle() {
+        if (!floatToggle) return;
+        const rect = sidebar.getBoundingClientRect();
+        const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 65;
+        const top = rect.top + headerHeight / 2;
+        // place button near the right edge of the sidebar (works both for full and collapsed widths)
+        const left = rect.left + rect.width - (floatToggle.offsetWidth / 2);
+        floatToggle.style.top = Math.max(8, top) + 'px';
+        floatToggle.style.left = Math.max(8, left) + 'px';
+    }
+
+    // Desktop & mobile mini toggle handler
+    if (floatToggle) {
+        floatToggle.addEventListener("click", () => {
+            const wasCollapsed = sidebar.classList.toggle("collapsed");
+            floatToggle.classList.toggle("collapsed", wasCollapsed);
+
+            // If we collapsed on mobile, ensure the overlay (mobile-open) is closed.
+            if (isMobileView()) {
+                sidebar.classList.remove("mobile-open");
+                backdrop.classList.remove("visible");
+                backdrop.hidden = true;
+                document.body.style.overflow = "";
+                sidebar.setAttribute("aria-hidden", "" + !wasCollapsed);
+            } else {
+                // desktop: update aria-hidden for accessibility
+                sidebar.setAttribute("aria-hidden", "" + wasCollapsed);
+            }
+
+            // reposition after width change
+            setTimeout(positionFloatToggle, 200);
+        });
+    }
+
+    // Close when clicking backdrop
+    backdrop.addEventListener("click", () => {
+        sidebar.classList.remove("mobile-open");
+        backdrop.classList.remove("visible");
+        backdrop.hidden = true;
+        document.body.style.overflow = "";
+        sidebar.setAttribute("aria-hidden", "true");
+    });
+
+    // Close sidebar on resize if switching to desktop or mobile; reposition floating toggle
+    window.addEventListener("resize", () => {
+        if (!isMobileView()) {
+            // switch to desktop: ensure overlay closed
+            document.body.style.overflow = "";
+            sidebar.classList.remove("mobile-open");
+            backdrop.classList.remove("visible");
+            backdrop.hidden = true;
+            // keep collapsed if user set it
+            sidebar.setAttribute("aria-hidden", "" + sidebar.classList.contains("collapsed"));
+        } else {
+            // mobile: keep collapsed state if present (mini strip); don't force-remove it
+            if (sidebar.classList.contains("mobile-open")) {
+                sidebar.setAttribute("aria-hidden", "false");
+            } else {
+                sidebar.setAttribute("aria-hidden", "" + !sidebar.classList.contains("collapsed"));
+            }
+        }
+        // reposition the floating toggle
+        setTimeout(positionFloatToggle, 10);
+    });
+
+    // Accessibility: close with Escape when mobile-open
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && sidebar.classList.contains("mobile-open")) {
+            sidebar.classList.remove("mobile-open");
+            backdrop.classList.remove("visible");
+            backdrop.hidden = true;
+            document.body.style.overflow = "";
+            sidebar.setAttribute("aria-hidden", "true");
+        }
+    });
+
+    // initial position on load
+    window.addEventListener("load", () => {
+        setTimeout(positionFloatToggle, 10);
+    });
+
+    // also reposition once fonts/icons loaded or after layout changes
+    window.addEventListener("DOMContentLoaded", () => setTimeout(positionFloatToggle, 50));
+</script>
+
+<script>
+    /* Keep floating toggle hugging the sidebar while scrolling */
+    window.addEventListener('scroll', positionFloatToggle, { passive: true });
+</script>
