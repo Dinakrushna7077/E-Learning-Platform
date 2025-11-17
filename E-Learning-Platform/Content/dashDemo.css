@@ -18,12 +18,12 @@ html, body {
 .sidebar {
     width: var(--sidebar-width);
     min-height: calc(80vh);
-    
+    background: #212529;
     color: #fff;
     transition: width .3s ease, transform .3s ease;
     overflow: hidden;
     position: sticky;
-    top: 9.9%;
+    top: 7%;
     border: solid 0.07rem white;
     border-radius: 0.2rem;
 }
@@ -43,7 +43,7 @@ html, body {
 /* Arrow button (shared styles) */
 .sidebar-toggle-btn {
     border: none;
-    background: #2d3e50 !important;
+    background: #343a40;
     color: white;
     font-size: 18px;
     cursor: pointer;
@@ -54,7 +54,6 @@ html, body {
     justify-content: center;
     transition: transform .3s ease, left .2s ease;
     position: fixed;
-    box-shadow: 0 0 0 0.08rem darkgray !important;
 }
 
     /* Rotated state for the arrow icon when sidebar is collapsed */
@@ -87,8 +86,8 @@ html, body {
     }
 
     .sidebar {
-        position: sticky;
-        top: 9.9%;
+        position: fixed;
+        top: 0;
         left: 0;
         height: 100vh;
         transform: translateX(-110%);
@@ -144,27 +143,24 @@ html, body {
     white-space: nowrap;
 }
 
-.sidebar li {
+.sidebar a {
     color: #fff;
     padding: 0.3rem;
-    border-bottom: 0.019rem solid transparent;
+    border-bottom: 0.01rem solid transparent;
     border-radius: .5rem;
-    
 }
 
-    .sidebar li:hover {
+    .sidebar a:hover {
         text-decoration: none;
         color: #e9ecef;
-        border-color: darkgray;
+        border-bottom: 0.01rem solid white;
         border-radius: .5rem;
         padding: 0.3rem;
-        transition: 0.3s ease;
     }
-
 @media (min-width: 992px) {
     .sidebar {
         position: sticky;
-        top: 9.8%;
+        top: 0;
         align-self: flex-start;
         height: 100vh;
         overflow-y: auto;
