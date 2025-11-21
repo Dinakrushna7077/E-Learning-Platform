@@ -23,7 +23,7 @@ html, body {
     transition: width .3s ease, transform .3s ease;
     overflow: hidden;
     position: sticky;
-    top: 9.9%;
+    top: 9%;
     border: solid 0.07rem white;
     border-radius: 0.2rem;
 }

@@ -69,7 +69,9 @@ namespace E_Learning_Platform.Controllers
 
         public ActionResult AdminDashBoard()
         {
-                       return View();
+            IEnumerable<AdminDashboard> dashboard = new List<AdminDashboard>();
+            //dashboard.TotalStudents = db.students.Count();
+            return View(dashboard);
         }
         public ActionResult AdminRegistration()
         {

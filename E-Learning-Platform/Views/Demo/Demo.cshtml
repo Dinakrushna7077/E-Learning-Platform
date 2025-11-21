@@ -3,4 +3,38 @@
     ViewBag.Title = "Demo";
 }
 
+<button onclick=" showModernMessage('Login successful!')">Click me</button>
 
+
+<!-- Modern Popup Modal -->
+<div class="modal fade" id="modernMessageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modern-popup">
+
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold">
+                    <i class="bi bi-exclamation-octagon-fill me-2"></i> Message
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body text-center py-4">
+                <p class="fs-5 mb-0 text-dark" id="modernMessageText">Invalid Id or Password</p>
+            </div>
+
+            <div class="modal-footer border-0 justify-content-center">
+                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">OK</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    function showModernMessage(message) {
+        document.getElementById("modernMessageText").innerText = message;
+
+        var modal = new bootstrap.Modal(document.getElementById("modernMessageModal"));
+        modal.show();
+    }
+
+</script>
