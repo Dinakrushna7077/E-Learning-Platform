@@ -40,7 +40,15 @@ namespace E_Learning_Platform.Controllers
                         return RedirectToAction("AdminDashBoard", "Admin");
 
                     }
-                    return RedirectToAction("Index", "Home");
+                    if(user.RoleId ==1014)
+                    {
+                        return RedirectToAction("Dashboard", "Student");
+                    }
+                    if(user.RoleId ==1016)
+                    {
+                        return RedirectToAction("Dashboard", "Teacher");
+                    }
+                        return RedirectToAction("Index", "Home");
                 }
                 else
                 {
