@@ -100,18 +100,33 @@ namespace E_Learning_Platform.Controllers
         }
         public ActionResult RecentUser()
         {
-            var user=db.Logs.OrderByDescending(u=>u.LogId).Take(3).ToList();
-            List<RecentUserVM> userlist = new List<RecentUserVM>();
-            foreach (var log in user)
+            // Step 1: Get recent unique user IDs (top 3)
+            var userIds = db.Logs
+                .OrderByDescending(l => l.LogId)
+                .GroupBy(l => l.UserId)
+                .Select(g => g.FirstOrDefault().UserId)
+                .Take(3)
+                .ToList();
+
+            List<RecentUserVM> userList = new List<RecentUserVM>();
+
+            foreach (var id in userIds)
             {
-                userlist.Add(new RecentUserVM
+                var user = db.users.FirstOrDefault(u => u.user_id == id);
+
+                if (user != null)
                 {
-                    Name = db.users.Where(n=>n.user_id==log.UserId).FirstOrDefault().name,   
-                    Role = db.users.Where(r => r.user_id == log.UserId).FirstOrDefault().role,
-                });
+                    userList.Add(new RecentUserVM
+                    {
+                        Name = user.name,
+                        Role = user.role
+                    });
+                }
             }
-            return PartialView("_RecentUser", userlist);
+
+            return PartialView("_RecentUser", userList);
         }
+
         public ActionResult AdminRegistration()
         {
             List<string> designation = new List<string> { "Content Admin", "System Administrator", "Assessment Admin", "Finance Admin", "Analytics Admin", "Communication Admin", "Super Admin", "Instructor Coordinator", "Library Admin" };

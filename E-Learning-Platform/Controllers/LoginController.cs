@@ -27,7 +27,7 @@ namespace E_Learning_Platform.Controllers
         {
             if (IsValidEmail(u.Identifier))
             {
-                var user = db.Login1(u.Identifier,null,u.Password).FirstOrDefault();
+                var user = db.Login(u.Identifier,null,u.Password).FirstOrDefault();
                 if (user != null)
                 {
                     Session["Userid"] = user.UserId;
@@ -59,7 +59,7 @@ namespace E_Learning_Platform.Controllers
             else
             {
                 long mob = Convert.ToInt64(u.Identifier);
-                var user = db.Login1(null,mob,u.Password).FirstOrDefault();
+                var user = db.Login(null,mob,u.Password).FirstOrDefault();
                 if(user!=null)
                 {
                     Session["Userid"] = user.UserId;
