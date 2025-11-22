@@ -18,7 +18,7 @@ namespace E_Learning_Platform.Models
     public partial class e_learning_dbEntities : DbContext
     {
         public e_learning_dbEntities()
-            : base("name=e_learning_dbEntities1")
+            : base("name=e_learning_dbEntities")
         {
         }
     
@@ -36,13 +36,13 @@ namespace E_Learning_Platform.Models
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<user> users { get; set; }
     
-        [DbFunction("e_learning_dbEntities1", "AppliedTeacher")]
+        [DbFunction("e_learning_dbEntities", "AppliedTeacher")]
         public virtual IQueryable<AppliedTeacher_Result> AppliedTeacher()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<AppliedTeacher_Result>("[e_learning_dbEntities1].[AppliedTeacher]()");
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<AppliedTeacher_Result>("[e_learning_dbEntities].[AppliedTeacher]()");
         }
     
-        [DbFunction("e_learning_dbEntities1", "Login")]
+        [DbFunction("e_learning_dbEntities", "Login")]
         public virtual IQueryable<Login_Result> Login(string gmail, Nullable<long> mobile, string pass)
         {
             var gmailParameter = gmail != null ?
@@ -57,10 +57,10 @@ namespace E_Learning_Platform.Models
                 new ObjectParameter("pass", pass) :
                 new ObjectParameter("pass", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Login_Result>("[e_learning_dbEntities1].[Login](@gmail, @mobile, @pass)", gmailParameter, mobileParameter, passParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Login_Result>("[e_learning_dbEntities].[Login](@gmail, @mobile, @pass)", gmailParameter, mobileParameter, passParameter);
         }
     
-        [DbFunction("e_learning_dbEntities1", "Login1")]
+        [DbFunction("e_learning_dbEntities", "Login1")]
         public virtual IQueryable<Login1_Result> Login1(string gmail, Nullable<long> mobile, string pass)
         {
             var gmailParameter = gmail != null ?
@@ -75,7 +75,7 @@ namespace E_Learning_Platform.Models
                 new ObjectParameter("pass", pass) :
                 new ObjectParameter("pass", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Login1_Result>("[e_learning_dbEntities1].[Login1](@gmail, @mobile, @pass)", gmailParameter, mobileParameter, passParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Login1_Result>("[e_learning_dbEntities].[Login1](@gmail, @mobile, @pass)", gmailParameter, mobileParameter, passParameter);
         }
     
         public virtual ObjectResult<NewAdmin_Result> NewAdmin(string p_designation, Nullable<int> p_userId)
