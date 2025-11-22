@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="e_learning_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="e_learning_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="admin_id" />
@@ -21,7 +21,6 @@
           <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="100" />
           <Property Name="duretion" Type="varchar" MaxLength="100" />
-          <Property Name="teacher_id" Type="int" Nullable="false" />
           <Property Name="created_at" Type="datetime" />
           <Property Name="course_fee" Type="decimal" Precision="5" Scale="2" />
           <Property Name="image" Type="varchar(max)" />
@@ -88,7 +87,7 @@
           <Property Name="created_at" Type="datetime" />
           <Property Name="updated_at" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Admin__user_id__412EB0B6">
+        <Association Name="FK__Admin__user_id__4AB81AF0">
           <End Role="users" Type="Self.users" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -102,21 +101,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__course__teacher___49C3F6B7">
-          <End Role="Role" Type="Self.Role" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="course" Type="Self.course" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="role_id" />
-            </Principal>
-            <Dependent Role="course">
-              <PropertyRef Name="teacher_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Logs__UserId__5165187F">
+        <Association Name="FK__Logs__UserId__5AEE82B9">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="Logs" Type="Self.Logs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -128,7 +113,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__student__course___4D94879B">
+        <Association Name="FK__student__course___571DF1D5">
           <End Role="course" Type="Self.course" Multiplicity="0..1" />
           <End Role="student" Type="Self.student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -140,7 +125,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__student__user_id__4E88ABD4">
+        <Association Name="FK__student__user_id__5812160E">
           <End Role="users" Type="Self.users" Multiplicity="0..1" />
           <End Role="student" Type="Self.student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -152,7 +137,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Teacher__departm__45F365D3">
+        <Association Name="FK__Teacher__departm__4F7CD00D">
           <End Role="Department" Type="Self.Department" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -166,7 +151,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Teacher__user_id__44FF419A">
+        <Association Name="FK__Teacher__user_id__4E88ABD4">
           <End Role="users" Type="Self.users" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -180,7 +165,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__users__role__3A81B327">
+        <Association Name="FK__users__role__440B1D61">
           <End Role="Role" Type="Self.Role" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -194,6 +179,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AppliedTeacher" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="tacher_id" Type="int" Nullable="false" />
+                <Property Name="qualification" Type="varchar" MaxLength="100" Nullable="false" />
+                <Property Name="subject" Type="varchar" MaxLength="100" Nullable="false" />
+                <Property Name="gender" Type="varchar" MaxLength="12" />
+                <Property Name="department" Type="int" Nullable="false" />
+                <Property Name="Status" Type="varchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="gmail" Type="nvarchar" Mode="In" />
           <Parameter Name="mobile" Type="bigint" Mode="In" />
@@ -243,6 +242,20 @@
           <Parameter Name="p_mobile" Type="bigint" Mode="In" />
           <Parameter Name="p_roleId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Login1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dinakrushna" StoreFunctionName="Login">
+          <Parameter Name="gmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="mobile" Type="bigint" Mode="In" />
+          <Parameter Name="pass" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="UserId" Type="int" Nullable="false" />
+                <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+                <Property Name="RoleId" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="e_learning_dbModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
@@ -252,43 +265,58 @@
           <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Admin__user_id__412EB0B6" Association="Self.FK__Admin__user_id__412EB0B6">
+          <AssociationSet Name="FK__Admin__user_id__4AB81AF0" Association="Self.FK__Admin__user_id__4AB81AF0">
             <End Role="users" EntitySet="users" />
             <End Role="Admin" EntitySet="Admin" />
           </AssociationSet>
-          <AssociationSet Name="FK__course__teacher___49C3F6B7" Association="Self.FK__course__teacher___49C3F6B7">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="course" EntitySet="course" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Logs__UserId__5165187F" Association="Self.FK__Logs__UserId__5165187F">
+          <AssociationSet Name="FK__Logs__UserId__5AEE82B9" Association="Self.FK__Logs__UserId__5AEE82B9">
             <End Role="users" EntitySet="users" />
             <End Role="Logs" EntitySet="Logs" />
           </AssociationSet>
-          <AssociationSet Name="FK__student__course___4D94879B" Association="Self.FK__student__course___4D94879B">
+          <AssociationSet Name="FK__student__course___571DF1D5" Association="Self.FK__student__course___571DF1D5">
             <End Role="course" EntitySet="course" />
             <End Role="student" EntitySet="student" />
           </AssociationSet>
-          <AssociationSet Name="FK__student__user_id__4E88ABD4" Association="Self.FK__student__user_id__4E88ABD4">
+          <AssociationSet Name="FK__student__user_id__5812160E" Association="Self.FK__student__user_id__5812160E">
             <End Role="users" EntitySet="users" />
             <End Role="student" EntitySet="student" />
           </AssociationSet>
-          <AssociationSet Name="FK__Teacher__departm__45F365D3" Association="Self.FK__Teacher__departm__45F365D3">
+          <AssociationSet Name="FK__Teacher__departm__4F7CD00D" Association="Self.FK__Teacher__departm__4F7CD00D">
             <End Role="Department" EntitySet="Department" />
             <End Role="Teacher" EntitySet="Teacher" />
           </AssociationSet>
-          <AssociationSet Name="FK__Teacher__user_id__44FF419A" Association="Self.FK__Teacher__user_id__44FF419A">
+          <AssociationSet Name="FK__Teacher__user_id__4E88ABD4" Association="Self.FK__Teacher__user_id__4E88ABD4">
             <End Role="users" EntitySet="users" />
             <End Role="Teacher" EntitySet="Teacher" />
           </AssociationSet>
-          <AssociationSet Name="FK__users__role__3A81B327" Association="Self.FK__users__role__3A81B327">
+          <AssociationSet Name="FK__users__role__440B1D61" Association="Self.FK__users__role__440B1D61">
             <End Role="Role" EntitySet="Role" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="e_learning_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="AppliedTeacher_Result">
+          <Property Name="tacher_id" Type="Int32" Nullable="false" />
+          <Property Name="qualification" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subject" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="department" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <ComplexType Name="Login_Result">
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Login1_Result">
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+        </ComplexType>
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="admin_id" />
@@ -297,6 +325,19 @@
           <Property Name="desig" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="user" Relationship="Self.FK__Admin__user_id__4AB81AF0" FromRole="Admin" ToRole="users" />
+        </EntityType>
+        <EntityType Name="course">
+          <Key>
+            <PropertyRef Name="course_id" />
+          </Key>
+          <Property Name="course_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="duretion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="course_fee" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="students" Relationship="Self.FK__student__course___571DF1D5" FromRole="course" ToRole="student" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -323,7 +364,6 @@
           <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="role_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="users" Relationship="Self.FK__users__role__440B1D61" FromRole="Role" ToRole="users" />
-          <NavigationProperty Name="courses" Relationship="e_learning_dbModel.FK__course__teacher___49C3F6B7" FromRole="Role" ToRole="course" />
         </EntityType>
         <EntityType Name="student">
           <Key>
@@ -336,8 +376,8 @@
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="course_id" Type="Int32" />
           <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="course" Relationship="Self.FK__student__course___571DF1D5" FromRole="student" ToRole="course" />
           <NavigationProperty Name="user" Relationship="Self.FK__student__user_id__5812160E" FromRole="student" ToRole="users" />
-          <NavigationProperty Name="course" Relationship="e_learning_dbModel.FK__student__course___571DF1D5" FromRole="student" ToRole="course" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
@@ -351,9 +391,9 @@
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="department" Type="Int32" Nullable="false" />
           <Property Name="hire_date" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Department1" Relationship="Self.FK__Teacher__departm__4F7CD00D" FromRole="Teacher" ToRole="Department" />
           <NavigationProperty Name="user" Relationship="Self.FK__Teacher__user_id__4E88ABD4" FromRole="Teacher" ToRole="users" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -384,6 +424,18 @@
             </Principal>
             <Dependent Role="Admin">
               <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__student__course___571DF1D5">
+          <End Role="course" Type="Self.course" Multiplicity="0..1" />
+          <End Role="student" Type="Self.student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="course">
+              <PropertyRef Name="course_id" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="course_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -453,8 +505,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="e_learning_dbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="e_learning_dbEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="courses" EntityType="Self.course" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Logs" EntityType="Self.Log" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
@@ -464,6 +517,10 @@
           <AssociationSet Name="FK__Admin__user_id__4AB81AF0" Association="Self.FK__Admin__user_id__4AB81AF0">
             <End Role="users" EntitySet="users" />
             <End Role="Admin" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__student__course___571DF1D5" Association="Self.FK__student__course___571DF1D5">
+            <End Role="course" EntitySet="courses" />
+            <End Role="student" EntitySet="students" />
           </AssociationSet>
           <AssociationSet Name="FK__Teacher__departm__4F7CD00D" Association="Self.FK__Teacher__departm__4F7CD00D">
             <End Role="Department" EntitySet="Departments" />
@@ -485,11 +542,7 @@
             <End Role="users" EntitySet="users" />
             <End Role="Teacher" EntitySet="Teachers" />
           </AssociationSet>
-          <EntitySet Name="courses" EntityType="e_learning_dbModel.course" />
-          <AssociationSet Name="FK__student__course___571DF1D5" Association="e_learning_dbModel.FK__student__course___571DF1D5">
-            <End Role="course" EntitySet="courses" />
-            <End Role="student" EntitySet="students" />
-          </AssociationSet>
+          <FunctionImport Name="AppliedTeacher" IsComposable="true" ReturnType="Collection(e_learning_dbModel.AppliedTeacher_Result)" />
           <FunctionImport Name="Login" IsComposable="true" ReturnType="Collection(e_learning_dbModel.Login_Result)">
             <Parameter Name="gmail" Mode="In" Type="String" />
             <Parameter Name="mobile" Mode="In" Type="Int64" />
@@ -503,6 +556,14 @@
           <FunctionImport Name="NewAdmin" ReturnType="Collection(e_learning_dbModel.NewAdmin_Result)">
             <Parameter Name="p_designation" Mode="In" Type="String" />
             <Parameter Name="p_userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NewCourse">
+            <Parameter Name="p_title" Mode="In" Type="String" />
+            <Parameter Name="p_description" Mode="In" Type="String" />
+            <Parameter Name="p_duration" Mode="In" Type="String" />
+            <Parameter Name="p_created_at" Mode="In" Type="DateTime" />
+            <Parameter Name="p_course_fee" Mode="In" Type="Decimal" />
+            <Parameter Name="p_image_server_path" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="NewStudent" ReturnType="Collection(e_learning_dbModel.NewStudent_Result)">
             <Parameter Name="p_father_name" Mode="In" Type="String" />
@@ -527,56 +588,7 @@
             <Parameter Name="p_mobile" Mode="In" Type="Int64" />
             <Parameter Name="p_roleId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <AssociationSet Name="FK__course__teacher___49C3F6B7" Association="e_learning_dbModel.FK__course__teacher___49C3F6B7">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="course" EntitySet="courses" />
-          </AssociationSet>
-          <FunctionImport Name="NewCourse">
-            <Parameter Name="p_title" Mode="In" Type="String" />
-            <Parameter Name="p_description" Mode="In" Type="String" />
-            <Parameter Name="p_duration" Mode="In" Type="String" />
-            <Parameter Name="p_created_at" Mode="In" Type="DateTime" />
-            <Parameter Name="p_course_fee" Mode="In" Type="Decimal" />
-            <Parameter Name="p_image_server_path" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
-        <EntityType Name="course">
-          <Key>
-            <PropertyRef Name="course_id" />
-          </Key>
-          <Property Name="course_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="duretion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="created_at" Type="DateTime" Precision="3" />
-          <Property Name="course_fee" Type="Decimal" Precision="5" Scale="2" />
-          <NavigationProperty Name="students" Relationship="e_learning_dbModel.FK__student__course___571DF1D5" FromRole="course" ToRole="student" />
-          <Property Name="teacher_id" Type="Int32" Nullable="false" />
-          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Role" Relationship="e_learning_dbModel.FK__course__teacher___49C3F6B7" FromRole="course" ToRole="Role" />
-        </EntityType>
-        <Association Name="FK__student__course___571DF1D5">
-          <End Type="e_learning_dbModel.course" Role="course" Multiplicity="0..1" />
-          <End Type="e_learning_dbModel.student" Role="student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="course">
-              <PropertyRef Name="course_id" />
-            </Principal>
-            <Dependent Role="student">
-              <PropertyRef Name="course_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <ComplexType Name="Login_Result">
-          <Property Type="Int32" Name="UserId" Nullable="false" />
-          <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" />
-          <Property Type="Int32" Name="RoleId" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="Login1_Result">
-          <Property Type="Int32" Name="UserId" Nullable="false" />
-          <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" />
-          <Property Type="Int32" Name="RoleId" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="NewAdmin_Result">
           <Property Type="String" Name="MESSAGE" Nullable="false" MaxLength="43" />
           <Property Type="Int32" Name="AdminId" Nullable="false" />
@@ -594,32 +606,31 @@
           <Property Type="Int32" Name="UserId" Nullable="false" />
           <Property Type="Int32" Name="RoleId" Nullable="false" />
         </ComplexType>
-        <Association Name="FK__course__teacher___49C3F6B7">
-          <End Type="e_learning_dbModel.Role" Role="Role" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="e_learning_dbModel.course" Role="course" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="role_id" />
-            </Principal>
-            <Dependent Role="course">
-              <PropertyRef Name="teacher_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="e_learning_dbModelStoreContainer" CdmEntityContainer="e_learning_dbEntities">
+        <EntityContainerMapping StorageEntityContainer="e_learning_dbModelStoreContainer" CdmEntityContainer="e_learning_dbEntities1">
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="e_learning_dbModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
                 <ScalarProperty Name="admin_id" ColumnName="admin_id" />
                 <ScalarProperty Name="desig" ColumnName="desig" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="courses">
+            <EntityTypeMapping TypeName="e_learning_dbModel.course">
+              <MappingFragment StoreEntitySet="course">
+                <ScalarProperty Name="course_id" ColumnName="course_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="duretion" ColumnName="duretion" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="course_fee" ColumnName="course_fee" />
+                <ScalarProperty Name="image" ColumnName="image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -665,7 +676,6 @@
           <EntitySetMapping Name="Teachers">
             <EntityTypeMapping TypeName="e_learning_dbModel.Teacher">
               <MappingFragment StoreEntitySet="Teacher">
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="tacher_id" ColumnName="tacher_id" />
                 <ScalarProperty Name="qualification" ColumnName="qualification" />
                 <ScalarProperty Name="subject" ColumnName="subject" />
@@ -674,6 +684,7 @@
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="department" ColumnName="department" />
                 <ScalarProperty Name="hire_date" ColumnName="hire_date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -691,21 +702,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="courses">
-            <EntityTypeMapping TypeName="e_learning_dbModel.course">
-              <MappingFragment StoreEntitySet="course">
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
-                <ScalarProperty Name="course_fee" ColumnName="course_fee" />
-                <ScalarProperty Name="created_at" ColumnName="created_at" />
-                <ScalarProperty Name="duretion" ColumnName="duretion" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="course_id" ColumnName="course_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Login1" FunctionName="e_learning_dbModel.Store.Login">
+          <FunctionImportMapping FunctionName="e_learning_dbModel.Store.AppliedTeacher" FunctionImportName="AppliedTeacher">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="e_learning_dbModel.AppliedTeacher_Result">
+                <ScalarProperty Name="tacher_id" ColumnName="tacher_id" />
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="e_learning_dbModel.Store.Login" FunctionImportName="Login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="e_learning_dbModel.Login_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="e_learning_dbModel.Store.Login1" FunctionImportName="Login1">
             <ResultMapping>
               <ComplexTypeMapping TypeName="e_learning_dbModel.Login1_Result">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -722,6 +740,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NewCourse" FunctionName="e_learning_dbModel.Store.NewCourse" />
           <FunctionImportMapping FunctionImportName="NewStudent" FunctionName="e_learning_dbModel.Store.NewStudent">
             <ResultMapping>
               <ComplexTypeMapping TypeName="e_learning_dbModel.NewStudent_Result">
@@ -747,7 +766,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="NewCourse" FunctionName="e_learning_dbModel.Store.NewCourse" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

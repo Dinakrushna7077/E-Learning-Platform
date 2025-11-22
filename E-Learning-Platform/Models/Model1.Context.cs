@@ -18,7 +18,7 @@ namespace E_Learning_Platform.Models
     public partial class e_learning_dbEntities : DbContext
     {
         public e_learning_dbEntities()
-            : base("name=e_learning_dbEntities")
+            : base("name=e_learning_dbEntities1")
         {
         }
     
@@ -28,15 +28,21 @@ namespace E_Learning_Platform.Models
         }
     
         public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<course> courses { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<student> students { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<user> users { get; set; }
-        public virtual DbSet<course> courses { get; set; }
     
-        [DbFunction("e_learning_dbEntities", "Login")]
+        [DbFunction("e_learning_dbEntities1", "AppliedTeacher")]
+        public virtual IQueryable<AppliedTeacher_Result> AppliedTeacher()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<AppliedTeacher_Result>("[e_learning_dbEntities1].[AppliedTeacher]()");
+        }
+    
+        [DbFunction("e_learning_dbEntities1", "Login")]
         public virtual IQueryable<Login_Result> Login(string gmail, Nullable<long> mobile, string pass)
         {
             var gmailParameter = gmail != null ?
@@ -51,10 +57,10 @@ namespace E_Learning_Platform.Models
                 new ObjectParameter("pass", pass) :
                 new ObjectParameter("pass", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Login_Result>("[e_learning_dbEntities].[Login](@gmail, @mobile, @pass)", gmailParameter, mobileParameter, passParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Login_Result>("[e_learning_dbEntities1].[Login](@gmail, @mobile, @pass)", gmailParameter, mobileParameter, passParameter);
         }
     
-        [DbFunction("e_learning_dbEntities", "Login1")]
+        [DbFunction("e_learning_dbEntities1", "Login1")]
         public virtual IQueryable<Login1_Result> Login1(string gmail, Nullable<long> mobile, string pass)
         {
             var gmailParameter = gmail != null ?
@@ -69,7 +75,7 @@ namespace E_Learning_Platform.Models
                 new ObjectParameter("pass", pass) :
                 new ObjectParameter("pass", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Login1_Result>("[e_learning_dbEntities].[Login1](@gmail, @mobile, @pass)", gmailParameter, mobileParameter, passParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Login1_Result>("[e_learning_dbEntities1].[Login1](@gmail, @mobile, @pass)", gmailParameter, mobileParameter, passParameter);
         }
     
         public virtual ObjectResult<NewAdmin_Result> NewAdmin(string p_designation, Nullable<int> p_userId)
@@ -83,6 +89,35 @@ namespace E_Learning_Platform.Models
                 new ObjectParameter("p_userId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NewAdmin_Result>("NewAdmin", p_designationParameter, p_userIdParameter);
+        }
+    
+        public virtual int NewCourse(string p_title, string p_description, string p_duration, Nullable<System.DateTime> p_created_at, Nullable<decimal> p_course_fee, string p_image_server_path)
+        {
+            var p_titleParameter = p_title != null ?
+                new ObjectParameter("p_title", p_title) :
+                new ObjectParameter("p_title", typeof(string));
+    
+            var p_descriptionParameter = p_description != null ?
+                new ObjectParameter("p_description", p_description) :
+                new ObjectParameter("p_description", typeof(string));
+    
+            var p_durationParameter = p_duration != null ?
+                new ObjectParameter("p_duration", p_duration) :
+                new ObjectParameter("p_duration", typeof(string));
+    
+            var p_created_atParameter = p_created_at.HasValue ?
+                new ObjectParameter("p_created_at", p_created_at) :
+                new ObjectParameter("p_created_at", typeof(System.DateTime));
+    
+            var p_course_feeParameter = p_course_fee.HasValue ?
+                new ObjectParameter("p_course_fee", p_course_fee) :
+                new ObjectParameter("p_course_fee", typeof(decimal));
+    
+            var p_image_server_pathParameter = p_image_server_path != null ?
+                new ObjectParameter("p_image_server_path", p_image_server_path) :
+                new ObjectParameter("p_image_server_path", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NewCourse", p_titleParameter, p_descriptionParameter, p_durationParameter, p_created_atParameter, p_course_feeParameter, p_image_server_pathParameter);
         }
     
         public virtual ObjectResult<NewStudent_Result> NewStudent(string p_father_name, string p_mother_name, string p_gender, string p_address, Nullable<int> p_cours, Nullable<int> p_userId)
@@ -166,35 +201,6 @@ namespace E_Learning_Platform.Models
                 new ObjectParameter("p_roleId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NewUser_Result>("NewUser", p_nameParameter, p_emailParameter, p_passwordParameter, p_mobileParameter, p_roleIdParameter);
-        }
-    
-        public virtual int NewCourse(string p_title, string p_description, string p_duration, Nullable<System.DateTime> p_created_at, Nullable<decimal> p_course_fee, string p_image_server_path)
-        {
-            var p_titleParameter = p_title != null ?
-                new ObjectParameter("p_title", p_title) :
-                new ObjectParameter("p_title", typeof(string));
-    
-            var p_descriptionParameter = p_description != null ?
-                new ObjectParameter("p_description", p_description) :
-                new ObjectParameter("p_description", typeof(string));
-    
-            var p_durationParameter = p_duration != null ?
-                new ObjectParameter("p_duration", p_duration) :
-                new ObjectParameter("p_duration", typeof(string));
-    
-            var p_created_atParameter = p_created_at.HasValue ?
-                new ObjectParameter("p_created_at", p_created_at) :
-                new ObjectParameter("p_created_at", typeof(System.DateTime));
-    
-            var p_course_feeParameter = p_course_fee.HasValue ?
-                new ObjectParameter("p_course_fee", p_course_fee) :
-                new ObjectParameter("p_course_fee", typeof(decimal));
-    
-            var p_image_server_pathParameter = p_image_server_path != null ?
-                new ObjectParameter("p_image_server_path", p_image_server_path) :
-                new ObjectParameter("p_image_server_path", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NewCourse", p_titleParameter, p_descriptionParameter, p_durationParameter, p_created_atParameter, p_course_feeParameter, p_image_server_pathParameter);
         }
     }
 }

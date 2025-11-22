@@ -1,6 +1,4 @@
-﻿@model IEnumerable<E_Learning_Platform.Models.ViewModel.AdminDashboard>
-
-@{
+﻿@{
     ViewBag.Title = "Dashboard";
 }
 
@@ -15,6 +13,8 @@
     <link href="~/Content/dashboard.css" rel="stylesheet" />
     <!-- responsive adjustments -->
     @*<link href="~/Content/Responsive_Adjustments.css" rel="stylesheet" />*@
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+
 </head>
 <body>
     <div class="layout-wrapper">
@@ -30,7 +30,7 @@
                         <i class="bi bi-speedometer2"></i>
                         @Ajax.ActionLink(
                             "Dashboard",
-                            "Admindashboard",
+                            "Dashboard",
                             "Admin",
                             new AjaxOptions
                                  {
@@ -197,157 +197,7 @@
         <main class="content-area">
             <div class="container-fluid">
                 <div id="target">
-                    <div class="container-fluid p-4">
-                        <!-- Page Title -->
-                        <h3 class="fw-bold mb-4">Admin Dashboard</h3>
-                        <!-- Top Stats Row -->
-                        <div class="row g-3">
-
-                            <!-- Total Students -->
-                            <div class="col-md-3">
-                                <div class="card shadow-sm border-0 p-3">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h6 class="text-muted mb-1">Total Students</h6>
-                                            <h3 class="fw-bold">989</h3>
-                                        </div>
-                                        <i class="bi bi-people-fill fs-1 text-primary"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Total Teachers -->
-                            <div class="col-md-3">
-                                <div class="card shadow-sm border-0 p-3">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h6 class="text-muted mb-1">Total Teachers</h6>
-                                            <h3 class="fw-bold">78</h3>
-                                        </div>
-                                        <i class="bi bi-person-badge-fill fs-1 text-success"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Total Courses -->
-                            <div class="col-md-3">
-                                <div class="card shadow-sm border-0 p-3">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h6 class="text-muted mb-1">Courses</h6>
-                                            <h3 class="fw-bold">112</h3>
-                                        </div>
-                                        <i class="bi bi-journal-bookmark-fill fs-1 text-warning"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Revenue -->
-                            <div class="col-md-3">
-                                <div class="card shadow-sm border-0 p-3">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h6 class="text-muted mb-1">Monthly Revenue</h6>
-                                            <h3 class="fw-bold">₹2,40,000</h3>
-                                        </div>
-                                        <i class="bi bi-cash-stack fs-1 text-danger"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Charts + Recent Data -->
-                        <div class="row g-3 mt-4">
-
-                            <!-- Chart Placeholder -->
-                            <div class="col-lg-8">
-                                <div class="card shadow-sm border-0 p-3">
-                                    <h5 class="fw-bold mb-2">User Enrollment Analytics</h5>
-                                    <div class="text-center text-muted" style="height:250px; border:2px dashed #ccc;">
-                                        Chart Placeholder
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Recent Users -->
-                            <div class="col-lg-4">
-                                <div class="card shadow-sm border-0 p-3">
-                                    <h5 class="fw-bold mb-2">Recent Users</h5>
-                                    <ul class="list-group list-group-flush">
-
-                                        <li class="list-group-item px-0 d-flex justify-content-between">
-                                            <span>Rohan Kumar</span>
-                                            <span class="badge bg-success">Student</span>
-                                        </li>
-
-                                        <li class="list-group-item px-0 d-flex justify-content-between">
-                                            <span>Anjali Verma</span>
-                                            <span class="badge bg-primary">Teacher</span>
-                                        </li>
-
-                                        <li class="list-group-item px-0 d-flex justify-content-between">
-                                            <span>Aditya Singh</span>
-                                            <span class="badge bg-success">Student</span>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Recent Courses -->
-                        <div class="row g-3 mt-4">
-                            <div class="col-12">
-                                <div class="card shadow-sm border-0 p-3">
-                                    <h5 class="fw-bold mb-3">Recent Courses</h5>
-
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Course Name</th>
-                                                <th>Instructor</th>
-                                                <th>Category</th>
-                                                <th>Enrolled</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td>Full Stack Development</td>
-                                                <td>Rajesh Sharma</td>
-                                                <td>Programming</td>
-                                                <td>340</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>Digital Marketing Basics</td>
-                                                <td>Neha Gupta</td>
-                                                <td>Marketing</td>
-                                                <td>198</td>
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>Data Science Mastery</td>
-                                                <td>Dr. Mehul Patel</td>
-                                                <td>Data Science</td>
-                                                <td>430</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
+                    @Html.Action("Dashboard","Admin")
                 </div>
             </div>
         </main>
@@ -455,8 +305,25 @@
         /* Keep floating toggle hugging the sidebar while scrolling */
         window.addEventListener('scroll', positionFloatToggle, { passive: true });
     </script>
+    @*<script>
+    $(document).ready(function () {
+
+        $.ajax({
+            url: '@Url.Action("Dashboard", "Admin")',
+            type: 'GET',
+            success: function (html) {
+                $("#target").html(html);   // Show partial view
+                console.log("Admin Dashboard Loaded");
+            },
+            error: function () {
+                console.log("Error loading Admin Dashboard");
+            }
+        });
+
+    });
+    </script>*@
+
 </body>
 </html>
 
-<script src="~/Scripts/jquery-3.7.0.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
