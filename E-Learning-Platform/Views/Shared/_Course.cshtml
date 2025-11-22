@@ -1,0 +1,81 @@
+﻿@model IEnumerable<E_Learning_Platform.Models.course>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courses List</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background: #f5f7fa;
+        }
+
+        .course-card {
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+            .course-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            }
+
+        .course-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .view-btn {
+            border-radius: 50px;
+            padding: 8px 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-4">
+        <h2 class="fw-bold mb-4 text-center">Available Courses</h2>
+
+        <p>
+            @Html.ActionLink("Create New Course", "AddCourse", "Course", null, new { @class = "btn btn-success mb-3" })
+        </p>
+
+        <div class="row g-4">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+                    <div class="course-card">
+                        <img src="@item.image" class="course-img" />
+
+                        <div class="p-3">
+                            <h5 class="fw-semibold">@item.title</h5>
+                            <p class="text-muted small">@item.description</p>
+                            <p class="small text-muted mb-1">Duration: @item.duretion Months</p>
+                            <p class="small text-muted mb-1">Fee: ₹@item.course_fee</p>
+                            <p class="small text-muted mb-1">Created: @item.created_at</p>
+                            <div class="d-flex justify-content-between">
+                                <a href="@Url.Action("Edit", "Course", new { id = item.course_id })"
+                                   class="btn btn-warning btn-sm">Edit</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</body>
+</html>
+
