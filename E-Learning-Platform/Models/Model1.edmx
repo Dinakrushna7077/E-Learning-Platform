@@ -505,7 +505,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="e_learning_dbEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="e_learning_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="courses" EntityType="Self.course" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
@@ -611,7 +611,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="e_learning_dbModelStoreContainer" CdmEntityContainer="e_learning_dbEntities1">
+        <EntityContainerMapping StorageEntityContainer="e_learning_dbModelStoreContainer" CdmEntityContainer="e_learning_dbEntities">
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="e_learning_dbModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
