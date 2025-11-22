@@ -10,19 +10,14 @@
 namespace E_Learning_Platform.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class student
+    public partial class AppliedTeacher_Result
     {
-        public int s_id { get; set; }
-        public string father_name { get; set; }
-        public string mother_name { get; set; }
+        public int tacher_id { get; set; }
+        public string qualification { get; set; }
+        public string subject { get; set; }
         public string gender { get; set; }
-        public string address { get; set; }
-        public Nullable<int> course_id { get; set; }
-        public Nullable<int> user_id { get; set; }
-    
-        public virtual course course { get; set; }
-        public virtual user user { get; set; }
+        public int department { get; set; }
+        public string Status { get; set; }
     }
 }

@@ -1,0 +1,48 @@
+﻿@model List<E_Learning_Platform.Models.ViewModel.RecentUserVM>
+
+
+    <div class="card shadow-sm border-0 p-3 rounded-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">Recent Users</h5>
+            <span class="badge bg-dark px-3 py-2">Today</span>
+        </div>
+
+        <ul class="list-group list-group-flush">
+
+            @foreach (var user in Model)
+            {
+                var initial = user.Name != null ? user.Name.Substring(0, 1).ToUpper() : "?";
+                var roleBadge = "bg-secondary";
+
+                
+
+                <li class="list-group-item px-0 py-3 d-flex justify-content-between align-items-center user-row">
+                    <div class="d-flex align-items-center">
+                        <div class="avatar text-white rounded-circle me-3 d-flex justify-content-center align-items-center"
+                             style="width:42px; height:42px; background:#0d6efd;">
+                            @initial
+                        </div>
+                        <span class="fw-semibold">@user.Name</span>
+                    </div>
+                    @if (user.Role == 1014)
+                    {
+                        <span class="bg-success @roleBadge rounded-pill px-3">Student</span>
+                    }
+                    else if (user.Role == 1016)
+                    {
+                    roleBadge = "";
+                        <span class="bg-primary @roleBadge rounded-pill px-3">Teacher</span>
+                    }
+                    else if (user.Role == 1012)
+                    {
+                        <span class="bg-warning @roleBadge rounded-pill px-3">Admin</span>
+                    
+                    }
+
+                </li>
+            }
+
+        </ul>
+
+    </div>

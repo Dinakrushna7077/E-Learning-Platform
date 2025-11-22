@@ -9,7 +9,8 @@ namespace E_Learning_Platform.Models.ViewModel
     {
         public int TotalCourses { get; set; }
         public int TotalStudents { get; set; }
-        public int TotalInstructors { get; set; }
+        public int TotalAdmins { get; set; }
+        public int TotalTeachers { get; set; }
         public int TotalEnrollments { get; set; }
     }
 }

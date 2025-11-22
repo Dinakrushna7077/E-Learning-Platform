@@ -69,9 +69,48 @@ namespace E_Learning_Platform.Controllers
 
         public ActionResult AdminDashBoard()
         {
-            IEnumerable<AdminDashboard> dashboard = new List<AdminDashboard>();
-            //dashboard.TotalStudents = db.students.Count();
-            return View(dashboard);
+            return View();
+        }
+        public ActionResult Dashboard()
+        {
+            AdminDashboard adminDash= new AdminDashboard();
+            adminDash.TotalStudents = db.users.Where(s=>s.role==1014).Count();
+            adminDash.TotalAdmins = db.users.Where(s => s.role == 1012).Count();
+            adminDash.TotalTeachers = db.users.Where(s => s.role == 1016).Count();
+            adminDash.TotalCourses=db.courses.Count();
+            
+            return PartialView("_AdminDashboard",adminDash);
+        }
+        public ActionResult RecentCourse()
+        {
+            var course=db.courses.OrderByDescending(c=>c.course_id).Take(4).ToList();
+            List<RecentCourse> Courselist = new List<RecentCourse>();
+            foreach (var c in course)
+            {
+                Courselist.Add(new RecentCourse
+                {
+                    CourseTitle=c.title,
+                    CourseDescription=c.description,
+                    CourseFee=c.course_fee.Value,
+                    Duration=c.duretion,
+                    Instructor="- - -"
+                });
+            }
+            return PartialView("_RecentCourse",Courselist);
+        }
+        public ActionResult RecentUser()
+        {
+            var user=db.Logs.OrderByDescending(u=>u.LogId).Take(3).ToList();
+            List<RecentUserVM> userlist = new List<RecentUserVM>();
+            foreach (var log in user)
+            {
+                userlist.Add(new RecentUserVM
+                {
+                    Name = db.users.Where(n=>n.user_id==log.UserId).FirstOrDefault().name,   
+                    Role = db.users.Where(r => r.user_id == log.UserId).FirstOrDefault().role,
+                });
+            }
+            return PartialView("_RecentUser", userlist);
         }
         public ActionResult AdminRegistration()
         {

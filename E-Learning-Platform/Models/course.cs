@@ -26,11 +26,9 @@ namespace E_Learning_Platform.Models
         public string duretion { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<decimal> course_fee { get; set; }
-        public int teacher_id { get; set; }
         public string image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<student> students { get; set; }
-        public virtual Role Role { get; set; }
     }
 }

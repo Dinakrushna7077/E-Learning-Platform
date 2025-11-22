@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="45c034f941e7475da09f9751db656a01" Name="Diagram1" ZoomLevel="96">
+        <EntityTypeShape EntityType="e_learning_dbModel.Admin" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="e_learning_dbModel.course" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="e_learning_dbModel.Department" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="e_learning_dbModel.Log" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="e_learning_dbModel.Role" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="e_learning_dbModel.student" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="e_learning_dbModel.Teacher" Width="1.5" PointX="8.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="e_learning_dbModel.user" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="e_learning_dbModel.FK__Admin__user_id__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="e_learning_dbModel.FK__student__course___571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="e_learning_dbModel.FK__Teacher__departm__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="e_learning_dbModel.FK__Logs__UserId__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="e_learning_dbModel.FK__users__role__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="e_learning_dbModel.FK__student__user_id__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="e_learning_dbModel.FK__Teacher__user_id__4E88ABD4" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

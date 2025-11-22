@@ -1,0 +1,48 @@
+﻿@model List<E_Learning_Platform.Models.ViewModel.RecentCourse>
+
+<div class="col-12">
+    <div class="card shadow-sm border-0 p-3">
+        <h5 class="fw-bold mb-3">Recent Courses</h5>
+        @foreach (var course in Model)
+        {
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Instructor</th>
+                        <th>Category</th>
+                        <th>Enrolled</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Full Stack Development</td>
+                        <td>Rajesh Sharma</td>
+                        <td>Programming</td>
+                        <td>340</td>
+                        <td><span class="badge bg-success">Active</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Digital Marketing Basics</td>
+                        <td>Neha Gupta</td>
+                        <td>Marketing</td>
+                        <td>198</td>
+                        <td><span class="badge bg-warning">Pending</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Data Science Mastery</td>
+                        <td>Dr. Mehul Patel</td>
+                        <td>Data Science</td>
+                        <td>430</td>
+                        <td><span class="badge bg-success">Active</span></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
