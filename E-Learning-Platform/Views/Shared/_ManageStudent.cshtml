@@ -1,0 +1,137 @@
+﻿<div class="container-fluid py-4">
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold mb-0">Manage Students</h3>
+
+        <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#addStudentModal">
+            <i class="bi bi-plus-circle me-2"></i>Add Student
+        </button>
+    </div>
+
+    <!-- Filters Section -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="Search by name or email">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select">
+                        <option selected disabled>Filter by Course</option>
+                        <option>BCA</option>
+                        <option>MCA</option>
+                        <option>Web Development</option>
+                        <option>Data Science</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select">
+                        <option selected disabled>Select Batch</option>
+                        <option>Batch 2024</option>
+                        <option>Batch 2025</option>
+                        <option>Batch 2026</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select">
+                        <option selected disabled>Status</option>
+                        <option>Active</option>
+                        <option>Inactive</option>
+                        <option>Suspended</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Table -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body table-responsive">
+            <table class="table align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Profile</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Course</th>
+                        <th>Batch</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="https://via.placeholder.com/40" class="rounded-circle" width="40">
+                        </td>
+                        <td>Rahul Sharma</td>
+                        <td>rahul@example.com</td>
+                        <td>9876543210</td>
+                        <td>BCA</td>
+                        <td>Batch 2025</td>
+                        <td><span class="badge bg-success">Active</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
+                            <button class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Add Student Modal -->
+<div class="modal fade" id="addStudentModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content border-0 shadow">
+
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Add New Student</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" placeholder="Enter full name">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" placeholder="Enter email">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" placeholder="Enter phone number">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Course</label>
+                        <select class="form-select">
+                            <option selected disabled>Select Course</option>
+                            <option>BCA</option>
+                            <option>MCA</option>
+                            <option>Full Stack</option>
+                            <option>AIT</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" placeholder="Enter full address">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary px-4">Save</button>
+            </div>
+
+        </div>
+    </div>
+</div>

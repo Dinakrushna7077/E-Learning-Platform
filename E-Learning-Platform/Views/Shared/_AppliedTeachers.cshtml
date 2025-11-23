@@ -1,0 +1,131 @@
+﻿@model IEnumerable<E_Learning_Platform.Models.ViewModel.AppliedTeacher>
+
+@{
+    ViewBag.Title = "Applied Teacher List";
+}
+
+<div class="container py-4">
+
+    <h3 class="fw-bold mb-4">📋 Applied Teachers</h3>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-header bg-primary text-white rounded-top-4 py-3">
+                <div class="row fw-semibold">
+                    <div class="col-3">Name</div>
+                    <div class="col-3">Qualification</div>
+                    <div class="col-2">Subject</div>
+                    <div class="col-2">Applied Date</div>
+                    <div class="col-2 text-end">Action</div>
+                </div>
+            </div>
+
+            <div class="card-body p-0">
+
+                @foreach (var item in Model)
+                {
+                    <div class="row align-items-center py-3 px-3 border-bottom hover-row">
+
+                        <div class="col-3 fw-semibold">
+                            @item.Name
+                        </div>
+
+                        <div class="col-3">
+                            @item.Qualification
+                        </div>
+
+                        <div class="col-2">
+                            @item.Subject
+                        </div>
+
+                        <div class="col-2">
+                            @item.AppliedDate.ToString("MM/dd/yyyy")
+                        </div>
+
+                        <div class="col-2 text-end">
+                            @{
+                                var interviewDate = DateTime.Now.AddDays(5).ToString("MMMM dd, yyyy");
+
+                                var subject = $"Interview Invitation for {item.Subject} Teacher – Skill-Bridge";
+
+                                var body = $@"Dear {item.Name},
+
+Thank you for your interest in joining Skill-Bridge as {item.Subject} Teacher. After reviewing your application, we are pleased to invite you for an interview.
+
+Interview Details:
+Position: {item.Subject} Teacher
+Mode: Offline
+Date: {interviewDate}
+Time: 10:30 AM onwards
+Venue: Skill-Bridge Office, Bhubaneswar, Odisha
+
+Please reply to this email confirming your availability. If you need timing adjustments, let us know.
+
+For queries: help@skillbridge.com
+
+Warm regards,
+Skill-Bridge Recruitment Team
+help@skillbridge.com";
+
+                                var emailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=" + item.Gmail +
+                                               "&su=" + Uri.EscapeDataString(subject) +
+                                               "&body=" + Uri.EscapeDataString(body);
+                            }
+
+                            <a href="@emailUrl" target="_blank" class="btn btn-sm btn-success me-1">
+                                <i class="bi bi-envelope-fill"></i> Mail
+                            </a>
+
+                            <button class="btn btn-sm btn-danger"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#rejectModal_@item.TeacherId">
+                                <i class="bi bi-x-circle"></i> Reject
+                            </button>
+                            <div class="modal fade" id="rejectModal_@item.TeacherId">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header bg-danger text-white">
+                                            <h5 class="modal-title">Reject Application</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            Are you sure you want to reject <strong>@item.Name</strong>?
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                                            <a href="@Url.Action("RejectTeacher", "Admin", new { id = item.TeacherId })"
+                                               class="btn btn-danger">
+                                                Yes, Reject
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center py-4">
+            No teachers have applied yet.
+        </div>
+    }
+</div>
+
+<style>
+    .hover-row:hover {
+        background: #f8f9fa;
+        transition: 0.2s;
+    }
+</style>
