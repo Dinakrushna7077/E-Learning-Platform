@@ -7,6 +7,7 @@ namespace E_Learning_Platform.Models.ViewModel
 {
     public class AppliedTeacher
     {
+        public int TeacherId { get; set; }
         public string Name { get; set; }
         public string Qualification { get; set; }
         public string Subject { get; set; }

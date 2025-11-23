@@ -359,6 +359,13 @@
     <Content Include="Views\Course\Home.cshtml" />
     <Content Include="Views\Course\AddCourse.cshtml" />
     <Content Include="Views\Shared\_Course.cshtml" />
+    <Content Include="Views\Shared\_AdminSetting.cshtml" />
+    <Content Include="Views\Shared\_AppliedTeachers.cshtml" />
+    <Content Include="Views\Shared\_ManageBatch.cshtml" />
+    <Content Include="Views\Shared\_ManageStudent.cshtml" />
+    <Content Include="Views\Shared\_ManageSubject.cshtml" />
+    <Content Include="Views\Shared\_Payment_Finance.cshtml" />
+    <Content Include="Views\Shared\_ReviewAndRating.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

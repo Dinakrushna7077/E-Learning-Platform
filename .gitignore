@@ -362,5 +362,8 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-# Ignore Web.config inside e-learning project
+
+
+# Ignore Web.config file to protect sensitive data (e.g., connection strings)
 /E-Learning-Platform/Web.config
+Web.config

@@ -1,0 +1,145 @@
+﻿<div class="container py-4">
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold m-0">
+            <i class="bi bi-book-half text-primary me-2"></i>Manage Subjects
+        </h3>
+
+        <button class="btn btn-primary px-4 rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#addSubjectModal">
+            <i class="bi bi-plus-circle me-1"></i> Add Subject
+        </button>
+    </div>
+
+    <!-- Search + Filter Section -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body row g-3">
+            <div class="col-md-4">
+                <input type="text" class="form-control form-control-lg" placeholder="Search subject...">
+            </div>
+
+            <div class="col-md-3">
+                <select class="form-select form-select-lg">
+                    <option selected disabled>Filter by Course</option>
+                    <option>Computer Science</option>
+                    <option>Mathematics</option>
+                    <option>Physics</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <select class="form-select form-select-lg">
+                    <option selected disabled>Status</option>
+                    <option>Active</option>
+                    <option>Inactive</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-dark w-100 btn-lg">
+                    <i class="bi bi-funnel me-1"></i> Apply
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subject List -->
+    <div class="row g-4">
+        <!-- Subject Card -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100 subject-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary text-white rounded-circle p-3 me-3 shadow-sm">
+                            <i class="bi bi-journal-code fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-0 fw-bold">C Programming</h5>
+                            <small class="text-muted">Course: Computer Science</small>
+                        </div>
+                    </div>
+
+                    <p class="text-secondary small mb-3">
+                        Learn basic to advanced C concepts with hands-on examples.
+                    </p>
+
+                    <div class="d-flex justify-content-between">
+                        <span class="badge bg-success px-3 py-2 rounded-pill">Active</span>
+
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary me-1">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copy & duplicate above card for more subjects -->
+    </div>
+</div>
+
+<!-- Add Subject Modal -->
+<div class="modal fade" id="addSubjectModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content shadow-lg border-0">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title"><i class="bi bi-plus-circle me-1"></i>Add New Subject</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body row g-3 p-4">
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Subject Name</label>
+                    <input type="text" class="form-control form-control-lg" placeholder="Enter subject name">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Course</label>
+                    <select class="form-select form-select-lg">
+                        <option selected disabled>Select course</option>
+                        <option>Computer Science</option>
+                        <option>Mathematics</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Subject Code</label>
+                    <input type="text" class="form-control form-control-lg" placeholder="e.g., CS101">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Status</label>
+                    <select class="form-select form-select-lg">
+                        <option>Active</option>
+                        <option>Inactive</option>
+                    </select>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-semibold">Description</label>
+                    <textarea class="form-control" rows="3" placeholder="Write short description..."></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary px-4" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-primary px-4">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS for Hover Effects -->
+<style>
+    .subject-card:hover {
+        transform: translateY(-6px);
+        transition: .3s;
+        box-shadow: 0px 6px 20px rgba(0,0,0,0.15) !important;
+    }
+</style>
+

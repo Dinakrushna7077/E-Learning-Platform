@@ -42,7 +42,7 @@
                         )
                     </p>
                 </li>
-                <li class="py-2">
+                @*<li class="py-2">
                     <p class="mb-0 d-flex align-items-center gap-2 text-white">
                         <i class="bi bi-speedometer2"></i>
                         @Ajax.ActionLink(
@@ -58,7 +58,7 @@
                             new { @class = "text-white text-decoration-none nav-text" }
                         )
                     </p>
-                </li>
+                </li>*@
 
                 <li class="py-2">
                     <p class="mb-0 d-flex align-items-center gap-2 text-white">
@@ -83,7 +83,7 @@
                         <i class="bi bi-journal-check"></i>
                         @Ajax.ActionLink(
                             "Payments & Finance",
-                            "Payments+Finance",
+                            "Payments_Finance",
                             "Student",
                             new AjaxOptions
                                  {
@@ -113,12 +113,12 @@
                     </p>
                 </li>
 
-                <li class="py-2">
+               @* <li class="py-2">
                     <p class="mb-0 d-flex align-items-center gap-2 text-white">
                         <i class="bi bi-broadcast-pin"></i>
                         @Ajax.ActionLink(
                             "Manage Batches",
-                            "Batches",
+                            "ManageBatch",
                             "Admin",
                             new AjaxOptions
                                  {
@@ -129,7 +129,7 @@
                             new { @class = "text-white text-decoration-none nav-text" }
                         )
                     </p>
-                </li>
+                </li>*@
                 <li class="py-2">
                     <p class="mb-0 d-flex align-items-center gap-2 text-white">
                         <i class="bi bi-folder"></i>
@@ -152,7 +152,7 @@
                         <i class="bi bi-award"></i>
                         @Ajax.ActionLink(
                             "Course Reviews & Ratings",
-                            "CourseReview",
+                            "Review_And_Rating",
                             "Admin",
                             new AjaxOptions
                                  {
@@ -169,8 +169,8 @@
                         <i class="bi bi-gear"></i>
                         @Ajax.ActionLink(
                             "Settings",
-                            "Settings",
-                            "Student",
+                            "AdminSetting",
+                            "Admin",
                             new AjaxOptions
                                  {
                                 HttpMethod = "GET",
