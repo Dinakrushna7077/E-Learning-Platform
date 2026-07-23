@@ -33,7 +33,7 @@ namespace E_Learning_Platform.Controllers
                     Session["Userid"] = user.UserId;
                     Session["Username"] = user.UserName;
                     Session["Role"] = user.RoleId;
-                    Session["profile"] = Profile(user.UserName);
+                    Session["profile"] = ProfileName(user.UserName);
                     TrackLogins(user.UserId);
                     if (user.RoleId == 1012)
                     {
@@ -65,7 +65,7 @@ namespace E_Learning_Platform.Controllers
                     Session["Userid"] = user.UserId;
                     Session["Username"] = user.UserName;
                     Session["Role"] = user.RoleId;
-                    Session["profile"] = Profile(user.UserName);
+                    Session["profile"] = ProfileName(user.UserName);
                     TrackLogins(user.UserId);
                     if (user.RoleId == 1012)
                     {
@@ -95,7 +95,7 @@ namespace E_Learning_Platform.Controllers
             return Regex.IsMatch(input, emailPattern, RegexOptions.IgnoreCase);
         }
         
-        private string Profile(string name)
+        private string ProfileName(string name)
         {
           var namepart=name.Split(' ');
             string profile=namepart[0].Substring(0,1).ToUpper();

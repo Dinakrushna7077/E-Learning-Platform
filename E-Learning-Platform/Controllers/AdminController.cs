@@ -145,7 +145,31 @@ namespace E_Learning_Platform.Controllers
             }
             public ActionResult ManageStudent()
             {
-                return PartialView("_ManageStudent");
+            try
+            {
+                var stdList = db.StudentList()
+                .ToList()
+                .Select(s => new StudentListDto
+                {
+                    UId = s.UId,
+                    SId = s.SId,
+                    Name = s.Name,
+                    Profile = s.Profile,
+                    CourseTitle = s.Title,
+                    Duration = s.Duration,
+                    Phone = s.Phone,
+                    Gmail= s.Gmail,
+                    CreditIndex = s.CreditIndex ?? 0,
+                    Status = s.Status ?? false
+                }).ToList();
+                return PartialView("_ManageStudent", stdList);
+            }
+            catch (Exception ex)
+            {
+                TempData["Err"] = "Error : " + ex.Message;
+                return RedirectToAction("AdminDashBoard", "Admin");
+            }
+
             }
             public ActionResult AdminSetting()
             {
