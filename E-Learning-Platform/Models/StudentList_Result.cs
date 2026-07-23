@@ -10,20 +10,18 @@
 namespace E_Learning_Platform.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class student
+    public partial class StudentList_Result
     {
-        public int s_id { get; set; }
-        public string father_name { get; set; }
-        public string mother_name { get; set; }
-        public string gender { get; set; }
-        public string address { get; set; }
-        public Nullable<int> course_id { get; set; }
-        public Nullable<int> user_id { get; set; }
+        public int UId { get; set; }
+        public int SId { get; set; }
+        public string Profile { get; set; }
+        public string Name { get; set; }
+        public string Gmail { get; set; }
+        public long Phone { get; set; }
+        public string Title { get; set; }
+        public string Duration { get; set; }
+        public Nullable<bool> Status { get; set; }
         public Nullable<int> CreditIndex { get; set; }
-    
-        public virtual course course { get; set; }
-        public virtual user user { get; set; }
     }
 }

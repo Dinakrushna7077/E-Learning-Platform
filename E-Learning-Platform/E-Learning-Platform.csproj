@@ -160,6 +160,15 @@
     <Compile Include="Models\Department.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ELearningStudentList1_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ELearningStudentList_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ELearningStudentList_Result1.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Log.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -202,6 +211,9 @@
     <Compile Include="Models\student.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StudentList_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Teacher.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -215,6 +227,7 @@
     <Compile Include="Models\ViewModel\LoginModel.cs" />
     <Compile Include="Models\ViewModel\RecentCourse.cs" />
     <Compile Include="Models\ViewModel\RecentUserVM.cs" />
+    <Compile Include="Models\ViewModel\StudentListDto.cs" />
     <Compile Include="Models\ViewModel\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

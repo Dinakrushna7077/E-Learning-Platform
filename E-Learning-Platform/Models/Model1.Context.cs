@@ -202,5 +202,13 @@ namespace E_Learning_Platform.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NewUser_Result>("NewUser", p_nameParameter, p_emailParameter, p_passwordParameter, p_mobileParameter, p_roleIdParameter);
         }
+    
+        
+    
+        [DbFunction("e_learning_dbEntities", "StudentList")]
+        public virtual IQueryable<StudentList_Result> StudentList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<StudentList_Result>("[e_learning_dbEntities].[StudentList]()");
+        }
     }
 }

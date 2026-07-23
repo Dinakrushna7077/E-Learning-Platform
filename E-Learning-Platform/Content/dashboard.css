@@ -142,6 +142,7 @@ html, body {
 /* small visual improvements */
 .sidebar .nav-text {
     white-space: nowrap;
+    width: 100%;
 }
 
 .sidebar li {

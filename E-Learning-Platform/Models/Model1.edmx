@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="e_learning_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="e_learning_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="admin_id" />
@@ -24,6 +24,7 @@
           <Property Name="created_at" Type="datetime" />
           <Property Name="course_fee" Type="decimal" Precision="5" Scale="2" />
           <Property Name="image" Type="varchar(max)" />
+          <Property Name="status" Type="bit" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -59,6 +60,7 @@
           <Property Name="address" Type="varchar(max)" />
           <Property Name="course_id" Type="int" />
           <Property Name="user_id" Type="int" />
+          <Property Name="CreditIndex" Type="int" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
@@ -86,6 +88,8 @@
           <Property Name="role" Type="int" Nullable="false" />
           <Property Name="created_at" Type="datetime" />
           <Property Name="updated_at" Type="datetime" />
+          <Property Name="profile" Type="varchar(max)" />
+          <Property Name="status" Type="bit" />
         </EntityType>
         <Association Name="FK__Admin__user_id__4AB81AF0">
           <End Role="users" Type="Self.users" Multiplicity="1">
@@ -242,16 +246,20 @@
           <Parameter Name="p_mobile" Type="bigint" Mode="In" />
           <Parameter Name="p_roleId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Login1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dinakrushna" StoreFunctionName="Login">
-          <Parameter Name="gmail" Type="nvarchar" Mode="In" />
-          <Parameter Name="mobile" Type="bigint" Mode="In" />
-          <Parameter Name="pass" Type="nvarchar" Mode="In" />
+        <Function Name="StudentList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
               <RowType>
-                <Property Name="UserId" Type="int" Nullable="false" />
-                <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
-                <Property Name="RoleId" Type="int" Nullable="false" />
+                <Property Name="UId" Type="int" Nullable="false" />
+                <Property Name="SId" Type="int" Nullable="false" />
+                <Property Name="Profile" Type="varchar(max)" />
+                <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+                <Property Name="Gmail" Type="varchar" MaxLength="100" Nullable="false" />
+                <Property Name="Phone" Type="bigint" Nullable="false" />
+                <Property Name="Title" Type="varchar" MaxLength="100" />
+                <Property Name="Duration" Type="varchar" MaxLength="100" />
+                <Property Name="Status" Type="bit" />
+                <Property Name="CreditIndex" Type="int" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -294,8 +302,7 @@
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="e_learning_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -338,6 +345,7 @@
           <Property Name="course_fee" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="students" Relationship="Self.FK__student__course___571DF1D5" FromRole="course" ToRole="student" />
+          <Property Name="status" Type="Boolean" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -378,6 +386,7 @@
           <Property Name="user_id" Type="Int32" />
           <NavigationProperty Name="course" Relationship="Self.FK__student__course___571DF1D5" FromRole="student" ToRole="course" />
           <NavigationProperty Name="user" Relationship="Self.FK__student__user_id__5812160E" FromRole="student" ToRole="users" />
+          <Property Name="CreditIndex" Type="Int32" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
@@ -412,6 +421,8 @@
           <NavigationProperty Name="Role1" Relationship="Self.FK__users__role__440B1D61" FromRole="users" ToRole="Role" />
           <NavigationProperty Name="students" Relationship="Self.FK__student__user_id__5812160E" FromRole="users" ToRole="student" />
           <NavigationProperty Name="Teachers" Relationship="Self.FK__Teacher__user_id__4E88ABD4" FromRole="users" ToRole="Teacher" />
+          <Property Name="profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" />
         </EntityType>
         <Association Name="FK__Admin__user_id__4AB81AF0">
           <End Role="users" Type="Self.user" Multiplicity="1">
@@ -588,6 +599,8 @@
             <Parameter Name="p_mobile" Mode="In" Type="Int64" />
             <Parameter Name="p_roleId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="ELearningStudentList" IsComposable="true" ReturnType="Collection(e_learning_dbModel.ELearningStudentList_Result1)" />
+          <FunctionImport Name="StudentList" IsComposable="true" ReturnType="Collection(e_learning_dbModel.StudentList_Result)" />
         </EntityContainer>
         <ComplexType Name="NewAdmin_Result">
           <Property Type="String" Name="MESSAGE" Nullable="false" MaxLength="43" />
@@ -605,6 +618,49 @@
           <Property Type="String" Name="MESSAGE" Nullable="false" MaxLength="19" />
           <Property Type="Int32" Name="UserId" Nullable="false" />
           <Property Type="Int32" Name="RoleId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ELearningStudentList_Result">
+          <Property Type="String" Name="profile" Nullable="true" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+          <Property Type="Int64" Name="phone" Nullable="false" />
+          <Property Type="String" Name="gender" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="title" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="duretion" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ELearningStudentList1_Result">
+          <Property Type="Int32" Name="UId" Nullable="false" />
+          <Property Type="Int32" Name="SId" Nullable="false" />
+          <Property Type="String" Name="Profile" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="Int64" Name="Phone" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Duration" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+          <Property Type="Int32" Name="CreditIndex" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ELearningStudentList_Result1">
+          <Property Type="Int32" Name="UId" Nullable="false" />
+          <Property Type="Int32" Name="SId" Nullable="false" />
+          <Property Type="String" Name="Profile" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="Int64" Name="Phone" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Duration" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+          <Property Type="Int32" Name="CreditIndex" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="StudentList_Result">
+          <Property Type="Int32" Name="UId" Nullable="false" />
+          <Property Type="Int32" Name="SId" Nullable="false" />
+          <Property Type="String" Name="Profile" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Gmail" Nullable="false" MaxLength="100" />
+          <Property Type="Int64" Name="Phone" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Duration" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+          <Property Type="Int32" Name="CreditIndex" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -624,6 +680,7 @@
           <EntitySetMapping Name="courses">
             <EntityTypeMapping TypeName="e_learning_dbModel.course">
               <MappingFragment StoreEntitySet="course">
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="course_id" ColumnName="course_id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -663,6 +720,7 @@
           <EntitySetMapping Name="students">
             <EntityTypeMapping TypeName="e_learning_dbModel.student">
               <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="CreditIndex" ColumnName="CreditIndex" />
                 <ScalarProperty Name="s_id" ColumnName="s_id" />
                 <ScalarProperty Name="father_name" ColumnName="father_name" />
                 <ScalarProperty Name="mother_name" ColumnName="mother_name" />
@@ -691,6 +749,8 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="e_learning_dbModel.user">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="profile" ColumnName="profile" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -717,15 +777,6 @@
           <FunctionImportMapping FunctionName="e_learning_dbModel.Store.Login" FunctionImportName="Login">
             <ResultMapping>
               <ComplexTypeMapping TypeName="e_learning_dbModel.Login_Result">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionName="e_learning_dbModel.Store.Login1" FunctionImportName="Login1">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="e_learning_dbModel.Login1_Result">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
@@ -763,6 +814,22 @@
                 <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StudentList" FunctionName="e_learning_dbModel.Store.StudentList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="e_learning_dbModel.StudentList_Result">
+                <ScalarProperty Name="UId" ColumnName="UId" />
+                <ScalarProperty Name="SId" ColumnName="SId" />
+                <ScalarProperty Name="Profile" ColumnName="Profile" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gmail" ColumnName="Gmail" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreditIndex" ColumnName="CreditIndex" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

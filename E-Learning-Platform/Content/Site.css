@@ -409,3 +409,9 @@
         .dropdown-content a:hover {
             background-color: #ddd;
         }
+.mx-width-13 {
+    max-width: 216px !important;
+}
+.mx-width-14 {
+    max-width: 140px !important;
+}
