@@ -17,6 +17,9 @@ namespace E_Learning_Platform.Models.ViewModel
         public string Duration { get; set; }
         public bool Status { get; set; }
         public int CreditIndex { get; set; }
+        public int CourseId { get; set; }
+        public string Address { get; set; }
+
 
     }
 }
