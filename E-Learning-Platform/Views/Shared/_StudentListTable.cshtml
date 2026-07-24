@@ -1,0 +1,50 @@
+﻿@model IEnumerable<E_Learning_Platform.Models.ViewModel.StudentListDto>
+<div class="card shadow-sm border-0">
+    <div class="card-body table-responsive">
+        <table class="table align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Profile</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Course</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model.Count() > 0)
+                {
+                    foreach (var std in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="~/photo/profile.jpeg" alt="profile" class="rounded-circle" width="40">
+                            </td>
+                            <td class="text-truncate mx-width-12" title="@std.Name">@std.Name</td>
+                            <td class="text-truncate mx-width-14" title="@std.Gmail">@std.Gmail</td>
+                            <td title="@std.Phone">@std.Phone</td>
+                            <td title="@std.CourseTitle" class="text-truncate mx-width-2">@std.CourseTitle</td>
+                            <td title="@std.Duration">@std.Duration</td>
+                            <td><span class="badge bg-success">@std.Status</span></td>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-outline-primary" title="View Details"><i class="bi bi-eye"></i></button>
+                                <button class="btn btn-sm btn-outline-warning" title="Edit Details"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-outline-danger" title="Delete"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td class="text-info text-center" colspan="8">No Student Record Found...</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

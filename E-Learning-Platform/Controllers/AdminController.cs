@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using E_Learning_Platform.Models;
@@ -164,6 +165,8 @@ namespace E_Learning_Platform.Controllers
                 }).ToList().OrderByDescending(s=>s.SId);
                 var courseList = db.courses.Select(c => new { c.course_id, c.title }).ToList();
                 ViewBag.Courses = new SelectList(courseList, "course_id", "title");
+                ViewBag.CoursesFilter = new SelectList(courseList, "title", "title");
+
                 return PartialView("_ManageStudent", stdList);
 
             }
@@ -234,6 +237,52 @@ namespace E_Learning_Platform.Controllers
             }
 
             return Json(new { success = false, message = "Invalid data provided." });
+        }
+        public ActionResult FilterStudent(string search, string CourseName, int? Status)
+        {
+            try
+            {
+                var stdList = db.StudentList().AsQueryable();
+                if (!string.IsNullOrWhiteSpace(search))
+                {
+                    string trimmedSearch = search.Trim();
+                    stdList = stdList.Where(s => s.Name.Contains(trimmedSearch) || s.Gmail.Contains(trimmedSearch));
+                }
+                if (!string.IsNullOrWhiteSpace(CourseName))
+                    stdList=stdList.Where(s=>s.Title==CourseName);
+                if (Status == 11 || Status == 22) 
+                {
+                    if (Status == 22)
+                        stdList=stdList.Where(s=>s.Status==false);
+                    else
+                        stdList=stdList.Where(s=>s.Status==true);
+                }
+                var filteredList=stdList.Select(s => new StudentListDto
+                {
+                    UId = s.UId,
+                    SId = s.SId,
+                    Name = s.Name,
+                    Profile = s.Profile,
+                    CourseTitle = s.Title,
+                    Duration = s.Duration,
+                    Phone = s.Phone,
+                    Gmail = s.Gmail,
+                    CreditIndex = s.CreditIndex ?? 0,
+                    Status = s.Status ?? false
+                })
+                .OrderByDescending(s => s.SId)
+                .ToList();
+
+
+                var courseList = db.courses.Select(c => new { c.course_id, c.title }).ToList();
+                ViewBag.CoursesFilter = new SelectList(courseList, "title", "title");
+                return PartialView("_StudentListTable", filteredList);
+            }
+            catch (Exception ex)
+            {
+                TempData["Err"] = "Error : " + ex.Message;
+                return RedirectToAction("AdminDashBoard", "Admin");
+            }
         }
     }
 
