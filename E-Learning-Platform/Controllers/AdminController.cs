@@ -286,6 +286,13 @@ namespace E_Learning_Platform.Controllers
                 return RedirectToAction("AdminDashBoard", "Admin");
             }
         }
+        public ActionResult DeleteStudent(int id)
+        {
+            var std=db.students.Where(s=>s.s_id == id).FirstOrDefault();
+            std.user_id = null;
+            db.SaveChanges();
+            return RedirectToAction("FilterStudent");
+        }
         private string setDefaultPass(long Mobile,string Name)
         {
             string mob = Mobile.ToString();

@@ -78,9 +78,33 @@
                                     <td title="@std.Duration">@std.Duration</td>
                                     <td><span class="badge bg-success">@std.Status</span></td>
                                     <td class="text-end">
-                                        <button class="btn btn-sm btn-outline-primary" title="View Details"><i class="bi bi-eye"></i></button>
-                                        <button class="btn btn-sm btn-outline-warning" title="Edit Details"><i class="bi bi-pencil"></i></button>
-                                        <button class="btn btn-sm btn-outline-danger" title="Delete"><i class="bi bi-trash"></i></button>
+                                        <a href="@Url.Action("StudentDetails", "Admin",new { id = std.SId })"
+                                           class="btn btn-sm btn-outline-primary"
+                                           title="View Details"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="replace"
+                                           data-ajax-update="#target">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a href="@Url.Action("EditDetails", "Admin",new { id = std.SId })"
+                                           class="btn btn-sm btn-outline-warning"
+                                           title="Edit Details"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="replace"
+                                           data-ajax-update="#target">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a href="@Url.Action("DeleteStudent", "Admin",new { id = std.SId })"
+                                           class="btn btn-sm btn-outline-danger"
+                                           title="Delete"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="replace"
+                                           data-ajax-update="#stdtable">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             }
