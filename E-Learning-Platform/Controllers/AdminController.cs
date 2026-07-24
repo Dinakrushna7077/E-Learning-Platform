@@ -228,11 +228,13 @@ namespace E_Learning_Platform.Controllers
             return View(ar);
         }
         [HttpPost]
-        public JsonResult NewStudent(StudentListDto model)
+        public JsonResult NewStudent(StudentListDto std)
         {
             if (ModelState.IsValid)
             {
                 //Insert will be implemented 
+                var user = db.NewUser(std.Name, std.Gmail, setDefaultPass(std.Phone,std.Name), std.Phone, 1014);
+                var insertStd = db.NewStudent(std.FatherName, std.MotherName, std.Gender, std.Address, std.CourseId, user.FirstOrDefault().UserId);
                 return Json(new { success = true, message = "Student added successfully!" });
             }
 
@@ -283,6 +285,12 @@ namespace E_Learning_Platform.Controllers
                 TempData["Err"] = "Error : " + ex.Message;
                 return RedirectToAction("AdminDashBoard", "Admin");
             }
+        }
+        private string setDefaultPass(long Mobile,string Name)
+        {
+            string mob = Mobile.ToString();
+            string pass=mob.Substring(mob.Length - 4)+"*"+Name.Substring(0,4);
+            return pass;
         }
     }
 
