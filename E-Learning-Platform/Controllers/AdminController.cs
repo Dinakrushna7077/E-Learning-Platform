@@ -145,6 +145,7 @@ namespace E_Learning_Platform.Controllers
         {
             return PartialView("_Payment_Finance");
         }
+        //Student manage functionality
         public ActionResult ManageStudent()
         {
             try
@@ -386,6 +387,7 @@ namespace E_Learning_Platform.Controllers
                        }).FirstOrDefault();
             return PartialView("_StudentDetails", std);
         }
+        //End of manage student function
     }
 
 }

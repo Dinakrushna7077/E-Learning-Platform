@@ -2,7 +2,6 @@
 
 <div class="container-fluid py-4">
 
-    <!-- Page Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold mb-0">Manage Students</h3>
 
@@ -21,7 +20,6 @@
         )
     </div>
 
-    <!-- Filters Section -->
     @using (Ajax.BeginForm("FilterStudent", "Admin", new AjaxOptions
     {
         HttpMethod = "GET",
@@ -54,7 +52,6 @@
         </div>
     }
 
-    <!-- Student Table -->
     <div id="stdtable">
         <div class="card shadow-sm border-0">
             <div class="card-body table-responsive">
@@ -138,7 +135,6 @@
 </div>
 
 
-<!-- Add Student Modal -->
 <div id="newstudent">
 
 </div>
