@@ -361,6 +361,31 @@ namespace E_Learning_Platform.Controllers
                 return Json(new { success = false, message = "Invalid data provided. Reference : "+ex.Message });
             }
         }
+        public ActionResult StudentDetails(int id)
+        {
+            var std = (from s in db.students
+                       join u in db.users
+                       on s.user_id equals u.user_id
+                       join c in db.courses
+                       on s.course_id equals c.course_id
+                       where (s.s_id == id)
+                       select new StudentListDto
+                       {
+                           Name = u.name,
+                           ImgUrl=u.profile,
+                           Gmail = u.email,
+                           UId = u.user_id,
+                           Phone = u.phone,
+                           FatherName = s.father_name,
+                           MotherName = s.mother_name,
+                           Address = s.address,
+                           CourseId = s.course_id ?? 0,
+                           Gender = s.gender,
+                           SId = s.s_id,
+                           CourseTitle=c.title
+                       }).FirstOrDefault();
+            return PartialView("_StudentDetails", std);
+        }
     }
 
 }

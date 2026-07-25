@@ -22,6 +22,7 @@ namespace E_Learning_Platform.Models.ViewModel
         public int CreditIndex { get; set; }
         public int CourseId { get; set; }
         public string Address { get; set; }
+        public string ImgUrl { get; set; }
 
 
     }

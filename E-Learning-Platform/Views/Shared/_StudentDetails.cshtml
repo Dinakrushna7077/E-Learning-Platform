@@ -1,0 +1,135 @@
+﻿@model E_Learning_Platform.Models.ViewModel.StudentListDto
+
+<div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+    <div class="ebg bg-gradient text-white p-4 pb-5 position-relative">
+        <div class="d-flex justify-content-between align-items-center">
+            <span class="badge text-elearning px-3 py-2 rounded-pill fw-bold fs-7 shadow-sm">
+                <i class="bi bi-person-badge me-1"></i> Student ID: #@Model.SId
+            </span>
+            <span class="badge text-elearning px-3 py-2 rounded-pill fw-bold">
+                User ID: #@Model.UId
+            </span>
+        </div>
+    </div>
+    <div class="card-body px-4 pt-0 position-relative">
+
+        <div class="d-flex align-items-end mb-4" style="margin-top: -45px;">
+            <div class="position-relative">
+                <img src="@(string.IsNullOrEmpty(Model.ImgUrl) ? Url.Content("~/photo/user2.png") : Url.Content(Model.ImgUrl))"
+                     alt="@Model.Name"
+                     class="rounded-circle img-thumbnail shadow std-profile"
+                     />
+            </div>
+            <div class="ms-3 mb-2">
+                <h4 class="fw-bold mb-0 text-dark">@Model.Name</h4>
+                <p class="text-muted mb-0 small">
+                    <i class="bi bi-gender-ambiguous me-1"></i>@(string.IsNullOrEmpty(Model.Gender) ? "Not Specified" : Model.Gender)
+                </p>
+            </div>
+        </div>
+
+        <hr class="text-muted my-3 opacity-25" />
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="p-3 rounded-3 bg-light h-100 border border-1 border-light-subtle">
+                    <h6 class="fw-bold text-uppercase text-secondary mb-3 fs-7">
+                        <i class="bi bi-card-heading me-2 text-primary"></i>Contact Info
+                    </h6>
+
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="rounded-circle bg-white p-2 shadow-sm me-3 text-primary">
+                            <i class="bi bi-envelope fs-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-muted d-block fs-7">Email Address</span>
+                            <span class="fw-semibold text-dark">@(string.IsNullOrEmpty(Model.Gmail) ? "N/A" : Model.Gmail)</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-1">
+                        <div class="rounded-circle bg-white p-2 shadow-sm me-3 text-success">
+                            <i class="bi bi-telephone fs-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-muted d-block fs-7">Phone Number</span>
+                            <span class="fw-semibold text-dark">@(Model.Phone > 0 ? Model.Phone.ToString() : "N/A")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="p-3 rounded-3 bg-light h-100 border border-1 border-light-subtle">
+                    <h6 class="fw-bold text-uppercase text-secondary mb-3 fs-7">
+                        <i class="bi bi-book me-2 text-primary"></i>Academic & Location
+                    </h6>
+
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="rounded-circle bg-white p-2 shadow-sm me-3 text-info">
+                            <i class="bi bi-journal-bookmark fs-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-muted d-block fs-7">Enrolled Course</span>
+                            <span class="fw-semibold text-dark">
+                                @(Model.CourseId > 0 ? $" {Model.CourseTitle}" : "Not Enrolled")
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-1">
+                        <div class="rounded-circle bg-white p-2 shadow-sm me-3 text-warning">
+                            <i class="bi bi-geo-alt fs-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-muted d-block fs-7">Address</span>
+                            <span class="fw-semibold text-dark text-break">@(string.IsNullOrEmpty(Model.Address) ? "N/A" : Model.Address)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 mt-3">
+                <div class="p-3 rounded-3 bg-light border border-1 border-light-subtle">
+                    <h6 class="fw-bold text-uppercase text-secondary mb-3 fs-7">
+                        <i class="bi bi-people me-2 text-primary"></i>Parental Information
+                    </h6>
+
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="p-2 bg-white rounded shadow-sm d-flex align-items-center">
+                                <i class="bi bi-person-fill text-muted me-2 fs-5"></i>
+                                <div>
+                                    <span class="text-muted d-block fs-7">Father's Name</span>
+                                    <span class="fw-semibold text-dark">@(string.IsNullOrEmpty(Model.FatherName) ? "N/A" : Model.FatherName)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="p-2 bg-white rounded shadow-sm d-flex align-items-center">
+                                <i class="bi bi-person-fill text-muted me-2 fs-5"></i>
+                                <div>
+                                    <span class="text-muted d-block fs-7">Mother's Name</span>
+                                    <span class="fw-semibold text-dark">@(string.IsNullOrEmpty(Model.MotherName) ? "N/A" : Model.MotherName)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Ajax.ActionLink(
+                "Back to List",
+                "ManageStudent",
+                "Admin",
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "target"
+                },
+                new { @class = "btn btn-outline-secondary btn-sm mb-3" }
+            )
+        </div>
+    </div>
+</div>

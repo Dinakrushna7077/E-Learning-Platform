@@ -10,6 +10,10 @@
     background-color: #2d3e50 !important;
     transition: background-color 0.3s;
 }
+.text-elearning{
+    color: #2d3e50 !important;
+    background-color:white !important;
+}
 
 .navbar-light .navbar-nav .nav-link .navbar-brand {
     color: #333;
@@ -414,4 +418,14 @@
 }
 .mx-width-14 {
     max-width: 140px !important;
+}
+
+.std-profile {
+    width: 100px; 
+    height: 100px; 
+    object-fit: cover; 
+    border: 4px solid #fff;
+}
+.fs-7 {
+    font-size: 0.785rem !important;
 }
