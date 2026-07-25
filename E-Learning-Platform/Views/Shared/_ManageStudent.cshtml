@@ -6,9 +6,19 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold mb-0">Manage Students</h3>
 
-        <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#addStudentModal">
-            <i class="bi bi-plus-circle me-2"></i>Add Student
-        </button>
+        @Ajax.ActionLink(
+            "Add Student",
+            "AddStudentModal",
+            "Admin",
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "newstudent",
+                OnSuccess = "$('#addStudentModal').modal('show');"
+            },
+            new { @class = "btn btn-primary px-4" }
+        )
     </div>
 
     <!-- Filters Section -->
@@ -84,18 +94,23 @@
                                            data-ajax="true"
                                            data-ajax-method="GET"
                                            data-ajax-mode="replace"
-                                           data-ajax-update="#target">
+                                           data-ajax-update="#newstudent">
                                             <i class="bi bi-eye"></i>
                                         </a>
-                                        <a href="@Url.Action("EditDetails", "Admin",new { id = std.SId })"
-                                           class="btn btn-sm btn-outline-warning"
-                                           title="Edit Details"
-                                           data-ajax="true"
-                                           data-ajax-method="GET"
-                                           data-ajax-mode="replace"
-                                           data-ajax-update="#target">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
+                                        @Ajax.ActionLink(
+                                            " ",
+                                            "EditDetails",
+                                            "Admin",
+                                            new { id = std.SId },
+                                            new AjaxOptions
+                                            {
+                                                HttpMethod = "GET",
+                                                InsertionMode = InsertionMode.Replace,
+                                                UpdateTargetId = "newstudent",
+                                                OnSuccess = "$('#addStudentModal').modal('show');"
+                                            },
+                                            new { @class = "btn btn-sm btn-outline-warning bi bi-pencil", title = "Edit Details" }
+                                        )
                                         <a href="@Url.Action("DeleteStudent", "Admin",new { id = std.SId })"
                                            class="btn btn-sm btn-outline-danger"
                                            title="Delete"
@@ -124,98 +139,6 @@
 
 
 <!-- Add Student Modal -->
-<div class="modal fade" id="addStudentModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content border-0 shadow">
+<div id="newstudent">
 
-            @using (Ajax.BeginForm("NewStudent", "Admin", new AjaxOptions
-            {
-                HttpMethod = "POST",
-                OnSuccess = "onStudentSaveSuccess",
-                OnFailure = "onStudentSaveFailure",
-                LoadingElementId = "saveSpinner"
-            }, new { id = "newStudentForm" }))
-            {
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title">Add New Student</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" name="Name" class="form-control" placeholder="Enter full name" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Email</label>
-                            <input type="email" name="Gmail" class="form-control" placeholder="Enter email" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Father Name</label>
-                            <input type="text" name="FatherName" class="form-control" placeholder="Enter father name" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Mother</label>
-                            <input type="text" name="MotherName" class="form-control" placeholder="Enter Mother Name" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Gender</label>
-                            <select class="form-select" name="Gender">
-                                <option selected>Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Phone Number</label>
-                            <input type="text" name="Phone" class="form-control" placeholder="Enter phone number">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Course</label>
-                            @Html.DropDownList("CourseId", ViewBag.Courses as SelectList, "--Select Course--", new { @class = "form-select", required = "required" })
-                        </div>
-                        <div class="col-md-12">
-                            <label class="form-label">Address</label>
-                            <input type="text" name="Address" class="form-control" placeholder="Enter full address">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <!-- Optional loading spinner -->
-                    <div id="saveSpinner" class="spinner-border text-primary spinner-border-sm me-2" role="status" style="display:none;">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary px-4">Save</button>
-                </div>
-            }
-
-        </div>
-    </div>
 </div>
-<script>
-    function onStudentSaveSuccess(response) {
-        if (response.success) {
-            $('#addStudentModal').modal('hide');
-
-            $('#newStudentForm')[0].reset();
-
-            $.get('@Url.Action("ManageStudent", "Admin")', function (htmlData) {
-            $('#target').html(htmlData);
-        });
-        } else {
-            alert('Validation Error: ' + response.message);
-        }
-    }
-
-    function onStudentSaveFailure(xhr) {
-        alert('An unexpected error occurred while saving.');
-    }
-    function onFiltered(response) {
-
-    }
-</script>

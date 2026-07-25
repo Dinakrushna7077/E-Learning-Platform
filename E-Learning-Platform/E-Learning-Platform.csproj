@@ -380,6 +380,7 @@
     <Content Include="Views\Shared\_Payment_Finance.cshtml" />
     <Content Include="Views\Shared\_ReviewAndRating.cshtml" />
     <Content Include="Views\Shared\_StudentListTable.cshtml" />
+    <Content Include="Views\Shared\_NewStudentModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

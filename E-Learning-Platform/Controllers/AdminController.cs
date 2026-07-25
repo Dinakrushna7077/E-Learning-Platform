@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -293,11 +294,72 @@ namespace E_Learning_Platform.Controllers
             db.SaveChanges();
             return RedirectToAction("FilterStudent");
         }
+        public ActionResult EditDetails(int id)
+        {
+            var std = (from s in db.students
+                                  join u in db.users
+                                  on s.user_id equals u.user_id
+                                  where(s.s_id == id)
+                                  select new StudentListDto
+                                  {
+                                      Name = u.name,
+                                      Gmail = u.email,
+                                      UId = u.user_id,
+                                      Phone = u.phone,
+                                      FatherName = s.father_name,
+                                      MotherName = s.mother_name,
+                                      Address = s.address,
+                                      CourseId = s.course_id??0,
+                                      Gender = s.gender,
+                                      SId = s.s_id
+                                  }).FirstOrDefault();
+
+            var courseList = db.courses.Select(c => new { c.course_id, c.title }).ToList();
+            ViewBag.Courses = new SelectList(courseList, "course_id", "title");
+            return PartialView("_NewStudentModal",std);
+        }
+        //Set default pass 
         private string setDefaultPass(long Mobile,string Name)
         {
             string mob = Mobile.ToString();
             string pass=mob.Substring(mob.Length - 4)+"*"+Name.Substring(0,4);
             return pass;
+        }
+        //Load the Student Modal
+        public ActionResult AddStudentModal()
+        {
+            var courseList = db.courses.Select(c => new { c.course_id, c.title }).ToList();
+            ViewBag.Courses = new SelectList(courseList, "course_id", "title");
+            StudentListDto std=new StudentListDto();
+            return PartialView("_NewStudentModal",std);
+        }
+        [HttpPost]
+        public JsonResult UpdateStudent(StudentListDto updStd)
+        {
+            try
+            {
+                var existingStudent = db.students.FirstOrDefault(s => s.s_id == updStd.SId);
+                var existingUser = db.users.FirstOrDefault(u => u.user_id == updStd.UId);
+
+                if (existingStudent != null && existingUser != null)
+                {
+                    existingStudent.father_name = updStd.FatherName;
+                    existingStudent.mother_name = updStd.MotherName;
+                    existingStudent.gender = updStd.Gender;
+                    existingStudent.address = updStd.Address;
+                    existingStudent.course_id = updStd.CourseId;
+
+                    existingUser.name = updStd.Name;
+                    existingUser.email = updStd.Gmail;
+                    existingUser.phone = updStd.Phone;
+                    db.SaveChanges();
+                }
+                return Json(new { success = true, message = "Student Details Updated Successfully!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Invalid data provided. Reference : "+ex.Message });
+            }
         }
     }
 
