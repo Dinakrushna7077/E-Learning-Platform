@@ -429,3 +429,40 @@
 .fs-7 {
     font-size: 0.785rem !important;
 }
+.e-action-btn {
+    color: #2d3e50 !important;
+    border-color: #2d3e50 !important;
+    background-color: transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.e-action-btn:hover{
+    color: white !important;
+    background-color: #2d3e50 !important;
+    border-color: #2d3e50 !important;
+}
+.e-btn {
+    color: white !important;
+    background-color: #2d3e50 !important;
+    border-color: #2d3e50 !important;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+    .e-btn:hover {
+        color: white !important;
+        background-color: #1e2a37 !important;
+        border-color: #2d3e50 !important;
+    }
+.e-active{
+    display:inline-block;
+    height:15px !important;
+    width:15px !important;
+    border-radius:50%;
+    background-color:green;
+}
+.e-inactive {
+    display: inline-block;
+    height: 15px !important;
+    width: 15px !important;
+    border-radius: 50%;
+    background-color: orangered;
+}

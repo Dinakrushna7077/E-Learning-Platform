@@ -16,7 +16,7 @@
                 UpdateTargetId = "newstudent",
                 OnSuccess = "$('#addStudentModal').modal('show');"
             },
-            new { @class = "btn btn-primary px-4" }
+            new { @class = "btn btn-primary px-4 e-btn" }
         )
     </div>
 
@@ -45,7 +45,7 @@
                         </select>
                     </div>
                     <div class="col-md-1">
-                        <button class="btn btn-primary">Filter</button>
+                        <button class="btn e-btn">Filter</button>
                     </div>
                 </div>
             </div>
@@ -82,11 +82,13 @@
                                     <td class="text-truncate mx-width-14" title="@std.Gmail">@std.Gmail</td>
                                     <td title="@std.Phone">@std.Phone</td>
                                     <td title="@std.CourseTitle" class="text-truncate mx-width-2">@std.CourseTitle</td>
-                                    <td title="@std.Duration">@std.Duration</td>
-                                    <td><span class="badge bg-success">@std.Status</span></td>
+                                    <td align="center" title="Duration : @std.Duration">@std.Duration</td>
+                                    <td align="center" title="Status : @(std.Status == true ? "Active" : "Inactive")">
+                                        <span class="@(std.Status == true ? "e-active" : "e-inactive")"></span>
+                                    </td>
                                     <td class="text-end">
                                         <a href="@Url.Action("StudentDetails", "Admin",new { id = std.SId })"
-                                           class="btn btn-sm btn-outline-primary"
+                                           class="btn btn-sm e-action-btn"
                                            title="View Details"
                                            data-ajax="true"
                                            data-ajax-method="GET"
@@ -106,10 +108,10 @@
                                                 UpdateTargetId = "newstudent",
                                                 OnSuccess = "$('#addStudentModal').modal('show');"
                                             },
-                                            new { @class = "btn btn-sm btn-outline-warning bi bi-pencil", title = "Edit Details" }
+                                            new { @class = "btn btn-sm e-action-btn bi bi-pencil", title = "Edit Details" }
                                         )
                                         <a href="@Url.Action("DeleteStudent", "Admin",new { id = std.SId })"
-                                           class="btn btn-sm btn-outline-danger"
+                                           class="btn btn-sm e-action-btn"
                                            title="Delete"
                                            data-ajax="true"
                                            data-ajax-method="GET"
